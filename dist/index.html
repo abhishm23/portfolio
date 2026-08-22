@@ -1,0 +1,2563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abhishek Mishra — Senior Analytics &amp; GenAI Engineer</title>
+<meta name="description" content="Data and analytics engineer with 6+ years architecting enterprise BI, financial analytics, and GenAI automation for global organizations. Designs and ships LLM-augmented agents, PySpark pipelines, and 15M+ row Power BI models end to end. Impact: 1-2% global discount reduction, 32 analyst hours per week automated away, month-end close 70% faster.">
+<meta name="author" content="Abhishek Mishra">
+<meta name="color-scheme" content="dark">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>/* ============================================================================
+   portfolio_page.css — inlined into dist/index.html by portfolio_page.html
+   through a Jinja include tag. Never linked as a separate file, which is what
+   makes the output a single embeddable artifact.
+
+   Design intent: restrained dark luxury. The "expensive" read comes from deep
+   negative space, one accent gradient used sparingly, hairline borders, and
+   motion that is slow and purposeful. Effects are layered so that removing any
+   one of them degrades gracefully:
+
+     aurora      slow-drifting radial washes behind everything
+     starfield   fine twinkling grain, masthead only, very low opacity
+     tilt        pointer-driven 3D rotation + cursor-following specular light
+     shine       conic-gradient border that orbits the card on hover
+     reveal      staggered scroll-in, driven by IntersectionObserver
+     panelIn     whole-panel entrance layered under reveal on tab switch
+
+   Layout: a compact permanent masthead, a sticky tab bar, and one visible
+   panel. Panels are hidden with the `hidden` attribute set by script, never
+   authored, so a JS failure shows all content rather than none.
+
+   Everything above is disabled under prefers-reduced-motion.
+
+   NOTE for future edits: this file is parsed by Jinja. Never let "{" be
+   immediately followed by "#" (that opens a Jinja comment). Always put a
+   newline after an opening brace, as done throughout.
+   ========================================================================== */
+
+/* Smoothly animatable custom angle for the orbiting border highlight. */
+@property --shine-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+:root {
+  /* --- surfaces --------------------------------------------------------- */
+  --bg: #06070c;
+  --bg-lift: #0a0c15;
+  --surface: rgba(255, 255, 255, 0.030);
+  --surface-hi: rgba(255, 255, 255, 0.055);
+  --hairline: rgba(255, 255, 255, 0.085);
+  --hairline-lit: rgba(255, 255, 255, 0.20);
+
+  /* --- ink -------------------------------------------------------------- */
+  --ink: #e9edf6;
+  --ink-2: #a4aec2;
+  --ink-3: #6b7488;
+
+  /* --- accents ---------------------------------------------------------- */
+  --cyan: #4fd1ff;
+  --violet: #a78bfa;
+  --mint: #5eead4;
+  --gold: #fbbf24;
+  --grad: linear-gradient(135deg, var(--cyan), var(--violet));
+
+  /* --- rhythm ----------------------------------------------------------- */
+  --shell: 1180px;
+  --r-lg: 18px;
+  --r-md: 13px;
+  --r-sm: 8px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* The page usually lives in a fixed-height Google Sites iframe, so the
+     internal scrollbar is load-bearing. Style it rather than hide it. */
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(79, 209, 255, 0.28);
+  color: #fff;
+}
+
+a {
+  color: inherit;
+}
+
+/* ============================================================ backdrop */
+
+.aurora,
+.starfield {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aurora {
+  background:
+    radial-gradient(52vw 46vw at 12% -8%, rgba(79, 209, 255, 0.15), transparent 62%),
+    radial-gradient(46vw 40vw at 88% 4%, rgba(167, 139, 250, 0.15), transparent 62%),
+    radial-gradient(60vw 50vw at 50% 108%, rgba(94, 234, 212, 0.09), transparent 66%);
+  filter: blur(6px);
+  animation: drift 26s var(--ease) infinite alternate;
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(0, -3%, 0) scale(1.1);
+  }
+}
+
+/* Fine twinkling grain. Three layers at different rates so the shimmer never
+   pulses in unison — that unison is what makes starfields look cheap. */
+.starfield {
+  height: 105vh;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(1.4px 1.4px at 18% 22%, rgba(255, 255, 255, 0.85), transparent 100%),
+    radial-gradient(1.2px 1.2px at 74% 14%, rgba(207, 232, 255, 0.75), transparent 100%),
+    radial-gradient(1px 1px at 42% 38%, rgba(255, 255, 255, 0.65), transparent 100%),
+    radial-gradient(1.6px 1.6px at 88% 46%, rgba(196, 181, 253, 0.70), transparent 100%),
+    radial-gradient(1px 1px at 8% 58%, rgba(255, 255, 255, 0.55), transparent 100%),
+    radial-gradient(1.3px 1.3px at 61% 66%, rgba(167, 243, 224, 0.60), transparent 100%),
+    radial-gradient(1.1px 1.1px at 31% 78%, rgba(255, 255, 255, 0.50), transparent 100%),
+    radial-gradient(1.5px 1.5px at 92% 84%, rgba(255, 255, 255, 0.45), transparent 100%);
+  background-repeat: repeat;
+  background-size: 380px 380px, 300px 300px, 460px 460px, 340px 340px,
+                   420px 420px, 360px 360px, 500px 500px, 320px 320px;
+  animation: twinkle 7.5s ease-in-out infinite alternate;
+  -webkit-mask-image: linear-gradient(#000 0%, #000 44%, transparent 96%);
+  mask-image: linear-gradient(#000 0%, #000 44%, transparent 96%);
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.26; }
+  50%  { opacity: 0.62; }
+  100% { opacity: 0.34; }
+}
+
+/* ================================================================ shell */
+
+.shell {
+  position: relative;
+  z-index: 1;
+  max-width: var(--shell);
+  margin: 0 auto;
+  /* Bottom padding is trailing dead space inside a fixed-height embed frame,
+     so it is kept tight. */
+  padding: 0 26px 56px;
+}
+
+/* ============================================================= masthead */
+
+.masthead {
+  padding: 46px 0 26px;
+}
+
+/* Identity left, download CTA right. Centred rather than bottom-aligned: the
+   spec row wraps to one, two or three lines depending on viewport width, and
+   bottom alignment made the button's position look accidental at each break.
+   Wraps to stacked on narrow screens, where the CTA goes full width. */
+.mast-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 28px;
+}
+
+.mast-id {
+  min-width: 0;
+}
+
+.mast-cta {
+  flex: none;
+}
+
+.mast-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.mast-links.is-centered {
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  padding: 7px 16px;
+  border: 1px solid rgba(79, 209, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(79, 209, 255, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+.eyebrow .pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 0 rgba(94, 234, 212, 0.75);
+  animation: pulse 2.4s ease-out infinite;
+}
+
+@keyframes pulse {
+  70%  { box-shadow: 0 0 0 9px rgba(94, 234, 212, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(94, 234, 212, 0); }
+}
+
+.hero-name {
+  font-family: 'Sora', 'Inter', sans-serif;
+  /* Deliberately smaller than a full-page hero would use: the masthead is
+     permanent chrome now, so every pixel it takes is a pixel the active panel
+     loses inside a fixed-height embed. */
+  font-size: clamp(2.1rem, 4.6vw, 3.15rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin: 16px 0 11px;
+  /* Slow specular sweep across the letterforms. */
+  background: linear-gradient(100deg,
+      #ffffff 0%, #ffffff 32%,
+      var(--cyan) 46%, var(--violet) 56%,
+      #ffffff 70%, #ffffff 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sweep 8s linear infinite;
+}
+
+@keyframes sweep {
+  0%   { background-position: 130% 0; }
+  100% { background-position: -130% 0; }
+}
+
+.hero-headline {
+  font-size: clamp(0.9rem, 2vw, 1.02rem);
+  font-weight: 600;
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 700px;
+  letter-spacing: 0.01em;
+}
+
+/* Pipe-separated headline rendered as discrete items — see the template note.
+   Each item is nowrap, so line breaks only ever fall between specialisms. */
+.spec-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+.spec {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+
+.spec::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--cyan);
+  opacity: 0.75;
+  flex: none;
+}
+
+.link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease),
+              background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.link-pill:hover {
+  color: #fff;
+  border-color: var(--hairline-lit);
+  background: var(--surface-hi);
+  transform: translateY(-2px);
+}
+
+.link-pill.is-primary {
+  color: #04121b;
+  background: var(--grad);
+  border-color: transparent;
+  box-shadow: 0 8px 26px -8px rgba(79, 209, 255, 0.55);
+}
+
+.link-pill.is-primary:hover {
+  color: #04121b;
+  box-shadow: 0 14px 34px -8px rgba(79, 209, 255, 0.7);
+}
+
+/* Non-interactive pill (location). Reads as information, not as a link. */
+.link-pill.is-static {
+  color: var(--ink-3);
+  background: transparent;
+  cursor: default;
+}
+
+/* ---------------------------------------------------------- stat strip */
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-top: 34px;
+}
+
+.stat {
+  background: rgba(10, 12, 21, 0.72);
+  padding: 26px 16px;
+  backdrop-filter: blur(10px);
+  transition: background 0.35s var(--ease);
+}
+
+.stat:hover {
+  background: rgba(20, 24, 38, 0.86);
+}
+
+.stat-value {
+  display: block;
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.15;
+}
+
+.stat-label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 7px;
+}
+
+/* =============================================================== tab bar */
+
+/* Sticky so the section switcher stays reachable when a panel is taller than
+   the frame. `top: -1px` lets the shadow-casting state be detected by the JS
+   without a scroll listener, and hides the 1px gap some zoom levels produce. */
+.tabbar {
+  position: sticky;
+  top: -1px;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 0;
+  margin: 4px 0 0;
+  background: linear-gradient(to bottom,
+              var(--bg) 0%, var(--bg) 62%, rgba(6, 7, 12, 0.86) 100%);
+  border-bottom: 1px solid var(--hairline);
+  /* The blur is what keeps card content from reading through the bar while it
+     is pinned. Falls back to the solid gradient above where unsupported. */
+  backdrop-filter: blur(14px);
+}
+
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  padding: 10px 17px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease),
+              background 0.3s var(--ease), transform 0.3s var(--ease),
+              box-shadow 0.3s var(--ease);
+}
+
+.tab:hover {
+  color: #fff;
+  border-color: var(--hairline-lit);
+  background: var(--surface-hi);
+  transform: translateY(-2px);
+}
+
+.tab-num {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--ink-3);
+  transition: color 0.3s var(--ease);
+}
+
+.tab:hover .tab-num {
+  color: var(--cyan);
+}
+
+.tab.is-active {
+  color: #04121b;
+  background: var(--grad);
+  border-color: transparent;
+  box-shadow: 0 8px 26px -10px rgba(79, 209, 255, 0.6);
+  transform: none;
+}
+
+.tab.is-active .tab-num,
+.tab.is-active:hover .tab-num {
+  color: rgba(4, 18, 27, 0.62);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* ================================================================ panels */
+
+.panels {
+  display: block;
+}
+
+/* `hidden` is applied by script, not authored, so a JS failure leaves every
+   panel visible rather than the whole page blank. !important because .panel
+   also sets a display value. */
+.panel[hidden] {
+  display: none !important;
+}
+
+.panel {
+  display: block;
+  padding: 40px 0 0;
+}
+
+.panel:focus {
+  outline: none;
+}
+
+/* Whole-panel entrance on tab switch, layered under the per-item reveal
+   stagger so the swap reads as one motion rather than a hard cut. */
+.panel.is-entering {
+  animation: panelIn 0.5s var(--ease) both;
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.panel-cta {
+  margin: 34px 0 0;
+}
+
+/* Text-weight tertiary action. A button, not a link, because it changes app
+   state rather than navigating. */
+.ghost-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cyan);
+  padding: 11px 20px;
+  border: 1px solid rgba(79, 209, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(79, 209, 255, 0.06);
+  cursor: pointer;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
+              transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.ghost-cta:hover {
+  background: rgba(79, 209, 255, 0.12);
+  border-color: rgba(79, 209, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -12px rgba(79, 209, 255, 0.55);
+}
+
+.ghost-cta span {
+  transition: transform 0.3s var(--ease);
+}
+
+.ghost-cta:hover span {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------------- solo embed */
+/* ?solo=1 renders a single panel with no chrome, for embedding sections
+   individually. Set by the JS on <body>. */
+body.is-solo .masthead,
+body.is-solo .tabbar,
+body.is-solo .fine-print {
+  display: none;
+}
+
+body.is-solo .panel {
+  padding-top: 30px;
+}
+
+/* ======================================================== panel typography */
+
+.band-head {
+  margin-bottom: 32px;
+}
+
+.band-title {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0;
+  line-height: 1.18;
+}
+
+.band-sub {
+  color: var(--ink-2);
+  margin: 10px 0 0;
+  max-width: 680px;
+}
+
+.lede {
+  font-size: clamp(1.02rem, 2.1vw, 1.16rem);
+  line-height: 1.78;
+  color: var(--ink-2);
+  max-width: 900px;
+  margin: 0;
+}
+
+/* The tagline, set one step down from the summary so the two read as
+   statement then aside rather than two competing paragraphs. */
+.lede.is-quiet {
+  font-size: clamp(0.95rem, 1.9vw, 1.04rem);
+  color: var(--ink-3);
+  margin-top: 18px;
+}
+
+.lede strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ======================================================= card chassis */
+
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Cursor-following specular highlight. --mx/--my are written by the JS. */
+.tilt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 0%),
+              rgba(79, 209, 255, 0.13), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.tilt:hover::before {
+  opacity: 1;
+}
+
+/* Orbiting hairline. A 1px conic ring, masked so only the border shows. */
+.tilt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--shine-angle),
+              transparent 0%, var(--cyan) 9%, var(--violet) 19%,
+              transparent 30%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+  pointer-events: none;
+}
+
+.tilt:hover::after {
+  opacity: 1;
+  animation: orbit 3.4s linear infinite;
+}
+
+@keyframes orbit {
+  to {
+    --shine-angle: 360deg;
+  }
+}
+
+/* 3D rotation is applied to a wrapper so text stays crisp during transform. */
+.tilt {
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+  transform-style: preserve-3d;
+  transition: transform 0.45s var(--ease), border-color 0.45s var(--ease),
+              background 0.45s var(--ease), box-shadow 0.45s var(--ease);
+  will-change: transform;
+}
+
+.tilt:hover {
+  border-color: var(--hairline-lit);
+  background: var(--surface-hi);
+  box-shadow: 0 26px 60px -26px rgba(0, 0, 0, 0.85),
+              0 0 40px -18px rgba(79, 209, 255, 0.28);
+}
+
+/* ============================================================== skills */
+
+.skill-grid {
+  display: grid;
+  /* min(...,100%) is load-bearing: a bare px minimum in auto-fit cannot shrink
+     below itself, so any narrower viewport overflows horizontally. */
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+  gap: 18px;
+}
+
+/* Exactly five categories in a 3-up grid leaves a hole in row two. Lay it out
+   on a 6-track grid instead: three cards spanning 2, then two spanning 3. */
+@media (min-width: 1000px) {
+  .skill-grid.is-five {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .skill-grid.is-five > .skill-card {
+    grid-column: span 2;
+  }
+  .skill-grid.is-five > .skill-card:nth-child(4),
+  .skill-grid.is-five > .skill-card:nth-child(5) {
+    grid-column: span 3;
+  }
+}
+
+.skill-card h3 {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-card h3::before {
+  content: '';
+  width: 3px;
+  height: 15px;
+  border-radius: 2px;
+  background: var(--grad);
+  flex: none;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.chip {
+  font-size: 12.2px;
+  font-weight: 500;
+  color: var(--ink-2);
+  padding: 5px 11px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.022);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+              background 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.chip:hover {
+  color: #fff;
+  border-color: rgba(79, 209, 255, 0.45);
+  background: rgba(79, 209, 255, 0.10);
+  transform: translateY(-2px);
+}
+
+/* ========================================================== experience */
+
+/* Two columns from ~1000px up. Full-width job cards put ~115 characters on a
+   line, which is well past a comfortable measure; side by side lands near 65. */
+.exp-stack {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
+  align-items: start;
+}
+
+.job-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding-bottom: 15px;
+  margin-bottom: 17px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.job-company {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.24rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.job-title {
+  color: var(--cyan);
+  font-weight: 600;
+  font-size: 0.94rem;
+  margin: 4px 0 0;
+}
+
+.job-meta {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.bullet-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 13px;
+}
+
+.bullet-list li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--ink-2);
+  font-size: 14.4px;
+}
+
+.bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--grad);
+}
+
+.bullet-lead {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* ============================================================ projects */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 34px;
+}
+
+.filter {
+  font-family: inherit;
+  font-size: 12.8px;
+  font-weight: 600;
+  color: var(--ink-2);
+  cursor: pointer;
+  padding: 9px 17px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: color 0.28s var(--ease), border-color 0.28s var(--ease),
+              background 0.28s var(--ease), transform 0.28s var(--ease);
+}
+
+.filter:hover {
+  color: #fff;
+  border-color: var(--hairline-lit);
+  transform: translateY(-2px);
+}
+
+.filter.is-active {
+  color: #04121b;
+  background: var(--grad);
+  border-color: transparent;
+}
+
+.filter:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.pillar {
+  margin-bottom: 52px;
+  transition: opacity 0.4s var(--ease);
+}
+
+.pillar.is-hidden {
+  display: none;
+}
+
+.pillar-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.pillar-title {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.42rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pillar-desc {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 30px;
+}
+
+.project-card.is-flagship {
+  border-color: rgba(251, 191, 36, 0.26);
+  background: linear-gradient(180deg, rgba(251, 191, 36, 0.045), var(--surface) 42%);
+}
+
+.card-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.domain-tag,
+.flag-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+.domain-tag {
+  color: var(--cyan);
+  background: rgba(79, 209, 255, 0.09);
+  border: 1px solid rgba(79, 209, 255, 0.22);
+}
+
+.flag-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold);
+  background: rgba(251, 191, 36, 0.10);
+  border: 1px solid rgba(251, 191, 36, 0.30);
+}
+
+.project-name {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.34;
+  margin: 0;
+}
+
+.project-tagline {
+  font-size: 13.6px;
+  color: var(--ink-3);
+  margin: 6px 0 0;
+  line-height: 1.55;
+}
+
+/* ------------------------------------------------------ metric chips */
+
+.metric-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.metric {
+  flex: 1 1 132px;
+  padding: 13px 15px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.022);
+}
+
+.metric-value {
+  display: block;
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.24rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--mint);
+  line-height: 1.2;
+}
+
+.metric-label {
+  display: block;
+  font-size: 10.8px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+/* -------------------------------------------------------- card blocks */
+
+.project-overview {
+  font-size: 14.3px;
+  color: var(--ink-2);
+  margin: 0;
+  line-height: 1.72;
+}
+
+.block-label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+
+.feature-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 15px;
+  display: grid;
+  gap: 10px;
+  border-left: 2px solid rgba(79, 209, 255, 0.28);
+}
+
+.feature-list li {
+  font-size: 13.6px;
+  color: var(--ink-2);
+  line-height: 1.62;
+}
+
+.feature-list strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.tech-row .chip {
+  font-size: 11.8px;
+  padding: 4px 10px;
+}
+
+.impact {
+  margin-top: auto;
+  padding: 16px 18px;
+  border: 1px solid rgba(94, 234, 212, 0.22);
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, rgba(94, 234, 212, 0.075), rgba(79, 209, 255, 0.035));
+}
+
+.impact .block-label {
+  color: var(--mint);
+  margin-bottom: 6px;
+}
+
+.impact p {
+  margin: 0;
+  font-size: 13.7px;
+  color: #cdefe6;
+  line-height: 1.62;
+}
+
+/* ========================================================= credentials */
+
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 18px;
+}
+
+/* Card heading for the credential cards. Was an inline font-size override on
+   .job-company; given its own class so the markup carries no styling. */
+.cred-heading {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.06rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 15px;
+}
+
+.cred-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 11px;
+}
+
+.cred-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 13.8px;
+  color: var(--ink-2);
+  line-height: 1.58;
+}
+
+.cred-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--grad);
+  transform: rotate(45deg);
+}
+
+.cred-list strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* ============================================================== contact */
+
+.closer {
+  padding: 54px 34px;
+  text-align: center;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(70% 130% at 50% 0%, rgba(79, 209, 255, 0.10), transparent 68%),
+    var(--surface);
+}
+
+.closer h2 {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: clamp(1.5rem, 3.6vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 12px;
+}
+
+.closer p {
+  color: var(--ink-2);
+  max-width: 540px;
+  margin: 0 auto 28px;
+}
+
+.fine-print {
+  margin-top: 42px;
+  font-size: 12px;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+/* ============================================================== reveal */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px) scale(0.988);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* A revealed tilt card must not have `transform: none` fight the tilt vars. */
+.reveal.is-in.tilt {
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+}
+
+/* ========================================================= responsive */
+
+@media (max-width: 900px) {
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  /* The CTA drops below the identity block and spans it, so it stays the
+     most prominent thing in the masthead instead of a stranded pill. */
+  .mast-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 620px) {
+  body {
+    font-size: 14.4px;
+  }
+  .shell {
+    padding: 0 17px 64px;
+  }
+  .masthead {
+    padding: 30px 0 20px;
+  }
+  .card,
+  .project-card {
+    padding: 22px;
+  }
+  .job-meta {
+    text-align: left;
+  }
+  .closer {
+    padding: 40px 22px;
+  }
+  /* Six labelled tabs cannot fit two rows at this width without the numbers
+     going. The label alone still identifies the section. */
+  .tab-num {
+    display: none;
+  }
+  .tab {
+    font-size: 12.8px;
+    padding: 9px 14px;
+  }
+  .tabbar {
+    gap: 7px;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================== reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .tilt,
+  .reveal.is-in.tilt {
+    transform: none;
+  }
+  .aurora,
+  .starfield {
+    animation: none;
+  }
+  .hero-name {
+    animation: none;
+    background-position: 50% 0;
+  }
+  .panel.is-entering {
+    animation: none;
+  }
+}</style>
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true"></div>
+<div class="starfield" aria-hidden="true"></div>
+
+<div class="shell">
+
+  <!-- ======================================================== masthead -->
+  <header class="masthead">
+    <div class="mast-row">
+      <div class="mast-id">
+        <span class="eyebrow"><span class="pulse"></span>Open to senior analytics &amp; GenAI roles</span>
+        <h1 class="hero-name">Abhishek Mishra</h1>
+
+        <p class="hero-headline spec-row">
+          <span class="spec">Senior Analytics &amp; GenAI Engineer</span>
+          <span class="spec">LLM Agents</span>
+          <span class="spec">Data Engineering</span>
+          <span class="spec">Power BI Architecture</span>
+          <span class="spec">Financial Analytics</span>
+        </p>
+      </div>
+
+      <a class="link-pill is-primary mast-cta" href="Abhishek_Mishra_Resume.pdf" download
+         target="_blank" rel="noopener">
+        <span aria-hidden="true">↓</span> Download Résumé (PDF)
+      </a>
+    </div>
+
+    <nav class="mast-links" aria-label="Contact and profiles">
+      <a class="link-pill" href="mailto:abhishek.mishra.23.1997@gmail.com">
+        <span aria-hidden="true">✉</span> abhishek.mishra.23.1997@gmail.com
+      </a>
+      <a class="link-pill" href="https://linkedin.com/in/abhishek-mishra23" target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">in</span> LinkedIn
+      </a>
+      <a class="link-pill" href="https://github.com/abhishek23" target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">&lt;/&gt;</span> GitHub
+      </a>
+      <span class="link-pill is-static">
+        <span aria-hidden="true">◉</span> Bengaluru, India
+      </span>
+    </nav>
+  </header>
+
+  <!-- ========================================================== tab bar -->
+  <nav class="tabbar" role="tablist" aria-label="Portfolio sections">
+    <button type="button" class="tab is-active" role="tab" id="tab-profile"
+            aria-controls="panel-profile" aria-selected="true" data-tab="profile">
+      <span class="tab-num" aria-hidden="true">01</span> Profile
+    </button>
+    <button type="button" class="tab" role="tab" id="tab-capabilities"
+            aria-controls="panel-capabilities" aria-selected="false" data-tab="capabilities" tabindex="-1">
+      <span class="tab-num" aria-hidden="true">02</span> Capabilities
+    </button>
+    <button type="button" class="tab" role="tab" id="tab-experience"
+            aria-controls="panel-experience" aria-selected="false" data-tab="experience" tabindex="-1">
+      <span class="tab-num" aria-hidden="true">03</span> Experience
+    </button>
+    <button type="button" class="tab" role="tab" id="tab-work"
+            aria-controls="panel-work" aria-selected="false" data-tab="work" tabindex="-1">
+      <span class="tab-num" aria-hidden="true">04</span> Selected Work
+    </button>
+    <button type="button" class="tab" role="tab" id="tab-credentials"
+            aria-controls="panel-credentials" aria-selected="false" data-tab="credentials" tabindex="-1">
+      <span class="tab-num" aria-hidden="true">05</span> Credentials
+    </button>
+    <button type="button" class="tab" role="tab" id="tab-contact"
+            aria-controls="panel-contact" aria-selected="false" data-tab="contact" tabindex="-1">
+      <span class="tab-num" aria-hidden="true">06</span> Contact
+    </button>
+  </nav>
+
+  <main class="panels">
+
+    <!-- ======================================================= profile -->
+    <section class="panel" role="tabpanel" id="panel-profile"
+             aria-labelledby="tab-profile" data-panel="profile" tabindex="0">
+      <div class="band-head reveal">
+        <h2 class="band-title">What I actually do</h2>
+      </div>
+
+      <p class="lede reveal">Data and analytics engineer with 6+ years architecting enterprise BI, financial analytics, and GenAI automation for global organizations. Designs and ships LLM-augmented agents, PySpark pipelines, and 15M+ row Power BI models end to end. Impact: 1-2% global discount reduction, 32 analyst hours per week automated away, month-end close 70% faster.</p>
+      <p class="lede is-quiet reveal">I build the systems that turn messy enterprise data into decisions leadership can act on — and increasingly, the autonomous agents that run them.</p>
+
+      <div class="hero-stats reveal">
+        <div class="stat">
+          <span class="stat-value" data-count>6+</span>
+          <span class="stat-label">Years in Data &amp; Analytics</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" data-count>9</span>
+          <span class="stat-label">Production Systems Shipped</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" data-count>20M+</span>
+          <span class="stat-label">Rows Modeled in Power BI</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value" data-count>32</span>
+          <span class="stat-label">Analyst Hours Automated / Week</span>
+        </div>
+      </div>
+
+      <p class="panel-cta reveal">
+        <button type="button" class="ghost-cta" data-goto="work">
+          See the 9 systems behind these numbers
+          <span aria-hidden="true">→</span>
+        </button>
+      </p>
+    </section>
+
+    <!-- ================================================== capabilities -->
+    <section class="panel" role="tabpanel" id="panel-capabilities"
+             aria-labelledby="tab-capabilities" data-panel="capabilities" tabindex="0">
+      <div class="band-head reveal">
+        <h2 class="band-title">Technical toolkit</h2>
+        <p class="band-sub">GenAI engineering first, on a foundation of enterprise BI architecture and large-scale data engineering.</p>
+      </div>
+
+      <div class="skill-grid is-five">
+        <article class="card tilt reveal skill-card">
+          <h3>GenAI &amp; AI Engineering</h3>
+          <div class="chips">
+            <span class="chip">LLM Application Development</span>
+            <span class="chip">Autonomous Agent Design</span>
+            <span class="chip">Prompt Engineering</span>
+            <span class="chip">Multimodal LLM Pipelines</span>
+            <span class="chip">Zero-Shot Entity Extraction</span>
+            <span class="chip">LangChain / LangGraph</span>
+            <span class="chip">OpenAI &amp; Claude APIs</span>
+            <span class="chip">Whisper Speech-to-Text</span>
+          </div>
+        </article>
+        <article class="card tilt reveal skill-card">
+          <h3>BI &amp; Visualization</h3>
+          <div class="chips">
+            <span class="chip">Power BI</span>
+            <span class="chip">Advanced DAX</span>
+            <span class="chip">Power Query (M)</span>
+            <span class="chip">Multi-Level RLS</span>
+            <span class="chip">Semantic &amp; Tabular Modeling</span>
+            <span class="chip">KPI Architecture</span>
+            <span class="chip">Report Performance Tuning</span>
+            <span class="chip">Tabular Editor</span>
+            <span class="chip">DAX Studio</span>
+            <span class="chip">D3.js</span>
+          </div>
+        </article>
+        <article class="card tilt reveal skill-card">
+          <h3>Data Engineering</h3>
+          <div class="chips">
+            <span class="chip">PySpark</span>
+            <span class="chip">Advanced SQL</span>
+            <span class="chip">ETL / ELT Pipeline Design</span>
+            <span class="chip">Databricks</span>
+            <span class="chip">Delta Lake</span>
+            <span class="chip">DuckDB</span>
+            <span class="chip">Parquet / PyArrow</span>
+            <span class="chip">SAP HANA</span>
+            <span class="chip">Fact &amp; Dimension Modeling</span>
+            <span class="chip">Azure Data Fundamentals</span>
+          </div>
+        </article>
+        <article class="card tilt reveal skill-card">
+          <h3>Python &amp; Automation</h3>
+          <div class="chips">
+            <span class="chip">Python (Pandas, NumPy)</span>
+            <span class="chip">UiPath RPA</span>
+            <span class="chip">PyInstaller Standalone EXE</span>
+            <span class="chip">python-pptx</span>
+            <span class="chip">OpenPyXL / XlsxWriter</span>
+            <span class="chip">Selenium / Playwright</span>
+            <span class="chip">Win32 COM (Outlook, Excel)</span>
+            <span class="chip">REST API Integration</span>
+            <span class="chip">SharePoint Integration</span>
+            <span class="chip">Webex REST API</span>
+            <span class="chip">Windows Task Scheduler</span>
+          </div>
+        </article>
+        <article class="card tilt reveal skill-card">
+          <h3>Domain Expertise</h3>
+          <div class="chips">
+            <span class="chip">Financial Analytics</span>
+            <span class="chip">FP&amp;A &amp; Executive Reporting</span>
+            <span class="chip">Cost Allocation Modeling</span>
+            <span class="chip">Discount &amp; Margin Analytics</span>
+            <span class="chip">Fund Accounting &amp; Reconciliation</span>
+            <span class="chip">Forecast vs. Actuals</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ==================================================== experience -->
+    <section class="panel" role="tabpanel" id="panel-experience"
+             aria-labelledby="tab-experience" data-panel="experience" tabindex="0">
+      <div class="band-head reveal">
+        <h2 class="band-title">Where I have shipped</h2>
+      </div>
+
+      <div class="exp-stack">
+        <article class="card tilt reveal">
+          <div class="job-head">
+            <div>
+              <h3 class="job-company">Cisco Systems</h3>
+              <p class="job-title">Data &amp; Finance Analytics Specialist</p>
+            </div>
+            <div class="job-meta">Jan 2024 - Present<br>Bengaluru, India</div>
+          </div>
+          <ul class="bullet-list">
+            <li><span class="bullet-lead">Global Discount Intelligence</span> — Drove a 1-2% discount-rate reduction in 3 months by architecting a 20M+ row, 4-source Power BI model with multi-level RLS across APJC, EMEA, and Americas.</li>
+            <li><span class="bullet-lead">Executive KPI Automation</span> — Replaced 16 analyst hours per week with a single-trigger pipeline pulling SAP HANA via SQL, computing 12+ executive KPIs, and generating a branded PowerPoint deck.</li>
+            <li><span class="bullet-lead">Embedded Local Analytics</span> — Reclaimed 16 hours per week by shipping two zero-dependency Windows executables with embedded DuckDB and Parquet, adopted independently by non-technical finance analysts.</li>
+            <li><span class="bullet-lead">GenAI &amp; Hybrid Automation</span> — Cut month-end reporting time ~70% with autonomous LLM agents, a team-wide analytics prompt library, and hybrid Python, UiPath, and SQL automation frameworks.</li>
+            <li><span class="bullet-lead">Large-Model Performance</span> — Tuned DAX and Power Query across 12M+ row, 10GB+ datasets and built zero-touch refresh pipelines, eliminating 100+ hours of quarterly manual reporting.</li>
+          </ul>
+        </article>
+        <article class="card tilt reveal">
+          <div class="job-head">
+            <div>
+              <h3 class="job-company">Accenture</h3>
+              <p class="job-title">Data Engineering &amp; BI Analyst</p>
+            </div>
+            <div class="job-meta">Dec 2019 - Dec 2023<br>Bengaluru, India</div>
+          </div>
+          <ul class="bullet-list">
+            <li><span class="bullet-lead">PySpark ETL at Scale</span> — Built PySpark ETL from scratch to transform and map GB-to-TB enterprise datasets into analytics-ready schemas, serving 100+ business users across client engagements.</li>
+            <li><span class="bullet-lead">Dashboard Performance</span> — Cut Power BI load and refresh times 40-50% by auditing legacy reports, re-architecting data models, and optimizing Power Query transformation steps.</li>
+            <li><span class="bullet-lead">Delta Lake Modeling</span> — Modeled multi-source enterprise data into Databricks Delta Lake tables with partitioning strategies that kept downstream BI refreshes zero-touch and daily.</li>
+            <li><span class="bullet-lead">Refresh Orchestration</span> — Eliminated manual intervention for business operations teams by building end-to-end automated ETL and refresh orchestration across Power Query and Databricks.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================================================== selected work -->
+    <section class="panel" role="tabpanel" id="panel-work"
+             aria-labelledby="tab-work" data-panel="work" tabindex="0">
+      <div class="band-head reveal">
+        <h2 class="band-title">9 production systems</h2>
+        <p class="band-sub">Built end to end — problem framing, data engineering, modeling, packaging and adoption.</p>
+      </div>
+
+      <div class="filters reveal" role="group" aria-label="Filter projects by discipline">
+        <button type="button" class="filter is-active"
+                data-filter="p0"
+                aria-pressed="true">Autonomous Automation</button>
+        <button type="button" class="filter"
+                data-filter="p1"
+                aria-pressed="false">Enterprise Optimization</button>
+        <button type="button" class="filter"
+                data-filter="p2"
+                aria-pressed="false">Decision Intelligence</button>
+        <button type="button" class="filter" data-filter="all" aria-pressed="false">All 9</button>
+      </div>
+
+      <div class="pillar" data-pillar="p0">
+        <div class="pillar-head reveal">
+          <h3 class="pillar-title">Autonomous Automation</h3>
+          <span class="pillar-desc">AI Agents &amp; AI-Augmented Engineering</span>
+        </div>
+
+        <div class="project-grid">
+          <article class="card tilt reveal project-card is-flagship">
+
+            <div class="card-top">
+              <span class="flag-tag"><span aria-hidden="true">★</span> Flagship</span>
+              <span class="domain-tag">Venture Capital &amp; Private Equity / Fund Accounting</span>
+            </div>
+
+            <div>
+              <h4 class="project-name">Autonomous VC Capital Call &amp; Multi-Quarter Fund Reconciliation Agent</h4>
+              <p class="project-tagline">Autonomous Agent for Statement Ingestion, Metric Computation &amp; Financial Audit Reconciliation</p>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric">
+                <span class="metric-value" data-count>100%</span>
+                <span class="metric-label">manual collation removed</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value" data-count>Days to Minutes</span>
+                <span class="metric-label">audit turnaround</span>
+              </div>
+            </div>
+
+            <p class="project-overview">An end-to-end autonomous agent that traverses repository directories, discovers unstructured VC capital call statements and notices (PDFs and spreadsheets), and accumulates structured multi-fund financial datasets with full multi-quarter reconciliation.</p>
+
+            <div>
+              <span class="block-label">Skill Focus</span>
+              <div class="chips">
+                <span class="chip">AI-Augmented Engineering (LLM Extraction &amp; Reasoning)</span>
+                <span class="chip">Data Engineering (Document Ingestion &amp; Financial Data Pipelines)</span>
+                <span class="chip">Data Science (Reconciliation Math &amp; Anomaly Validation)</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="block-label">How It Works</span>
+              <ul class="feature-list">
+                <li>
+                  <strong>Automated Statement Discovery &amp; Ingestion</strong> — Scans file trees to identify, parse, and extract tabular and unstructured financial metrics from quarterly capital call notices.
+                </li>
+                <li>
+                  <strong>Comprehensive Fund Metric Engine</strong> — Calculates Initial Commitments, Cumulative Called and Processed Capital, Uncalled Balance Commitments, Current Period Call Amounts, Ownership Share, and Cumulative Profit and Distributions for each fund.
+                </li>
+                <li>
+                  <strong>Multi-Quarter Reconciliation Pipeline</strong> — Reconciles historical fund states across every quarter from inception, verifying cash flows, capital balances, and ownership percentages.
+                </li>
+                <li>
+                  <strong>Auditing &amp; Mathematical Validation</strong> — Applies automated validation rules with dynamic contextual reasoning notes explaining variances, fee adjustments, and calculations.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="block-label">Built With</span>
+              <div class="chips tech-row">
+                <span class="chip">Python</span>
+                <span class="chip">LLM APIs (OpenAI / Claude)</span>
+                <span class="chip">Pandas</span>
+                <span class="chip">OpenPyXL / XlsxWriter</span>
+                <span class="chip">PyMuPDF</span>
+                <span class="chip">Pydantic</span>
+                <span class="chip">Document Parsing Engine</span>
+              </div>
+            </div>
+
+            <div class="impact">
+              <span class="block-label">Impact</span>
+              <p>Eliminates 100% of manual fund statement collation and spreadsheet entry, reducing multi-quarter audit and reconciliation turnaround from days to minutes while ensuring zero mathematical discrepancies.</p>
+            </div>
+
+          </article>
+          <article class="card tilt reveal project-card">
+
+            <div class="card-top">
+              <span class="domain-tag">AI-Augmented Software Engineering &amp; Workflow Automation</span>
+            </div>
+
+            <div>
+              <h4 class="project-name">Dual-Agent Engineering Lifecycle Suite: Multimodal KT Analyzer &amp; Automation Architect</h4>
+              <p class="project-tagline">Autonomous Pipeline Transforming Raw Knowledge Transfer Assets into Executable Automation Specs</p>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric">
+                <span class="metric-value" data-count>80%</span>
+                <span class="metric-label">faster KT &amp; discovery</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value" data-count>2 Agents</span>
+                <span class="metric-label">analyze then architect</span>
+              </div>
+            </div>
+
+            <p class="project-overview">A paired dual-agent system that bridges the gap between unstructured knowledge transfers and engineering execution by automating the entire analysis, discovery, and technical planning lifecycle.</p>
+
+            <div>
+              <span class="block-label">Skill Focus</span>
+              <div class="chips">
+                <span class="chip">AI-Augmented Development (Multimodal Prompt Pipelines &amp; Interactive Agents)</span>
+                <span class="chip">Data Science (Speech-to-Text NLP &amp; Context Graph Synthesis)</span>
+                <span class="chip">Data Engineering (Multimodal Asset Ingestion &amp; Markdown Spec Generation)</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="block-label">How It Works</span>
+              <ul class="feature-list">
+                <li>
+                  <strong>Agent 1 (Multimodal KT Analyzer)</strong> — Ingests meeting video recordings, audio transcripts, codebase folders, and analyst guidelines to synthesize a structured, exhaustive Standard Operating Procedure and technical architecture document.
+                </li>
+                <li>
+                  <strong>Agent 2 (Automation Interview Architect)</strong> — Ingests the synthesized SOP and conducts an interactive, context-aware architectural interview asking targeted feasibility and edge-case questions from an automation perspective.
+                </li>
+                <li>
+                  <strong>Automated Implementation Plan Synthesis</strong> — Drafts production-ready technical architecture specs, task breakdowns, and execution roadmaps once context is fully resolved.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="block-label">Built With</span>
+              <div class="chips tech-row">
+                <span class="chip">Python</span>
+                <span class="chip">Multimodal LLMs (GPT-4V / Gemini 1.5 Pro)</span>
+                <span class="chip">Whisper API</span>
+                <span class="chip">LangChain / LangGraph</span>
+                <span class="chip">Markdown Engine</span>
+                <span class="chip">CLI / Web Console</span>
+              </div>
+            </div>
+
+            <div class="impact">
+              <span class="block-label">Impact</span>
+              <p>Reduces developer onboarding, KT analysis, and automation discovery time by ~80%, turning hours of unstructured video calls and code dumps into structured implementation plans.</p>
+            </div>
+
+          </article>
+          <article class="card tilt reveal project-card">
+
+            <div class="card-top">
+              <span class="domain-tag">Enterprise Operations &amp; Workflow Automation</span>
+            </div>
+
+            <div>
+              <h4 class="project-name">Omnichannel Stakeholder Operations Console with Semantic LLM Reply Parser</h4>
+              <p class="project-tagline">Centralized Operations Hub with Targeted Notification Dispatch and AI-Powered Unstructured Response Extraction</p>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric">
+                <span class="metric-value" data-count>100%</span>
+                <span class="metric-label">data consistency</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value" data-count>2 Channels</span>
+                <span class="metric-label">email + Webex dispatch</span>
+              </div>
+            </div>
+
+            <p class="project-overview">A centralized operations console that replaces fragmented manual stakeholder tracking across multiple tools with targeted omnichannel dispatch, AI reply parsing, and automated dual-target data synchronization.</p>
+
+            <div>
+              <span class="block-label">Skill Focus</span>
+              <div class="chips">
+                <span class="chip">AI-Augmented Engineering (Zero-Shot NLP Entity Extraction)</span>
+                <span class="chip">Data Engineering (Dual-Target Data Synchronization: Excel and Web Portal)</span>
+                <span class="chip">Automation &amp; Tooling (Webex Bot API &amp; Outlook Automation)</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="block-label">How It Works</span>
+              <ul class="feature-list">
+                <li>
+                  <strong>Centralized Operations Console</strong> — Single-pane-of-glass desktop interface orchestrating the entire stakeholder follow-up and data collection lifecycle.
+                </li>
+                <li>
+                  <strong>Omnichannel Targeted Dispatch</strong> — Generates and sends personalized email alerts and one-to-one Webex messages containing recipient-specific metrics, avoiding bulk spam.
+                </li>
+                <li>
+                  <strong>Semantic LLM Reply Parsing</strong> — Uses zero-shot entity extraction to parse unstructured email and chat replies into structured status flags, metrics, and commentary.
+                </li>
+                <li>
+                  <strong>Automated Dual-Sync</strong> — Deterministically writes validated updates into the master Excel ledger and automates web portal submission without human intervention.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="block-label">Built With</span>
+              <div class="chips tech-row">
+                <span class="chip">Python (Tkinter / CustomTkinter GUI)</span>
+                <span class="chip">Webex REST API</span>
+                <span class="chip">pywin32 / Outlook COM</span>
+                <span class="chip">OpenAI / Local LLM</span>
+                <span class="chip">Selenium / Playwright</span>
+                <span class="chip">Pandas</span>
+              </div>
+            </div>
+
+            <div class="impact">
+              <span class="block-label">Impact</span>
+              <p>Replaced hours of repetitive manual copy-pasting and follow-up tracking with a unified automated workflow, improving stakeholder response rates and ensuring 100% data consistency across both targets.</p>
+            </div>
+
+          </article>
+        </div>
+      </div>
+      <div class="pillar is-hidden" data-pillar="p1">
+        <div class="pillar-head reveal">
+          <h3 class="pillar-title">Enterprise Optimization</h3>
+          <span class="pillar-desc">Data Engineering &amp; High-Throughput Pipelines</span>
+        </div>
+
+        <div class="project-grid">
+          <article class="card tilt reveal project-card">
+
+            <div class="card-top">
+              <span class="domain-tag">Financial Data Engineering &amp; Local Analytics</span>
+            </div>
+
+            <div>
+              <h4 class="project-name">Embedded Local Analytics Engines &amp; Standalone Tooling</h4>
+              <p class="project-tagline">Zero-Dependency Standalone Windows Executables with Embedded DuckDB &amp; Parquet</p>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric">
+                <span class="metric-value" data-count>16 hrs</span>
+                <span class="metric-label">saved per week</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value" data-count>0 Installs</span>
+                <span class="metric-label">no Python required</span>
+              </div>
+            </div>
+
+            <p class="project-overview">Self-contained, high-performance Windows executable tools built for non-technical finance analysts, replacing fragile Excel macros with local columnar OLAP querying.</p>
+
+            <div>
+              <span class="block-label">Skill Focus</span>
+              <div class="chips">
+                <span class="chip">Data Engineering (DuckDB SQL, Parquet Storage, Fast Analytical Queries)</span>
+                <span class="chip">Software Packaging (PyInstaller Standalone Deployment without Python Dependencies)</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="block-label">How It Works</span>
+              <ul class="feature-list">
+                <li>
+                  <strong>Zero-Installation Runtime</strong> — Packages complete data extraction, cleansing, mapping, and calculation logic into standalone executables requiring no Python or driver setup.
+                </li>
+                <li>
+                  <strong>Embedded OLAP Power</strong> — Integrates DuckDB and Parquet to process millions of financial records locally in milliseconds.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="block-label">Built With</span>
+              <div class="chips tech-row">
+                <span class="chip">Python</span>
+                <span class="chip">DuckDB</span>
+                <span class="chip">PyArrow</span>
+                <span class="chip">Parquet</span>
+                <span class="chip">PyInstaller</span>
+                <span class="chip">CustomTkinter</span>
+              </div>
+            </div>
+
+            <div class="impact">
+              <span class="block-label">Impact</span>
+              <p>Adopted directly across multiple finance teams, saving 16 hours of manual spreadsheet processing per week (8 hours per tool per week).</p>
+            </div>
+
+          </article>
+          <article class="card tilt reveal project-card is-flagship">
+
+            <div class="card-top">
+              <span class="flag-tag"><span aria-hidden="true">★</span> Flagship</span>
+              <span class="domain-tag">Executive Analytics &amp; Financial KPI Architecture</span>
+            </div>
+
+            <div>
+              <h4 class="project-name">End-to-End CTO Business Review &amp; KPI Automation Pipeline</h4>
+              <p class="project-tagline">Automated Enterprise Ingestion, KPI Computation &amp; Executive Presentation Generation</p>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric">
+                <span class="metric-value" data-count>16 hrs</span>
+                <span class="metric-label">weekly effort replaced</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value" data-count>12+</span>
+                <span class="metric-label">executive KPIs</span>
+              </div>
+            </div>
+
+            <p class="project-overview">A production-grade automated pipeline that fetches live financial data from SAP HANA, calculates 12+ critical executive KPIs, and renders branded presentation decks without analyst involvement.</p>
+
+            <div>
+              <span class="block-label">Skill Focus</span>
+              <div class="chips">
+                <span class="chip">Data Engineering (SAP HANA SQL Extraction &amp; Transformation)</span>
+                <span class="chip">Analytics Automation (Python PowerPoint Generation Engine)</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="block-label">How It Works</span>
+              <ul class="feature-list">
+                <li>
+                  <strong>Complex Financial KPI Modeling</strong> — Computes QTD bookings, YoY linearity against a 3-year average, forecast versus actuals, funnel coverage, and close rates.
+                </li>
+                <li>
+                  <strong>Automated Presentation Rendering</strong> — Programmatically formats and populates branded PowerPoint slides with dynamic KPI cards, tables, and generated commentary.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="block-label">Built With</span>
+              <div class="chips tech-row">
+                <span class="chip">SAP HANA (SQL)</span>
+                <span class="chip">Python</span>
+                <span class="chip">Pandas</span>
+                <span class="chip">python-pptx</span>
+                <span class="chip">Windows Task Scheduler</span>
+              </div>
+            </div>
+
+            <div class="impact">
+              <span class="block-label">Impact</span>
+              <p>Replaced 16 weekly hours of manual reporting effort (8 analysts x 2 hours) with an end-to-end automated script that completes in minutes.</p>
+            </div>
+
+          </article>
+          <article class="card tilt reveal project-card">
+
+            <div class="card-top">
+              <span class="domain-tag">Cloud Data Engineering &amp; Enterprise BI</span>
+            </div>
+
+            <div>
+              <h4 class="project-name">Enterprise PySpark &amp; Databricks Ingestion Infrastructure</h4>
+              <p class="project-tagline">Large-Scale Cloud Data Pipelines &amp; BI Semantic Optimization</p>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric">
+                <span class="metric-value" data-count>40-50%</span>
+                <span class="metric-label">faster refresh</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value" data-count>100+</span>
+                <span class="metric-label">business users served</span>
+              </div>
+            </div>
+
+            <p class="project-overview">Robust PySpark transformation pipelines and re-architected enterprise Power BI reporting layers delivered for large enterprise clients.</p>
+
+            <div>
+              <span class="block-label">Skill Focus</span>
+              <div class="chips">
+                <span class="chip">Data Engineering (PySpark ETL, Databricks Delta Lake, Data Modeling)</span>
+                <span class="chip">BI Architecture (Power BI Query Optimization &amp; Partitioning)</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="block-label">How It Works</span>
+              <ul class="feature-list">
+                <li>
+                  <strong>Scalable Transformation</strong> — Ingests and transforms multi-GB to TB enterprise datasets across disparate source systems into analytics-ready schemas.
+                </li>
+                <li>
+                  <strong>Query &amp; Refresh Optimization</strong> — Refactors legacy Power Query logic and data models, cutting dashboard refresh and load times by 40-50%.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="block-label">Built With</span>
+              <div class="chips tech-row">
+                <span class="chip">PySpark</span>
+                <span class="chip">Databricks</span>
+                <span class="chip">Delta Lake</span>
+                <span class="chip">Power BI</span>
+                <span class="chip">Power Query (M)</span>
+                <span class="chip">DAX</span>
+                <span class="chip">SQL</span>
+              </div>
+            </div>
+
+            <div class="impact">
+              <span class="block-label">Impact</span>
+              <p>Supported critical downstream decision-making for 100+ business users with automated, zero-touch daily refresh schedules.</p>
+            </div>
+
+          </article>
+        </div>
+      </div>
+      <div class="pillar is-hidden" data-pillar="p2">
+        <div class="pillar-head reveal">
+          <h3 class="pillar-title">Decision Intelligence</h3>
+          <span class="pillar-desc">BI Architecture &amp; Data Storytelling</span>
+        </div>
+
+        <div class="project-grid">
+          <article class="card tilt reveal project-card is-flagship">
+
+            <div class="card-top">
+              <span class="flag-tag"><span aria-hidden="true">★</span> Flagship</span>
+              <span class="domain-tag">Commercial Finance &amp; Margin Analytics</span>
+            </div>
+
+            <div>
+              <h4 class="project-name">Global Discount &amp; Margin Intelligence Dashboard</h4>
+              <p class="project-tagline">Enterprise Power BI Architecture with Granular Multi-Level Row-Level Security</p>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric">
+                <span class="metric-value" data-count>1-2%</span>
+                <span class="metric-label">discount reduction</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value" data-count>20M+</span>
+                <span class="metric-label">rows modeled</span>
+              </div>
+            </div>
+
+            <p class="project-overview">A global executive Power BI solution consolidating 4 disparate data sources into 2 high-throughput fact tables (15M and 5-8M rows) across APJC, EMEA, and Americas.</p>
+
+            <div>
+              <span class="block-label">Skill Focus</span>
+              <div class="chips">
+                <span class="chip">BI Architecture (Advanced DAX, Multi-Fact Data Modeling, Multi-Level RLS)</span>
+                <span class="chip">Financial Analytics (Discount Leakage Identification &amp; Price Optimization)</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="block-label">How It Works</span>
+              <ul class="feature-list">
+                <li>
+                  <strong>Hierarchical RLS Architecture</strong> — Dynamic security roles enforcing granular data access across global regions, countries, and theater entities.
+                </li>
+                <li>
+                  <strong>Discount Leakage Telemetry</strong> — DAX measures that identify discount degradation across deal tiers and product families at every hierarchy level.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="block-label">Built With</span>
+              <div class="chips tech-row">
+                <span class="chip">Power BI</span>
+                <span class="chip">Advanced DAX</span>
+                <span class="chip">Power Query</span>
+                <span class="chip">SQL</span>
+                <span class="chip">Tabular Editor</span>
+                <span class="chip">DAX Studio</span>
+              </div>
+            </div>
+
+            <div class="impact">
+              <span class="block-label">Impact</span>
+              <p>Surfaced critical pricing leakages that directly influenced global routing-rule governance, driving a 1-2% reduction in discount rates over 3 months.</p>
+            </div>
+
+          </article>
+          <article class="card tilt reveal project-card">
+
+            <div class="card-top">
+              <span class="domain-tag">Data Storytelling &amp; Full-Stack Visualization</span>
+            </div>
+
+            <div>
+              <h4 class="project-name">AI-Powered Web Analytics &amp; Interactive Storytelling Platform</h4>
+              <p class="project-tagline">Full-Stack Data Visualization Platform Democratizing D3.js Storytelling</p>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric">
+                <span class="metric-value" data-count>No-Code</span>
+                <span class="metric-label">builder for finance</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value" data-count>2 Modes</span>
+                <span class="metric-label">consume + author</span>
+              </div>
+            </div>
+
+            <p class="project-overview">A web-based analytics platform built to deliver cinematic, interactive visual storytelling for executive decision-makers.</p>
+
+            <div>
+              <span class="block-label">Skill Focus</span>
+              <div class="chips">
+                <span class="chip">Data Science &amp; Visualization (Custom D3.js Visualizations &amp; Animated Transitions)</span>
+                <span class="chip">AI-Augmented Development (AI Code Generation &amp; Web Architecture)</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="block-label">How It Works</span>
+              <ul class="feature-list">
+                <li>
+                  <strong>Dual-Mode Interface</strong> — A Consumer View for interactive insight exploration and a No-Code Builder View allowing non-technical users to compose dynamic D3 visualizations.
+                </li>
+                <li>
+                  <strong>Cinematic Chart Transitions</strong> — Fluid animated chart transitions backed by real-time backend calculations over WebSockets.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="block-label">Built With</span>
+              <div class="chips tech-row">
+                <span class="chip">JavaScript (ES6+)</span>
+                <span class="chip">D3.js</span>
+                <span class="chip">Python (Flask / FastAPI)</span>
+                <span class="chip">HTML5 / CSS3</span>
+                <span class="chip">WebSockets</span>
+              </div>
+            </div>
+
+            <div class="impact">
+              <span class="block-label">Impact</span>
+              <p>Democratized advanced data storytelling by allowing finance teams to craft custom visual presentations without engineering dependencies.</p>
+            </div>
+
+          </article>
+          <article class="card tilt reveal project-card">
+
+            <div class="card-top">
+              <span class="domain-tag">Corporate FP&amp;A &amp; Cost Accounting</span>
+            </div>
+
+            <div>
+              <h4 class="project-name">Enterprise Financial Forecasting &amp; Dynamic Cost Allocation Engine</h4>
+              <p class="project-tagline">Automated Statistical Allocation Modeling on Enterprise Datasets</p>
+            </div>
+
+            <div class="metric-row">
+              <div class="metric">
+                <span class="metric-value" data-count>90+ hrs</span>
+                <span class="metric-label">saved per close</span>
+              </div>
+              <div class="metric">
+                <span class="metric-value" data-count>0</span>
+                <span class="metric-label">manual reconciliation</span>
+              </div>
+            </div>
+
+            <p class="project-overview">An automated Python calculation engine applying complex multi-tier business allocation factors and predictive drivers to raw enterprise financial datasets.</p>
+
+            <div>
+              <span class="block-label">Skill Focus</span>
+              <div class="chips">
+                <span class="chip">Data Science &amp; Financial Modeling (Statistical Allocation Factors &amp; Predictive Projections)</span>
+                <span class="chip">Python Engineering (Vectorized Pandas / NumPy Transformations)</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="block-label">How It Works</span>
+              <ul class="feature-list">
+                <li>
+                  <strong>Vectorized Cost Modeling</strong> — Replaces cumbersome multi-tab Excel workbooks with fast, deterministic Python transformations.
+                </li>
+                <li>
+                  <strong>Dynamic Business Rules</strong> — Lets finance teams adjust allocation weights, inflation drivers, and expense splits without touching code.
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <span class="block-label">Built With</span>
+              <div class="chips tech-row">
+                <span class="chip">Python</span>
+                <span class="chip">Pandas</span>
+                <span class="chip">NumPy</span>
+                <span class="chip">OpenPyXL</span>
+                <span class="chip">SQL</span>
+              </div>
+            </div>
+
+            <div class="impact">
+              <span class="block-label">Impact</span>
+              <p>Eliminated quarterly manual spreadsheet reconciliation, saving 90+ hours per financial close cycle.</p>
+            </div>
+
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================================================== credentials -->
+    <section class="panel" role="tabpanel" id="panel-credentials"
+             aria-labelledby="tab-credentials" data-panel="credentials" tabindex="0">
+      <div class="band-head reveal">
+        <h2 class="band-title">Recognition &amp; certification</h2>
+      </div>
+
+      <div class="cred-grid">
+        <article class="card tilt reveal">
+          <h3 class="cred-heading">Awards</h3>
+          <ul class="cred-list">
+            <li>Q4 FY25 APJC High Five Award (x2)</li>
+            <li>FP&amp;A Center of Excellence Star Award for Innovation (x4)</li>
+          </ul>
+        </article>
+
+        <article class="card tilt reveal">
+          <h3 class="cred-heading">Certifications</h3>
+          <ul class="cred-list">
+            <li>Microsoft Certified: Power BI Data Analyst Associate (PL-300)</li>
+            <li>Microsoft Certified: Azure Data Fundamentals (DP-900)</li>
+            <li>UiPath Certified RPA Developer</li>
+          </ul>
+        </article>
+
+        <article class="card tilt reveal">
+          <h3 class="cred-heading">Education</h3>
+          <ul class="cred-list">
+            <li><strong>B.Tech, Mechanical Engineering</strong><br>Biju Patnaik University of Technology, Odisha · 2014 - 2018</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================================================= contact -->
+    <section class="panel" role="tabpanel" id="panel-contact"
+             aria-labelledby="tab-contact" data-panel="contact" tabindex="0">
+      <div class="closer reveal">
+        <h2>Let us build something that ships</h2>
+        <p>Open to senior roles in analytics engineering, GenAI / LLM engineering, and BI architecture.</p>
+        <div class="mast-links is-centered">
+          <a class="link-pill is-primary" href="mailto:abhishek.mishra.23.1997@gmail.com">
+            <span aria-hidden="true">✉</span> abhishek.mishra.23.1997@gmail.com
+          </a>
+          <a class="link-pill" href="tel:+918249632478">
+            <span aria-hidden="true">☎</span> +91 8249632478
+          </a>
+          <a class="link-pill" href="https://linkedin.com/in/abhishek-mishra23" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">in</span> linkedin.com/in/abhishek-mishra23
+          </a>
+          <a class="link-pill" href="https://github.com/abhishek23" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">&lt;/&gt;</span> github.com/abhishek23
+          </a>
+          <a class="link-pill" href="Abhishek_Mishra_Resume.pdf" download target="_blank" rel="noopener">
+            <span aria-hidden="true">↓</span> Résumé (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <p class="fine-print">
+    Built from a single YAML source of truth — this page and the PDF résumé are generated by the same pipeline.
+  </p>
+
+</div>
+
+<script>/* ============================================================================
+   portfolio_page.js — inlined into dist/index.html by portfolio_page.html
+   through a Jinja include tag.
+
+   Owns five enhancements: tab switching, scroll reveal, pointer tilt, metric
+   counters, and the Selected Work sub-tabs.
+
+   Constraints this file is written to respect:
+
+   1. Google Sites serves embeds inside a sandboxed iframe. localStorage and
+      cookies may throw on access, so nothing here persists state.
+   2. The iframe has a FIXED height set by the Sites editor and does not
+      auto-resize. We postMessage our height anyway, which is a no-op there but
+      lets a self-hosted parent page auto-fit.
+   3. THIS FILE IS PARSED BY JINJA. Never write a doubled opening brace or a
+      brace-percent pair anywhere, including in comments — Jinja treats them as
+      its own delimiters and the build dies. (Plain single braces are fine, and
+      so are ES template literals, as long as they avoid those two sequences.)
+   4. Everything is feature-detected and wrapped so that a failure in one
+      enhancement cannot blank the page. In particular the markup ships with no
+      panel hidden: hiding is this file's job, so a total JS failure degrades to
+      one long scrolling page rather than a blank frame.
+   5. History is written with replaceState, never pushState. Inside an iframe,
+      pushing entries would hijack the host page's Back button.
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var coarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+  /* Set by initReveal so tab switches can re-run the visibility sweep over a
+     panel that was display:none when the observer first looked at it. */
+  var refreshReveal = function () {};
+
+  /* ---------------------------------------------------------------- reveal */
+  /* Staggered scroll-in. Elements are pre-hidden by CSS; if IntersectionObserver
+     is missing we reveal everything immediately so content is never lost. */
+  function initReveal() {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    if (!items.length) return;
+
+    if (reduced || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+
+    // Stagger siblings within the same grid/stack, capped so a 9-card grid does
+    // not take two seconds to finish arriving.
+    function show(el) {
+      var siblings = el.parentNode ? Array.prototype.slice.call(el.parentNode.children) : [];
+      var idx = siblings.indexOf(el);
+      el.style.setProperty('--d', Math.min(idx < 0 ? 0 : idx, 5) * 70 + 'ms');
+      el.classList.add('is-in');
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        show(entry.target);
+        io.unobserve(entry.target);
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+
+    items.forEach(function (el) { io.observe(el); });
+
+    // Backstop. Three things can leave an element permanently invisible if the
+    // observer is the only trigger: a fast wheel flick, an anchor jump, and —
+    // since the tab rework — a panel that was display:none when the observer
+    // last evaluated it, which reports zero intersection forever after until
+    // something moves. Sweeping on scroll and on tab switch covers all three.
+    var pending = false;
+    function sweep() {
+      pending = false;
+      var bottom = window.innerHeight;
+      for (var i = items.length - 1; i >= 0; i--) {
+        var el = items[i];
+        if (el.classList.contains('is-in')) { items.splice(i, 1); continue; }
+        var r = el.getBoundingClientRect();
+        // A hidden panel's children measure 0x0 at 0,0 — skip them rather than
+        // treating them as visible, or a tab switch reveals with no stagger.
+        if (r.width === 0 && r.height === 0) continue;
+        if (r.top < bottom) {
+          show(el);
+          io.unobserve(el);
+          items.splice(i, 1);
+        }
+      }
+    }
+    function onScroll() {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(sweep);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    refreshReveal = function () { requestAnimationFrame(sweep); };
+  }
+
+  /* ------------------------------------------------------------------ tabs */
+  /* ARIA tabs. Panels are hidden with the `hidden` attribute rather than a
+     class so assistive tech and in-page find both skip them. The markup ships
+     with nothing hidden, so if this never runs the page degrades to the long
+     scrolling layout it used to be instead of showing one panel. */
+  function initTabs() {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+    if (!tabs.length || !panels.length) return;
+
+    var params = new URLSearchParams(window.location.search);
+    var solo = params.get('solo') === '1';
+
+    function keyOf(el) { return el.getAttribute('data-tab') || el.getAttribute('data-panel'); }
+
+    function panelFor(key) {
+      for (var i = 0; i < panels.length; i++) {
+        if (keyOf(panels[i]) === key) return panels[i];
+      }
+      return null;
+    }
+
+    function activate(key, focusTab) {
+      if (!panelFor(key)) return false;
+
+      tabs.forEach(function (tab) {
+        var on = keyOf(tab) === key;
+        tab.classList.toggle('is-active', on);
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        tab.tabIndex = on ? 0 : -1;
+        if (on && focusTab) tab.focus();
+      });
+
+      panels.forEach(function (panel) {
+        var on = keyOf(panel) === key;
+        panel.hidden = !on;
+        panel.classList.remove('is-entering');
+        if (on && !reduced) {
+          // Reading offsetWidth restarts the animation when the same panel is
+          // re-activated; without it the class is added while already present.
+          void panel.offsetWidth;
+          panel.classList.add('is-entering');
+        }
+      });
+
+      // Reflect state in the URL so a tab is linkable, without adding history
+      // entries — inside an iframe those would hijack the visitor's Back button.
+      try {
+        var url = window.location.pathname + window.location.search + '#' + key;
+        window.history.replaceState(null, '', url);
+      } catch (err) {
+        /* opaque origin or a sandbox that blocks history — cosmetic only */
+      }
+
+      refreshReveal();
+      notifyHeight();
+      return true;
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { activate(keyOf(tab), false); });
+    });
+
+    // Roving-tabindex keyboard support, per the ARIA tabs pattern.
+    document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+      list.addEventListener('keydown', function (e) {
+        var idx = tabs.indexOf(document.activeElement);
+        if (idx < 0) return;
+        var next = -1;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (idx - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = tabs.length - 1;
+        if (next < 0) return;
+        e.preventDefault();
+        activate(keyOf(tabs[next]), true);
+      });
+    });
+
+    // Any control can request a tab: data-goto="work".
+    document.querySelectorAll('[data-goto]').forEach(function (el) {
+      el.addEventListener('click', function () {
+        if (activate(el.getAttribute('data-goto'), false)) window.scrollTo(0, 0);
+      });
+    });
+
+    // ?tab= wins over #hash; otherwise use whichever tab the markup marked
+    // active, which is how the no-JS fallback and the real default agree.
+    var wanted = params.get('tab') || window.location.hash.replace('#', '');
+    var initial = (wanted && panelFor(wanted)) ? wanted : null;
+    if (!initial) {
+      var marked = tabs.filter(function (t) { return t.classList.contains('is-active'); })[0];
+      initial = keyOf(marked || tabs[0]);
+    }
+
+    if (solo) document.body.classList.add('is-solo');
+    activate(initial, false);
+  }
+
+  /* ------------------------------------------------------------------ tilt */
+  /* Pointer-driven 3D rotation plus a cursor-following specular highlight.
+     Both are written as CSS custom properties; the CSS owns the actual
+     transform so reduced-motion can override it in one place. Skipped
+     entirely on touch/coarse pointers, where it only causes jitter. */
+  function initTilt() {
+    if (reduced || coarse) return;
+    var cards = document.querySelectorAll('.tilt');
+    var MAX = 3.6; // degrees — past ~5 the text starts to look warped
+
+    Array.prototype.forEach.call(cards, function (card) {
+      var frame = null;
+
+      function apply(e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--ry', ((px - 0.5) * 2 * MAX).toFixed(2) + 'deg');
+        card.style.setProperty('--rx', ((0.5 - py) * 2 * MAX).toFixed(2) + 'deg');
+        card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
+        card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
+        frame = null;
+      }
+
+      card.addEventListener('pointermove', function (e) {
+        if (frame !== null) return;         // coalesce to one write per frame
+        frame = requestAnimationFrame(function () { apply(e); });
+      });
+
+      card.addEventListener('pointerenter', function () {
+        card.style.setProperty('--lift', '-5px');
+      });
+
+      card.addEventListener('pointerleave', function () {
+        if (frame !== null) { cancelAnimationFrame(frame); frame = null; }
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+        card.style.setProperty('--lift', '0px');
+      });
+    });
+  }
+
+  /* --------------------------------------------------------------- counters */
+  /* Animates the numeric part of a metric while preserving its prefix and
+     suffix ("~40%", "15M+", "1-2%"). Values with no leading number, or with a
+     range like "1-2", are left alone rather than animated wrongly. */
+  function initCounters() {
+    var nodes = document.querySelectorAll('[data-count]');
+    if (!nodes.length) return;
+    if (reduced || !('IntersectionObserver' in window)) return;
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        io.unobserve(el);
+
+        var raw = el.textContent.trim();
+
+        // Ranges ("1-2%", "40-50%") must not animate: counting to the first
+        // number would render a nonsense intermediate like "0-2%".
+        if (/\d\s*[-–]\s*\d/.test(raw)) return;
+
+        // Optional prefix, a number, then the rest ("20M+" -> 20 + "M+").
+        var m = /^([^\d]*)(\d+(?:\.\d+)?)([^\d].*)?$/.exec(raw);
+        if (!m) return;
+
+        var prefix = m[1] || '';
+        var target = parseFloat(m[2]);
+        var suffix = m[3] || '';
+        var decimals = (m[2].indexOf('.') >= 0) ? 1 : 0;
+        if (!isFinite(target) || target === 0) return;
+
+        var DURATION = 1100;
+        var start = null;
+
+        function step(ts) {
+          if (start === null) start = ts;
+          var t = Math.min((ts - start) / DURATION, 1);
+          var eased = 1 - Math.pow(1 - t, 3);           // easeOutCubic
+          el.textContent = prefix + (target * eased).toFixed(decimals) + suffix;
+          if (t < 1) requestAnimationFrame(step);
+          else el.textContent = raw;                     // restore exact source
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.6 });
+
+    Array.prototype.forEach.call(nodes, function (el) { io.observe(el); });
+  }
+
+  /* ---------------------------------------------------------------- filters */
+  /* Discipline sub-tabs inside the Selected Work panel. One pillar is active on
+     entry so the panel opens at three cards rather than nine. Deliberately not
+     persisted — see header note 1. */
+  function initFilters() {
+    var buttons = document.querySelectorAll('.filter');
+    var pillars = document.querySelectorAll('.pillar');
+    if (!buttons.length || !pillars.length) return;
+
+    Array.prototype.forEach.call(buttons, function (btn) {
+      btn.addEventListener('click', function () {
+        var want = btn.getAttribute('data-filter');
+
+        Array.prototype.forEach.call(buttons, function (b) {
+          var on = b === btn;
+          b.classList.toggle('is-active', on);
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+
+        Array.prototype.forEach.call(pillars, function (p) {
+          var show = (want === 'all') || (p.getAttribute('data-pillar') === want);
+          p.classList.toggle('is-hidden', !show);
+        });
+
+        // Cards in a pillar that was hidden when the observer last looked at it
+        // report no intersection, so the sweep has to be re-run by hand.
+        refreshReveal();
+        notifyHeight();
+      });
+    });
+  }
+
+  /* ----------------------------------------------------------- host height */
+  /* Harmless where ignored (Google Sites), useful where honoured. */
+  function notifyHeight() {
+    if (window.parent === window) return;
+    try {
+      var h = Math.ceil(document.documentElement.scrollHeight);
+      window.parent.postMessage({ type: 'portfolio:height', height: h }, '*');
+    } catch (err) {
+      /* cross-origin parent refused the message — nothing to do */
+    }
+  }
+
+  /* -------------------------------------------------------------- smooth nav */
+  /* Anchor jumps inside an iframe: scroll our own document, not the host's. */
+  function initAnchors() {
+    Array.prototype.forEach.call(
+      document.querySelectorAll('a[href^="#"]'),
+      function (a) {
+        a.addEventListener('click', function (e) {
+          var id = a.getAttribute('href').slice(1);
+          if (!id) return;
+          var target = document.getElementById(id);
+          if (!target) return;
+          e.preventDefault();
+          target.scrollIntoView({
+            behavior: reduced ? 'auto' : 'smooth',
+            block: 'start'
+          });
+        });
+      }
+    );
+  }
+
+  function boot() {
+    try { initReveal(); } catch (e) {}
+    try { initTabs(); } catch (e) {}
+    try { initTilt(); } catch (e) {}
+    try { initCounters(); } catch (e) {}
+    try { initFilters(); } catch (e) {}
+    try { initAnchors(); } catch (e) {}
+    notifyHeight();
+    window.addEventListener('load', notifyHeight);
+    window.addEventListener('resize', notifyHeight);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();</script>
+</body>
+</html>

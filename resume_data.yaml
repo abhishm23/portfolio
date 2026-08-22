@@ -1,0 +1,408 @@
+# ==============================================================================
+# resume_data.yaml — SINGLE SOURCE OF TRUTH
+#
+# Consumed by build_resume.py to produce two outputs:
+#   1. dist/Abhishek_Mishra_Resume.pdf  — 1-page, ATS-safe, single-column
+#   2. dist/index.html                  — animated portfolio page (Google Sites)
+#
+# CONVENTIONS (do not break these):
+#   * US English spelling throughout (Optimization, Modeling, Visualization).
+#     ATS keyword matching is near-exact and most JDs use US forms.
+#   * experience[].bullets[].lead must be UNIQUE within a job. The lead renders
+#     bold before the text; duplicates read as a formatting bug.
+#   * experience[].bullets[].text: 20-30 words, OUTCOME/METRIC FIRST.
+#   * Exactly 3 portfolio projects carry `flagship: true`. Only those appear in
+#     the PDF's SELECTED PROJECTS block (via short_name + one_liner).
+#   * one_liner: <=140 chars, must carry a number, must read standalone.
+#   * Every claim here traces to real work. Do not add skills or metrics that
+#     are not already substantiated elsewhere in this file.
+# ==============================================================================
+
+profile:
+  name: "Abhishek Mishra"
+  headline: "Senior Analytics & GenAI Engineer | LLM Agents | Data Engineering | Power BI Architecture | Financial Analytics"
+  contact:
+    location: "Bengaluru, India"
+    email: "abhishek.mishra.23.1997@gmail.com"
+    phone: "+91 8249632478"
+    linkedin_label: "linkedin.com/in/abhishek-mishra23"
+    linkedin_url: "https://linkedin.com/in/abhishek-mishra23"
+    github_label: "github.com/abhishek23"
+    github_url: "https://github.com/abhishek23"
+    portfolio_label: "sites.google.com/view/abhishek23"
+    portfolio_url: "https://sites.google.com/view/abhishek23/"
+
+  # ~50 words. Front-loaded with role, scope, then hard numbers.
+  summary: "Data and analytics engineer with 6+ years architecting enterprise BI, financial analytics, and GenAI automation for global organizations. Designs and ships LLM-augmented agents, PySpark pipelines, and 15M+ row Power BI models end to end. Impact: 1-2% global discount reduction, 32 analyst hours per week automated away, month-end close 70% faster."
+
+  # Web hero only — never rendered in the PDF.
+  tagline_web: "I build the systems that turn messy enterprise data into decisions leadership can act on — and increasingly, the autonomous agents that run them."
+
+  # Web hero stat strip. Every number here must be traceable to a claim
+  # elsewhere in this file. `value` animates as a counter on scroll-in; the
+  # numeric part is parsed out by portfolio_page.js, so keep the digits leading.
+  hero_stats:
+    - value: "6+"
+      label: "Years in Data & Analytics"
+    - value: "9"
+      label: "Production Systems Shipped"
+    - value: "20M+"
+      label: "Rows Modeled in Power BI"
+    - value: "32"
+      label: "Analyst Hours Automated / Week"
+
+# ------------------------------------------------------------------------------
+# CORE SKILLS — GenAI first (primary positioning), then BI, then engineering.
+# Rendered in the PDF as inline comma lists (no tables: ATS parsers mangle them).
+#
+# Deliberately 5 categories, not 6. Each category costs a rendered line plus
+# margin, and this block was consuming 22% of the page. The old thin
+# "Cloud & Platforms" row was folded into Data Engineering and Python &
+# Automation. Adding a 6th category will likely push the PDF to 2 pages —
+# re-run `python build_resume.py --pdf-only` and check the page-count warning.
+# ------------------------------------------------------------------------------
+core_skills:
+  - category: "GenAI & AI Engineering"
+    skills:
+      - "LLM Application Development"
+      - "Autonomous Agent Design"
+      - "Prompt Engineering"
+      - "Multimodal LLM Pipelines"
+      - "Zero-Shot Entity Extraction"
+      - "LangChain / LangGraph"
+      - "OpenAI & Claude APIs"
+      - "Whisper Speech-to-Text"
+
+  - category: "BI & Visualization"
+    skills:
+      - "Power BI"
+      - "Advanced DAX"
+      - "Power Query (M)"
+      - "Multi-Level RLS"
+      - "Semantic & Tabular Modeling"
+      - "KPI Architecture"
+      - "Report Performance Tuning"
+      - "Tabular Editor"
+      - "DAX Studio"
+      - "D3.js"
+
+  - category: "Data Engineering"
+    skills:
+      - "PySpark"
+      - "Advanced SQL"
+      - "ETL / ELT Pipeline Design"
+      - "Databricks"
+      - "Delta Lake"
+      - "DuckDB"
+      - "Parquet / PyArrow"
+      - "SAP HANA"
+      - "Fact & Dimension Modeling"
+      - "Azure Data Fundamentals"
+
+  - category: "Python & Automation"
+    skills:
+      - "Python (Pandas, NumPy)"
+      - "UiPath RPA"
+      - "PyInstaller Standalone EXE"
+      - "python-pptx"
+      - "OpenPyXL / XlsxWriter"
+      - "Selenium / Playwright"
+      - "Win32 COM (Outlook, Excel)"
+      - "REST API Integration"
+      - "SharePoint Integration"
+      - "Webex REST API"
+      - "Windows Task Scheduler"
+
+  - category: "Domain Expertise"
+    skills:
+      - "Financial Analytics"
+      - "FP&A & Executive Reporting"
+      - "Cost Allocation Modeling"
+      - "Discount & Margin Analytics"
+      - "Fund Accounting & Reconciliation"
+      - "Forecast vs. Actuals"
+
+# ------------------------------------------------------------------------------
+# EXPERIENCE
+# Flattened from the old `pillars` structure. The previous nesting repeated the
+# pillar title on every bullet inside it (rendered "Data Engineering & BI
+# Architecture:" 3x in one job). Each bullet now owns a unique lead.
+# ------------------------------------------------------------------------------
+experience:
+  - company: "Cisco Systems"
+    location: "Bengaluru, India"
+    title: "Data & Finance Analytics Specialist"
+    dates: "Jan 2024 - Present"
+    bullets:
+      - lead: "Global Discount Intelligence"
+        text: "Drove a 1-2% discount-rate reduction in 3 months by architecting a 20M+ row, 4-source Power BI model with multi-level RLS across APJC, EMEA, and Americas."
+
+      - lead: "Executive KPI Automation"
+        text: "Replaced 16 analyst hours per week with a single-trigger pipeline pulling SAP HANA via SQL, computing 12+ executive KPIs, and generating a branded PowerPoint deck."
+
+      - lead: "Embedded Local Analytics"
+        text: "Reclaimed 16 hours per week by shipping two zero-dependency Windows executables with embedded DuckDB and Parquet, adopted independently by non-technical finance analysts."
+
+      - lead: "GenAI & Hybrid Automation"
+        text: "Cut month-end reporting time ~70% with autonomous LLM agents, a team-wide analytics prompt library, and hybrid Python, UiPath, and SQL automation frameworks."
+
+      - lead: "Large-Model Performance"
+        text: "Tuned DAX and Power Query across 12M+ row, 10GB+ datasets and built zero-touch refresh pipelines, eliminating 100+ hours of quarterly manual reporting."
+
+  - company: "Accenture"
+    location: "Bengaluru, India"
+    title: "Data Engineering & BI Analyst"
+    dates: "Dec 2019 - Dec 2023"
+    bullets:
+      - lead: "PySpark ETL at Scale"
+        text: "Built PySpark ETL from scratch to transform and map GB-to-TB enterprise datasets into analytics-ready schemas, serving 100+ business users across client engagements."
+
+      - lead: "Dashboard Performance"
+        text: "Cut Power BI load and refresh times 40-50% by auditing legacy reports, re-architecting data models, and optimizing Power Query transformation steps."
+
+      - lead: "Delta Lake Modeling"
+        text: "Modeled multi-source enterprise data into Databricks Delta Lake tables with partitioning strategies that kept downstream BI refreshes zero-touch and daily."
+
+      - lead: "Refresh Orchestration"
+        text: "Eliminated manual intervention for business operations teams by building end-to-end automated ETL and refresh orchestration across Power Query and Databricks."
+
+# ------------------------------------------------------------------------------
+# AWARDS — promoted out of the experience bullets. High human signal; it was
+# previously buried mid-paragraph inside an unrelated pillar.
+#
+# Employer is deliberately omitted: both awards are Cisco, this section sits
+# directly beneath a Cisco-dominated experience block, and repeating the name
+# wrapped the line onto a second row for no informational gain.
+# ------------------------------------------------------------------------------
+awards:
+  - "Q4 FY25 APJC High Five Award (x2)"
+  - "FP&A Center of Excellence Star Award for Innovation (x4)"
+
+certifications:
+  - "Microsoft Certified: Power BI Data Analyst Associate (PL-300)"
+  - "Microsoft Certified: Azure Data Fundamentals (DP-900)"
+  - "UiPath Certified RPA Developer"
+
+education:
+  - degree: "B.Tech, Mechanical Engineering"
+    university: "Biju Patnaik University of Technology, Odisha"
+    dates: "2014 - 2018"
+
+# ==============================================================================
+# PORTFOLIO CATALOG
+#
+# Full depth renders on the web page only. The PDF pulls just the 3 projects
+# marked `flagship: true`, using short_name + one_liner.
+#
+# Per project:
+#   short_name  - <=45 chars, PDF display
+#   flagship    - true for exactly 3 projects total
+#   one_liner   - <=140 chars, carries a number, reads standalone (PDF)
+#   metrics     - 1-2 stat chips for the web card (animated counters)
+# ==============================================================================
+portfolio:
+  - category: "Autonomous Automation"
+    description: "AI Agents & AI-Augmented Engineering"
+    projects:
+      - name: "Autonomous VC Capital Call & Multi-Quarter Fund Reconciliation Agent"
+        short_name: "Autonomous VC Fund Reconciliation Agent"
+        flagship: true
+        one_liner: "LLM agent ingesting unstructured VC capital-call notices and reconciling multi-quarter fund positions - days to minutes, zero variance."
+        tagline: "Autonomous Agent for Statement Ingestion, Metric Computation & Financial Audit Reconciliation"
+        domain: "Venture Capital & Private Equity / Fund Accounting"
+        skill_focus:
+          - "AI-Augmented Engineering (LLM Extraction & Reasoning)"
+          - "Data Engineering (Document Ingestion & Financial Data Pipelines)"
+          - "Data Science (Reconciliation Math & Anomaly Validation)"
+        tech: ["Python", "LLM APIs (OpenAI / Claude)", "Pandas", "OpenPyXL / XlsxWriter", "PyMuPDF", "Pydantic", "Document Parsing Engine"]
+        overview: "An end-to-end autonomous agent that traverses repository directories, discovers unstructured VC capital call statements and notices (PDFs and spreadsheets), and accumulates structured multi-fund financial datasets with full multi-quarter reconciliation."
+        features:
+          - "Automated Statement Discovery & Ingestion: Scans file trees to identify, parse, and extract tabular and unstructured financial metrics from quarterly capital call notices."
+          - "Comprehensive Fund Metric Engine: Calculates Initial Commitments, Cumulative Called and Processed Capital, Uncalled Balance Commitments, Current Period Call Amounts, Ownership Share, and Cumulative Profit and Distributions for each fund."
+          - "Multi-Quarter Reconciliation Pipeline: Reconciles historical fund states across every quarter from inception, verifying cash flows, capital balances, and ownership percentages."
+          - "Auditing & Mathematical Validation: Applies automated validation rules with dynamic contextual reasoning notes explaining variances, fee adjustments, and calculations."
+        impact: "Eliminates 100% of manual fund statement collation and spreadsheet entry, reducing multi-quarter audit and reconciliation turnaround from days to minutes while ensuring zero mathematical discrepancies."
+        metrics:
+          - value: "100%"
+            label: "manual collation removed"
+          - value: "Days to Minutes"
+            label: "audit turnaround"
+
+      - name: "Dual-Agent Engineering Lifecycle Suite: Multimodal KT Analyzer & Automation Architect"
+        short_name: "Dual-Agent KT & Automation Architect"
+        flagship: false
+        one_liner: "Paired multimodal agents converting KT recordings and codebases into executable automation specs - ~80% less discovery time."
+        tagline: "Autonomous Pipeline Transforming Raw Knowledge Transfer Assets into Executable Automation Specs"
+        domain: "AI-Augmented Software Engineering & Workflow Automation"
+        skill_focus:
+          - "AI-Augmented Development (Multimodal Prompt Pipelines & Interactive Agents)"
+          - "Data Science (Speech-to-Text NLP & Context Graph Synthesis)"
+          - "Data Engineering (Multimodal Asset Ingestion & Markdown Spec Generation)"
+        tech: ["Python", "Multimodal LLMs (GPT-4V / Gemini 1.5 Pro)", "Whisper API", "LangChain / LangGraph", "Markdown Engine", "CLI / Web Console"]
+        overview: "A paired dual-agent system that bridges the gap between unstructured knowledge transfers and engineering execution by automating the entire analysis, discovery, and technical planning lifecycle."
+        features:
+          - "Agent 1 (Multimodal KT Analyzer): Ingests meeting video recordings, audio transcripts, codebase folders, and analyst guidelines to synthesize a structured, exhaustive Standard Operating Procedure and technical architecture document."
+          - "Agent 2 (Automation Interview Architect): Ingests the synthesized SOP and conducts an interactive, context-aware architectural interview asking targeted feasibility and edge-case questions from an automation perspective."
+          - "Automated Implementation Plan Synthesis: Drafts production-ready technical architecture specs, task breakdowns, and execution roadmaps once context is fully resolved."
+        impact: "Reduces developer onboarding, KT analysis, and automation discovery time by ~80%, turning hours of unstructured video calls and code dumps into structured implementation plans."
+        metrics:
+          - value: "80%"
+            label: "faster KT & discovery"
+          - value: "2 Agents"
+            label: "analyze then architect"
+
+      - name: "Omnichannel Stakeholder Operations Console with Semantic LLM Reply Parser"
+        short_name: "Omnichannel Stakeholder Ops Console"
+        flagship: false
+        one_liner: "Desktop ops console with Webex and Outlook dispatch plus zero-shot LLM reply parsing, syncing Excel and web portal automatically."
+        tagline: "Centralized Operations Hub with Targeted Notification Dispatch and AI-Powered Unstructured Response Extraction"
+        domain: "Enterprise Operations & Workflow Automation"
+        skill_focus:
+          - "AI-Augmented Engineering (Zero-Shot NLP Entity Extraction)"
+          - "Data Engineering (Dual-Target Data Synchronization: Excel and Web Portal)"
+          - "Automation & Tooling (Webex Bot API & Outlook Automation)"
+        tech: ["Python (Tkinter / CustomTkinter GUI)", "Webex REST API", "pywin32 / Outlook COM", "OpenAI / Local LLM", "Selenium / Playwright", "Pandas"]
+        overview: "A centralized operations console that replaces fragmented manual stakeholder tracking across multiple tools with targeted omnichannel dispatch, AI reply parsing, and automated dual-target data synchronization."
+        features:
+          - "Centralized Operations Console: Single-pane-of-glass desktop interface orchestrating the entire stakeholder follow-up and data collection lifecycle."
+          - "Omnichannel Targeted Dispatch: Generates and sends personalized email alerts and one-to-one Webex messages containing recipient-specific metrics, avoiding bulk spam."
+          - "Semantic LLM Reply Parsing: Uses zero-shot entity extraction to parse unstructured email and chat replies into structured status flags, metrics, and commentary."
+          - "Automated Dual-Sync: Deterministically writes validated updates into the master Excel ledger and automates web portal submission without human intervention."
+        impact: "Replaced hours of repetitive manual copy-pasting and follow-up tracking with a unified automated workflow, improving stakeholder response rates and ensuring 100% data consistency across both targets."
+        metrics:
+          - value: "100%"
+            label: "data consistency"
+          - value: "2 Channels"
+            label: "email + Webex dispatch"
+
+  - category: "Enterprise Optimization"
+    description: "Data Engineering & High-Throughput Pipelines"
+    projects:
+      - name: "Embedded Local Analytics Engines & Standalone Tooling"
+        short_name: "Embedded DuckDB Analytics EXE Tools"
+        flagship: false
+        one_liner: "Zero-dependency Windows executables with embedded DuckDB and Parquet for finance analysts - 16 hours per week reclaimed."
+        tagline: "Zero-Dependency Standalone Windows Executables with Embedded DuckDB & Parquet"
+        domain: "Financial Data Engineering & Local Analytics"
+        skill_focus:
+          - "Data Engineering (DuckDB SQL, Parquet Storage, Fast Analytical Queries)"
+          - "Software Packaging (PyInstaller Standalone Deployment without Python Dependencies)"
+        tech: ["Python", "DuckDB", "PyArrow", "Parquet", "PyInstaller", "CustomTkinter"]
+        overview: "Self-contained, high-performance Windows executable tools built for non-technical finance analysts, replacing fragile Excel macros with local columnar OLAP querying."
+        features:
+          - "Zero-Installation Runtime: Packages complete data extraction, cleansing, mapping, and calculation logic into standalone executables requiring no Python or driver setup."
+          - "Embedded OLAP Power: Integrates DuckDB and Parquet to process millions of financial records locally in milliseconds."
+        impact: "Adopted directly across multiple finance teams, saving 16 hours of manual spreadsheet processing per week (8 hours per tool per week)."
+        metrics:
+          - value: "16 hrs"
+            label: "saved per week"
+          - value: "0 Installs"
+            label: "no Python required"
+
+      - name: "End-to-End CTO Business Review & KPI Automation Pipeline"
+        short_name: "CTO Business Review KPI Pipeline"
+        flagship: true
+        one_liner: "SAP HANA to a branded executive deck in one trigger, computing 12+ KPIs - replaced 16 analyst hours per week."
+        tagline: "Automated Enterprise Ingestion, KPI Computation & Executive Presentation Generation"
+        domain: "Executive Analytics & Financial KPI Architecture"
+        skill_focus:
+          - "Data Engineering (SAP HANA SQL Extraction & Transformation)"
+          - "Analytics Automation (Python PowerPoint Generation Engine)"
+        tech: ["SAP HANA (SQL)", "Python", "Pandas", "python-pptx", "Windows Task Scheduler"]
+        overview: "A production-grade automated pipeline that fetches live financial data from SAP HANA, calculates 12+ critical executive KPIs, and renders branded presentation decks without analyst involvement."
+        features:
+          - "Complex Financial KPI Modeling: Computes QTD bookings, YoY linearity against a 3-year average, forecast versus actuals, funnel coverage, and close rates."
+          - "Automated Presentation Rendering: Programmatically formats and populates branded PowerPoint slides with dynamic KPI cards, tables, and generated commentary."
+        impact: "Replaced 16 weekly hours of manual reporting effort (8 analysts x 2 hours) with an end-to-end automated script that completes in minutes."
+        metrics:
+          - value: "16 hrs"
+            label: "weekly effort replaced"
+          - value: "12+"
+            label: "executive KPIs"
+
+      - name: "Enterprise PySpark & Databricks Ingestion Infrastructure"
+        short_name: "PySpark & Databricks Infrastructure"
+        flagship: false
+        one_liner: "PySpark and Delta Lake ingestion plus Power BI re-architecture for 100+ users - 40-50% faster refreshes."
+        tagline: "Large-Scale Cloud Data Pipelines & BI Semantic Optimization"
+        domain: "Cloud Data Engineering & Enterprise BI"
+        skill_focus:
+          - "Data Engineering (PySpark ETL, Databricks Delta Lake, Data Modeling)"
+          - "BI Architecture (Power BI Query Optimization & Partitioning)"
+        tech: ["PySpark", "Databricks", "Delta Lake", "Power BI", "Power Query (M)", "DAX", "SQL"]
+        overview: "Robust PySpark transformation pipelines and re-architected enterprise Power BI reporting layers delivered for large enterprise clients."
+        features:
+          - "Scalable Transformation: Ingests and transforms multi-GB to TB enterprise datasets across disparate source systems into analytics-ready schemas."
+          - "Query & Refresh Optimization: Refactors legacy Power Query logic and data models, cutting dashboard refresh and load times by 40-50%."
+        impact: "Supported critical downstream decision-making for 100+ business users with automated, zero-touch daily refresh schedules."
+        metrics:
+          - value: "40-50%"
+            label: "faster refresh"
+          - value: "100+"
+            label: "business users served"
+
+  - category: "Decision Intelligence"
+    description: "BI Architecture & Data Storytelling"
+    projects:
+      - name: "Global Discount & Margin Intelligence Dashboard"
+        short_name: "Global Discount & Margin Dashboard"
+        flagship: true
+        one_liner: "20M+ row, 4-source Power BI model with multi-level RLS across three theaters - drove a 1-2% discount reduction in 3 months."
+        tagline: "Enterprise Power BI Architecture with Granular Multi-Level Row-Level Security"
+        domain: "Commercial Finance & Margin Analytics"
+        skill_focus:
+          - "BI Architecture (Advanced DAX, Multi-Fact Data Modeling, Multi-Level RLS)"
+          - "Financial Analytics (Discount Leakage Identification & Price Optimization)"
+        tech: ["Power BI", "Advanced DAX", "Power Query", "SQL", "Tabular Editor", "DAX Studio"]
+        overview: "A global executive Power BI solution consolidating 4 disparate data sources into 2 high-throughput fact tables (15M and 5-8M rows) across APJC, EMEA, and Americas."
+        features:
+          - "Hierarchical RLS Architecture: Dynamic security roles enforcing granular data access across global regions, countries, and theater entities."
+          - "Discount Leakage Telemetry: DAX measures that identify discount degradation across deal tiers and product families at every hierarchy level."
+        impact: "Surfaced critical pricing leakages that directly influenced global routing-rule governance, driving a 1-2% reduction in discount rates over 3 months."
+        metrics:
+          - value: "1-2%"
+            label: "discount reduction"
+          - value: "20M+"
+            label: "rows modeled"
+
+      - name: "AI-Powered Web Analytics & Interactive Storytelling Platform"
+        short_name: "D3.js Interactive Storytelling Platform"
+        flagship: false
+        one_liner: "Full-stack D3.js storytelling platform with a no-code builder, letting finance teams compose executive visuals unaided."
+        tagline: "Full-Stack Data Visualization Platform Democratizing D3.js Storytelling"
+        domain: "Data Storytelling & Full-Stack Visualization"
+        skill_focus:
+          - "Data Science & Visualization (Custom D3.js Visualizations & Animated Transitions)"
+          - "AI-Augmented Development (AI Code Generation & Web Architecture)"
+        tech: ["JavaScript (ES6+)", "D3.js", "Python (Flask / FastAPI)", "HTML5 / CSS3", "WebSockets"]
+        overview: "A web-based analytics platform built to deliver cinematic, interactive visual storytelling for executive decision-makers."
+        features:
+          - "Dual-Mode Interface: A Consumer View for interactive insight exploration and a No-Code Builder View allowing non-technical users to compose dynamic D3 visualizations."
+          - "Cinematic Chart Transitions: Fluid animated chart transitions backed by real-time backend calculations over WebSockets."
+        impact: "Democratized advanced data storytelling by allowing finance teams to craft custom visual presentations without engineering dependencies."
+        metrics:
+          - value: "No-Code"
+            label: "builder for finance"
+          - value: "2 Modes"
+            label: "consume + author"
+
+      - name: "Enterprise Financial Forecasting & Dynamic Cost Allocation Engine"
+        short_name: "Dynamic Cost Allocation Engine"
+        flagship: false
+        one_liner: "Vectorized Pandas and NumPy allocation engine replacing multi-tab Excel models - 90+ hours saved per financial close."
+        tagline: "Automated Statistical Allocation Modeling on Enterprise Datasets"
+        domain: "Corporate FP&A & Cost Accounting"
+        skill_focus:
+          - "Data Science & Financial Modeling (Statistical Allocation Factors & Predictive Projections)"
+          - "Python Engineering (Vectorized Pandas / NumPy Transformations)"
+        tech: ["Python", "Pandas", "NumPy", "OpenPyXL", "SQL"]
+        overview: "An automated Python calculation engine applying complex multi-tier business allocation factors and predictive drivers to raw enterprise financial datasets."
+        features:
+          - "Vectorized Cost Modeling: Replaces cumbersome multi-tab Excel workbooks with fast, deterministic Python transformations."
+          - "Dynamic Business Rules: Lets finance teams adjust allocation weights, inflation drivers, and expense splits without touching code."
+        impact: "Eliminated quarterly manual spreadsheet reconciliation, saving 90+ hours per financial close cycle."
+        metrics:
+          - value: "90+ hrs"
+            label: "saved per close"
+          - value: "0"
+            label: "manual reconciliation"

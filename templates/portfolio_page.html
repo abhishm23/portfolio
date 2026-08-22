@@ -1,0 +1,399 @@
+{#
+  portfolio_page.html — renders dist/index.html, a single self-contained file.
+
+  WHY SELF-CONTAINED: this page is embedded in Google Sites through a sandboxed
+  iframe. Relative asset requests are unreliable there, so the CSS and JS are
+  inlined via {% include %} rather than linked. The only external requests are
+  the two Google Fonts families, which degrade to system fonts if blocked.
+
+  WHY TABS: a Google Sites embed has a FIXED height and never auto-resizes, so
+  a 10,000px scrolling page shows a tenth of itself at a time. Tabs cut the
+  tallest view to roughly one frame. The panels are real ARIA tabpanels using
+  the `hidden` attribute, so only one is ever in the layout.
+
+  EMBEDDING ONE SECTION AT A TIME: the same file can serve as an individual
+  embed. `index.html?solo=1&tab=experience` hides the masthead and tab bar and
+  renders that panel alone. Valid tab keys are the data-tab values below.
+  Without ?solo=1, ?tab= / #hash just preselects a tab.
+
+  COVERAGE CONTRACT: unlike the PDF (which carries 3 flagship one-liners), this
+  page renders EVERY field in resume_data.yaml — all 5 skill categories, all
+  bullets from both jobs, and all 9 projects with overview, features, metrics,
+  skill focus, tech and impact. If you add a field to the YAML, add it here too.
+
+  One deliberate exception: contact.portfolio_url is not rendered. This page IS
+  that URL, so a self-link would be noise. The PDF does render it, which is
+  where a reader actually needs it.
+
+  Jinja notes: autoescape is ON, so YAML text is safely escaped. The two
+  {% include %}d asset files pass through unescaped, which is what makes the
+  inlining work.
+#}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ profile.name }} — {{ profile.headline.split('|')[0] | trim }}</title>
+<meta name="description" content="{{ profile.summary }}">
+<meta name="author" content="{{ profile.name }}">
+<meta name="color-scheme" content="dark">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>{% include 'portfolio_page.css' %}</style>
+</head>
+<body>
+
+{# Decorative layers. Purely presentational, so hidden from assistive tech. #}
+<div class="aurora" aria-hidden="true"></div>
+<div class="starfield" aria-hidden="true"></div>
+
+<div class="shell">
+
+  <!-- ======================================================== masthead -->
+  {#
+    Compact and always visible: it is the only identity anchor once the long
+    scrolling hero is gone. Left-aligned rather than centred because a centred
+    block of this much text costs ~120px more vertical space.
+  #}
+  <header class="masthead">
+    <div class="mast-row">
+      <div class="mast-id">
+        <span class="eyebrow"><span class="pulse"></span>Open to senior analytics &amp; GenAI roles</span>
+        <h1 class="hero-name">{{ profile.name }}</h1>
+
+        {#
+          The headline is authored pipe-separated for the PDF. Rendering those
+          pipes verbatim leaves one dangling at a line end on every viewport
+          width, so each segment becomes its own nowrap item with a leading dot.
+          Wrapping then happens between segments and never orphans a separator.
+        #}
+        <p class="hero-headline spec-row">
+          {% for part in profile.headline.split('|') %}
+          <span class="spec">{{ part | trim }}</span>
+          {% endfor %}
+        </p>
+      </div>
+
+      {# target="_blank" is the fallback path: Google Sites serves this page in a
+         sandboxed iframe, and Chrome blocks downloads from a sandbox that lacks
+         allow-downloads. Opening in a new tab still gets the visitor the PDF. #}
+      <a class="link-pill is-primary mast-cta" href="{{ pdf_name }}" download
+         target="_blank" rel="noopener">
+        <span aria-hidden="true">↓</span> Download Résumé (PDF)
+      </a>
+    </div>
+
+    <nav class="mast-links" aria-label="Contact and profiles">
+      <a class="link-pill" href="mailto:{{ profile.contact.email }}">
+        <span aria-hidden="true">✉</span> {{ profile.contact.email }}
+      </a>
+      <a class="link-pill" href="{{ profile.contact.linkedin_url }}" target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">in</span> LinkedIn
+      </a>
+      <a class="link-pill" href="{{ profile.contact.github_url }}" target="_blank" rel="noopener noreferrer">
+        <span aria-hidden="true">&lt;/&gt;</span> GitHub
+      </a>
+      <span class="link-pill is-static">
+        <span aria-hidden="true">◉</span> {{ profile.contact.location }}
+      </span>
+    </nav>
+  </header>
+
+  <!-- ========================================================== tab bar -->
+  {#
+    Each tab carries its own is-active background, so the control still reads
+    correctly if the JS never runs — at which point every panel is also visible,
+    because `hidden` is applied by script rather than authored into the markup.
+  #}
+  <nav class="tabbar" role="tablist" aria-label="Portfolio sections">
+    <button type="button" class="tab is-active" role="tab" id="tab-profile"
+            aria-controls="panel-profile" aria-selected="true" data-tab="profile">
+      <span class="tab-num" aria-hidden="true">01</span> Profile
+    </button>
+    <button type="button" class="tab" role="tab" id="tab-capabilities"
+            aria-controls="panel-capabilities" aria-selected="false" data-tab="capabilities" tabindex="-1">
+      <span class="tab-num" aria-hidden="true">02</span> Capabilities
+    </button>
+    <button type="button" class="tab" role="tab" id="tab-experience"
+            aria-controls="panel-experience" aria-selected="false" data-tab="experience" tabindex="-1">
+      <span class="tab-num" aria-hidden="true">03</span> Experience
+    </button>
+    <button type="button" class="tab" role="tab" id="tab-work"
+            aria-controls="panel-work" aria-selected="false" data-tab="work" tabindex="-1">
+      <span class="tab-num" aria-hidden="true">04</span> Selected Work
+    </button>
+    <button type="button" class="tab" role="tab" id="tab-credentials"
+            aria-controls="panel-credentials" aria-selected="false" data-tab="credentials" tabindex="-1">
+      <span class="tab-num" aria-hidden="true">05</span> Credentials
+    </button>
+    <button type="button" class="tab" role="tab" id="tab-contact"
+            aria-controls="panel-contact" aria-selected="false" data-tab="contact" tabindex="-1">
+      <span class="tab-num" aria-hidden="true">06</span> Contact
+    </button>
+  </nav>
+
+  <main class="panels">
+
+    <!-- ======================================================= profile -->
+    <section class="panel" role="tabpanel" id="panel-profile"
+             aria-labelledby="tab-profile" data-panel="profile" tabindex="0">
+      <div class="band-head reveal">
+        <h2 class="band-title">What I actually do</h2>
+      </div>
+
+      <p class="lede reveal">{{ profile.summary }}</p>
+      <p class="lede is-quiet reveal">{{ profile.tagline_web }}</p>
+
+      <div class="hero-stats reveal">
+        {% for stat in profile.hero_stats %}
+        <div class="stat">
+          <span class="stat-value" data-count>{{ stat.value }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+        {% endfor %}
+      </div>
+
+      <p class="panel-cta reveal">
+        <button type="button" class="ghost-cta" data-goto="work">
+          See the {{ portfolio | map(attribute='projects') | sum(start=[]) | length }} systems behind these numbers
+          <span aria-hidden="true">→</span>
+        </button>
+      </p>
+    </section>
+
+    <!-- ================================================== capabilities -->
+    <section class="panel" role="tabpanel" id="panel-capabilities"
+             aria-labelledby="tab-capabilities" data-panel="capabilities" tabindex="0">
+      <div class="band-head reveal">
+        <h2 class="band-title">Technical toolkit</h2>
+        <p class="band-sub">GenAI engineering first, on a foundation of enterprise BI architecture and large-scale data engineering.</p>
+      </div>
+
+      {#
+        `is-five` drives an explicit 3-then-2 layout so the second row fills the
+        full width instead of leaving a hole in a 3-up grid. Applied from the data,
+        not hardcoded, so adding a 6th category falls back to plain auto-fit.
+      #}
+      <div class="skill-grid{% if core_skills | length == 5 %} is-five{% endif %}">
+        {% for group in core_skills %}
+        <article class="card tilt reveal skill-card">
+          <h3>{{ group.category }}</h3>
+          <div class="chips">
+            {% for skill in group.skills %}
+            <span class="chip">{{ skill }}</span>
+            {% endfor %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- ==================================================== experience -->
+    <section class="panel" role="tabpanel" id="panel-experience"
+             aria-labelledby="tab-experience" data-panel="experience" tabindex="0">
+      <div class="band-head reveal">
+        <h2 class="band-title">Where I have shipped</h2>
+      </div>
+
+      <div class="exp-stack">
+        {% for job in experience %}
+        <article class="card tilt reveal">
+          <div class="job-head">
+            <div>
+              <h3 class="job-company">{{ job.company }}</h3>
+              <p class="job-title">{{ job.title }}</p>
+            </div>
+            <div class="job-meta">{{ job.dates }}<br>{{ job.location }}</div>
+          </div>
+          <ul class="bullet-list">
+            {% for bullet in job.bullets %}
+            <li><span class="bullet-lead">{{ bullet.lead }}</span> — {{ bullet.text }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- ================================================== selected work -->
+    {% set all_projects = portfolio | map(attribute='projects') | sum(start=[]) %}
+    <section class="panel" role="tabpanel" id="panel-work"
+             aria-labelledby="tab-work" data-panel="work" tabindex="0">
+      <div class="band-head reveal">
+        <h2 class="band-title">{{ all_projects | length }} production systems</h2>
+        <p class="band-sub">Built end to end — problem framing, data engineering, modeling, packaging and adoption.</p>
+      </div>
+
+      {#
+        Sub-tabs, not a filter: one discipline is active on entry so this panel
+        opens at ~3 cards instead of 9. "All 9" stays available as the last
+        option for anyone who wants the full catalog in one scroll.
+      #}
+      <div class="filters reveal" role="group" aria-label="Filter projects by discipline">
+        {% for pillar in portfolio %}
+        <button type="button" class="filter{% if loop.first %} is-active{% endif %}"
+                data-filter="p{{ loop.index0 }}"
+                aria-pressed="{{ 'true' if loop.first else 'false' }}">{{ pillar.category }}</button>
+        {% endfor %}
+        <button type="button" class="filter" data-filter="all" aria-pressed="false">All {{ all_projects | length }}</button>
+      </div>
+
+      {% for pillar in portfolio %}
+      <div class="pillar{% if not loop.first %} is-hidden{% endif %}" data-pillar="p{{ loop.index0 }}">
+        <div class="pillar-head reveal">
+          <h3 class="pillar-title">{{ pillar.category }}</h3>
+          <span class="pillar-desc">{{ pillar.description }}</span>
+        </div>
+
+        <div class="project-grid">
+          {% for project in pillar.projects %}
+          <article class="card tilt reveal project-card{% if project.flagship %} is-flagship{% endif %}">
+
+            <div class="card-top">
+              {% if project.flagship %}
+              <span class="flag-tag"><span aria-hidden="true">★</span> Flagship</span>
+              {% endif %}
+              <span class="domain-tag">{{ project.domain }}</span>
+            </div>
+
+            <div>
+              <h4 class="project-name">{{ project.name }}</h4>
+              <p class="project-tagline">{{ project.tagline }}</p>
+            </div>
+
+            <div class="metric-row">
+              {% for metric in project.metrics %}
+              <div class="metric">
+                <span class="metric-value" data-count>{{ metric.value }}</span>
+                <span class="metric-label">{{ metric.label }}</span>
+              </div>
+              {% endfor %}
+            </div>
+
+            <p class="project-overview">{{ project.overview }}</p>
+
+            <div>
+              <span class="block-label">Skill Focus</span>
+              <div class="chips">
+                {% for focus in project.skill_focus %}
+                <span class="chip">{{ focus }}</span>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div>
+              <span class="block-label">How It Works</span>
+              <ul class="feature-list">
+                {% for feature in project.features %}
+                {# Features are authored as "Label: detail" — bold the label. #}
+                {% set bits = feature.split(': ', 1) %}
+                <li>
+                  {% if bits | length == 2 %}
+                  <strong>{{ bits[0] }}</strong> — {{ bits[1] }}
+                  {% else %}
+                  {{ feature }}
+                  {% endif %}
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            <div>
+              <span class="block-label">Built With</span>
+              <div class="chips tech-row">
+                {% for item in project.tech %}
+                <span class="chip">{{ item }}</span>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="impact">
+              <span class="block-label">Impact</span>
+              <p>{{ project.impact }}</p>
+            </div>
+
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+
+    <!-- =================================================== credentials -->
+    <section class="panel" role="tabpanel" id="panel-credentials"
+             aria-labelledby="tab-credentials" data-panel="credentials" tabindex="0">
+      <div class="band-head reveal">
+        <h2 class="band-title">Recognition &amp; certification</h2>
+      </div>
+
+      <div class="cred-grid">
+        <article class="card tilt reveal">
+          <h3 class="cred-heading">Awards</h3>
+          <ul class="cred-list">
+            {% for award in awards %}
+            <li>{{ award }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+
+        <article class="card tilt reveal">
+          <h3 class="cred-heading">Certifications</h3>
+          <ul class="cred-list">
+            {% for cert in certifications %}
+            <li>{{ cert }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+
+        <article class="card tilt reveal">
+          <h3 class="cred-heading">Education</h3>
+          <ul class="cred-list">
+            {% for item in education %}
+            <li><strong>{{ item.degree }}</strong><br>{{ item.university }} · {{ item.dates }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- ======================================================= contact -->
+    <section class="panel" role="tabpanel" id="panel-contact"
+             aria-labelledby="tab-contact" data-panel="contact" tabindex="0">
+      <div class="closer reveal">
+        <h2>Let us build something that ships</h2>
+        <p>Open to senior roles in analytics engineering, GenAI / LLM engineering, and BI architecture.</p>
+        <div class="mast-links is-centered">
+          <a class="link-pill is-primary" href="mailto:{{ profile.contact.email }}">
+            <span aria-hidden="true">✉</span> {{ profile.contact.email }}
+          </a>
+          <a class="link-pill" href="tel:{{ profile.contact.phone | replace(' ', '') }}">
+            <span aria-hidden="true">☎</span> {{ profile.contact.phone }}
+          </a>
+          <a class="link-pill" href="{{ profile.contact.linkedin_url }}" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">in</span> {{ profile.contact.linkedin_label }}
+          </a>
+          <a class="link-pill" href="{{ profile.contact.github_url }}" target="_blank" rel="noopener noreferrer">
+            <span aria-hidden="true">&lt;/&gt;</span> {{ profile.contact.github_label }}
+          </a>
+          <a class="link-pill" href="{{ pdf_name }}" download target="_blank" rel="noopener">
+            <span aria-hidden="true">↓</span> Résumé (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <p class="fine-print">
+    Built from a single YAML source of truth — this page and the PDF résumé are generated by the same pipeline.
+  </p>
+
+</div>
+
+<script>{% include 'portfolio_page.js' %}</script>
+</body>
+</html>

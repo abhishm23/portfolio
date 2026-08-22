@@ -1,0 +1,205 @@
+/* ============================================================================
+   resume_pdf.css — print stylesheet for the 1-page resume.
+
+   DENSITY KNOBS: everything that affects whether the resume fits on one page
+   lives in the :root block below. Adjust --fs-body first, then --lh, then
+   --gap-section. build_resume.py prints a warning and exits non-zero if the
+   rendered PDF is not exactly 1 page.
+
+   Page margins are declared ONLY here (@page). build_resume.py calls
+   page.pdf(prefer_css_page_size=True) and passes no margin argument, so this
+   rule is the single source of truth for page geometry.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+@page {
+  size: A4 portrait;
+  margin: 9mm 13mm;
+}
+
+:root {
+  /* --- density knobs ---------------------------------------------------- */
+  --fs-body: 8.9pt;
+  --fs-h2: 9.6pt;
+  --fs-name: 20pt;
+  --fs-headline: 9pt;
+  --fs-contact: 8.1pt;
+  --lh: 1.31;
+  --gap-section: 7.5px;
+  --gap-bullet: 2.6px;
+
+  /* --- palette ---------------------------------------------------------- */
+  --ink: #16181d;
+  --ink-soft: #4a5160;
+  --accent: #0b3d91;
+  --rule: #0b3d91;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  font-size: var(--fs-body);
+  line-height: var(--lh);
+  color: var(--ink);
+  /* Chromium sometimes widow-breaks a tight resume onto page 2; discourage it. */
+  orphans: 3;
+  widows: 3;
+}
+
+/* ---------------------------------------------------------------- masthead */
+
+.masthead {
+  margin-bottom: 9px;
+}
+
+h1 {
+  font-size: var(--fs-name);
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.2px;
+  margin: 0 0 1px 0;
+  line-height: 1.1;
+}
+
+.headline {
+  font-size: var(--fs-headline);
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin: 0 0 3px 0;
+  line-height: 1.25;
+}
+
+.contact {
+  font-size: var(--fs-contact);
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.35;
+}
+
+.contact a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.contact .sep {
+  color: #b6bdca;
+  padding: 0 3px;
+}
+
+/* ---------------------------------------------------------------- sections */
+
+section {
+  margin-bottom: var(--gap-section);
+  /* A section must not straddle the page edge if we ever spill to 2 pages. */
+  break-inside: avoid;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  border-bottom: 1.2px solid var(--rule);
+  margin: 0 0 4px 0;
+  padding-bottom: 1.5px;
+  /* keeps the inline "full catalog" link right-aligned on the rule */
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.h2-link {
+  font-size: 7.6pt;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+
+.summary {
+  margin: 0;
+  /* Left-aligned, not justified. Inter at this size with hyphenation off opens
+     visible rivers of whitespace when justified. */
+  text-align: left;
+}
+
+/* ------------------------------------------------------------------ skills */
+
+.skill-row {
+  margin: 0 0 1.5px 0;
+}
+
+.skill-row:last-child {
+  margin-bottom: 0;
+}
+
+.skill-cat {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* -------------------------------------------------------------- experience */
+
+.job {
+  margin-bottom: 6px;
+}
+
+.job:last-child {
+  margin-bottom: 0;
+}
+
+.job-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+
+.job-left {
+  font-size: 9.5pt;
+}
+
+.job-right {
+  font-size: 8.2pt;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------- bullets */
+
+ul {
+  margin: 0;
+  padding-left: 13px;
+}
+
+li {
+  margin-bottom: var(--gap-bullet);
+  text-align: left;
+}
+
+li:last-child {
+  margin-bottom: 0;
+}
+
+li strong {
+  color: var(--accent);
+}
+
+/* ------------------------------------------------- certs / awards / edu */
+
+.inline-list {
+  margin: 0;
+}

@@ -1,0 +1,101 @@
+{#
+  resume_pdf.html — 1-page, ATS-safe resume.
+
+  ATS rules enforced here (do not "improve" these away):
+    * No <table> anywhere. Table-based skill grids are the #1 cause of
+      scrambled parses in Workday / Greenhouse / Taleo.
+    * No sidebar or multi-column content flow. DOM order == reading order.
+    * Conventional, uppercase section headings that parsers pattern-match on.
+    * Real <a href> links so email/phone/profiles are clickable in the PDF.
+    * CSS is inlined via {% include %} so the file:// render has no external
+      dependency beyond the webfont.
+#}
+{% set all_projects = portfolio | map(attribute='projects') | sum(start=[]) %}
+{% set flagships = all_projects | selectattr('flagship') | list %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ profile.name }} — Resume</title>
+<style>{% include 'resume_pdf.css' %}</style>
+</head>
+<body>
+
+<header class="masthead">
+  <h1>{{ profile.name }}</h1>
+  <p class="headline">{{ profile.headline }}</p>
+  <p class="contact">
+    <span>{{ profile.contact.location }}</span>
+    <span class="sep">|</span>
+    <a href="tel:{{ profile.contact.phone | replace(' ', '') }}">{{ profile.contact.phone }}</a>
+    <span class="sep">|</span>
+    <a href="mailto:{{ profile.contact.email }}">{{ profile.contact.email }}</a>
+    <span class="sep">|</span>
+    <a href="{{ profile.contact.linkedin_url }}">{{ profile.contact.linkedin_label }}</a>
+    <span class="sep">|</span>
+    <a href="{{ profile.contact.github_url }}">{{ profile.contact.github_label }}</a>
+    <span class="sep">|</span>
+    <a href="{{ profile.contact.portfolio_url }}">{{ profile.contact.portfolio_label }}</a>
+  </p>
+</header>
+
+<section>
+  <h2>Professional Summary</h2>
+  <p class="summary">{{ profile.summary }}</p>
+</section>
+
+<section>
+  <h2>Core Skills</h2>
+  {# Inline comma lists, one line per category — parses as plain text. #}
+  {% for group in core_skills %}
+  <p class="skill-row"><span class="skill-cat">{{ group.category }}:</span> {{ group.skills | join(', ') }}</p>
+  {% endfor %}
+</section>
+
+<section>
+  <h2>Professional Experience</h2>
+  {% for job in experience %}
+  <div class="job">
+    <div class="job-head">
+      <span class="job-left"><strong>{{ job.company }}</strong> — {{ job.title }}</span>
+      <span class="job-right">{{ job.dates }} | {{ job.location }}</span>
+    </div>
+    <ul>
+      {% for bullet in job.bullets %}
+      <li><strong>{{ bullet.lead }}:</strong> {{ bullet.text }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+</section>
+
+<section>
+  <h2>Selected Projects
+    <a class="h2-link" href="{{ profile.contact.portfolio_url }}">full catalog: {{ profile.contact.portfolio_label }}</a>
+  </h2>
+  <ul>
+    {% for project in flagships %}
+    <li><strong>{{ project.short_name }}:</strong> {{ project.one_liner }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section>
+  <h2>Certifications</h2>
+  <p class="inline-list">{{ certifications | join(' • ') }}</p>
+</section>
+
+<section>
+  <h2>Awards</h2>
+  <p class="inline-list">{{ awards | join(' • ') }}</p>
+</section>
+
+<section>
+  <h2>Education</h2>
+  {% for item in education %}
+  <p class="inline-list"><strong>{{ item.degree }}</strong> — {{ item.university }} | {{ item.dates }}</p>
+  {% endfor %}
+</section>
+
+</body>
+</html>

@@ -1,0 +1,1242 @@
+/* ============================================================================
+   portfolio_page.css — inlined into dist/index.html by portfolio_page.html
+   through a Jinja include tag. Never linked as a separate file, which is what
+   makes the output a single embeddable artifact.
+
+   Design intent: restrained dark luxury. The "expensive" read comes from deep
+   negative space, one accent gradient used sparingly, hairline borders, and
+   motion that is slow and purposeful. Effects are layered so that removing any
+   one of them degrades gracefully:
+
+     aurora      slow-drifting radial washes behind everything
+     starfield   fine twinkling grain, masthead only, very low opacity
+     tilt        pointer-driven 3D rotation + cursor-following specular light
+     shine       conic-gradient border that orbits the card on hover
+     reveal      staggered scroll-in, driven by IntersectionObserver
+     panelIn     whole-panel entrance layered under reveal on tab switch
+
+   Layout: a compact permanent masthead, a sticky tab bar, and one visible
+   panel. Panels are hidden with the `hidden` attribute set by script, never
+   authored, so a JS failure shows all content rather than none.
+
+   Everything above is disabled under prefers-reduced-motion.
+
+   NOTE for future edits: this file is parsed by Jinja. Never let "{" be
+   immediately followed by "#" (that opens a Jinja comment). Always put a
+   newline after an opening brace, as done throughout.
+   ========================================================================== */
+
+/* Smoothly animatable custom angle for the orbiting border highlight. */
+@property --shine-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+:root {
+  /* --- surfaces --------------------------------------------------------- */
+  --bg: #06070c;
+  --bg-lift: #0a0c15;
+  --surface: rgba(255, 255, 255, 0.030);
+  --surface-hi: rgba(255, 255, 255, 0.055);
+  --hairline: rgba(255, 255, 255, 0.085);
+  --hairline-lit: rgba(255, 255, 255, 0.20);
+
+  /* --- ink -------------------------------------------------------------- */
+  --ink: #e9edf6;
+  --ink-2: #a4aec2;
+  --ink-3: #6b7488;
+
+  /* --- accents ---------------------------------------------------------- */
+  --cyan: #4fd1ff;
+  --violet: #a78bfa;
+  --mint: #5eead4;
+  --gold: #fbbf24;
+  --grad: linear-gradient(135deg, var(--cyan), var(--violet));
+
+  /* --- rhythm ----------------------------------------------------------- */
+  --shell: 1180px;
+  --r-lg: 18px;
+  --r-md: 13px;
+  --r-sm: 8px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* The page usually lives in a fixed-height Google Sites iframe, so the
+     internal scrollbar is load-bearing. Style it rather than hide it. */
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+  scrollbar-width: thin;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(79, 209, 255, 0.28);
+  color: #fff;
+}
+
+a {
+  color: inherit;
+}
+
+/* ============================================================ backdrop */
+
+.aurora,
+.starfield {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aurora {
+  background:
+    radial-gradient(52vw 46vw at 12% -8%, rgba(79, 209, 255, 0.15), transparent 62%),
+    radial-gradient(46vw 40vw at 88% 4%, rgba(167, 139, 250, 0.15), transparent 62%),
+    radial-gradient(60vw 50vw at 50% 108%, rgba(94, 234, 212, 0.09), transparent 66%);
+  filter: blur(6px);
+  animation: drift 26s var(--ease) infinite alternate;
+}
+
+@keyframes drift {
+  to {
+    transform: translate3d(0, -3%, 0) scale(1.1);
+  }
+}
+
+/* Fine twinkling grain. Three layers at different rates so the shimmer never
+   pulses in unison — that unison is what makes starfields look cheap. */
+.starfield {
+  height: 105vh;
+  opacity: 0.5;
+  background-image:
+    radial-gradient(1.4px 1.4px at 18% 22%, rgba(255, 255, 255, 0.85), transparent 100%),
+    radial-gradient(1.2px 1.2px at 74% 14%, rgba(207, 232, 255, 0.75), transparent 100%),
+    radial-gradient(1px 1px at 42% 38%, rgba(255, 255, 255, 0.65), transparent 100%),
+    radial-gradient(1.6px 1.6px at 88% 46%, rgba(196, 181, 253, 0.70), transparent 100%),
+    radial-gradient(1px 1px at 8% 58%, rgba(255, 255, 255, 0.55), transparent 100%),
+    radial-gradient(1.3px 1.3px at 61% 66%, rgba(167, 243, 224, 0.60), transparent 100%),
+    radial-gradient(1.1px 1.1px at 31% 78%, rgba(255, 255, 255, 0.50), transparent 100%),
+    radial-gradient(1.5px 1.5px at 92% 84%, rgba(255, 255, 255, 0.45), transparent 100%);
+  background-repeat: repeat;
+  background-size: 380px 380px, 300px 300px, 460px 460px, 340px 340px,
+                   420px 420px, 360px 360px, 500px 500px, 320px 320px;
+  animation: twinkle 7.5s ease-in-out infinite alternate;
+  -webkit-mask-image: linear-gradient(#000 0%, #000 44%, transparent 96%);
+  mask-image: linear-gradient(#000 0%, #000 44%, transparent 96%);
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.26; }
+  50%  { opacity: 0.62; }
+  100% { opacity: 0.34; }
+}
+
+/* ================================================================ shell */
+
+.shell {
+  position: relative;
+  z-index: 1;
+  max-width: var(--shell);
+  margin: 0 auto;
+  /* Bottom padding is trailing dead space inside a fixed-height embed frame,
+     so it is kept tight. */
+  padding: 0 26px 56px;
+}
+
+/* ============================================================= masthead */
+
+.masthead {
+  padding: 46px 0 26px;
+}
+
+/* Identity left, download CTA right. Centred rather than bottom-aligned: the
+   spec row wraps to one, two or three lines depending on viewport width, and
+   bottom alignment made the button's position look accidental at each break.
+   Wraps to stacked on narrow screens, where the CTA goes full width. */
+.mast-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px 28px;
+}
+
+.mast-id {
+  min-width: 0;
+}
+
+.mast-cta {
+  flex: none;
+}
+
+.mast-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.mast-links.is-centered {
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  padding: 7px 16px;
+  border: 1px solid rgba(79, 209, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(79, 209, 255, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+.eyebrow .pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mint);
+  box-shadow: 0 0 0 0 rgba(94, 234, 212, 0.75);
+  animation: pulse 2.4s ease-out infinite;
+}
+
+@keyframes pulse {
+  70%  { box-shadow: 0 0 0 9px rgba(94, 234, 212, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(94, 234, 212, 0); }
+}
+
+.hero-name {
+  font-family: 'Sora', 'Inter', sans-serif;
+  /* Deliberately smaller than a full-page hero would use: the masthead is
+     permanent chrome now, so every pixel it takes is a pixel the active panel
+     loses inside a fixed-height embed. */
+  font-size: clamp(2.1rem, 4.6vw, 3.15rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin: 16px 0 11px;
+  /* Slow specular sweep across the letterforms. */
+  background: linear-gradient(100deg,
+      #ffffff 0%, #ffffff 32%,
+      var(--cyan) 46%, var(--violet) 56%,
+      #ffffff 70%, #ffffff 100%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: sweep 8s linear infinite;
+}
+
+@keyframes sweep {
+  0%   { background-position: 130% 0; }
+  100% { background-position: -130% 0; }
+}
+
+.hero-headline {
+  font-size: clamp(0.9rem, 2vw, 1.02rem);
+  font-weight: 600;
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 700px;
+  letter-spacing: 0.01em;
+}
+
+/* Pipe-separated headline rendered as discrete items — see the template note.
+   Each item is nowrap, so line breaks only ever fall between specialisms. */
+.spec-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+.spec {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+}
+
+.spec::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--cyan);
+  opacity: 0.75;
+  flex: none;
+}
+
+.link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 10px 18px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease),
+              background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.link-pill:hover {
+  color: #fff;
+  border-color: var(--hairline-lit);
+  background: var(--surface-hi);
+  transform: translateY(-2px);
+}
+
+.link-pill.is-primary {
+  color: #04121b;
+  background: var(--grad);
+  border-color: transparent;
+  box-shadow: 0 8px 26px -8px rgba(79, 209, 255, 0.55);
+}
+
+.link-pill.is-primary:hover {
+  color: #04121b;
+  box-shadow: 0 14px 34px -8px rgba(79, 209, 255, 0.7);
+}
+
+/* Non-interactive pill (location). Reads as information, not as a link. */
+.link-pill.is-static {
+  color: var(--ink-3);
+  background: transparent;
+  cursor: default;
+}
+
+/* ---------------------------------------------------------- stat strip */
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--hairline);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-top: 34px;
+}
+
+.stat {
+  background: rgba(10, 12, 21, 0.72);
+  padding: 26px 16px;
+  backdrop-filter: blur(10px);
+  transition: background 0.35s var(--ease);
+}
+
+.stat:hover {
+  background: rgba(20, 24, 38, 0.86);
+}
+
+.stat-value {
+  display: block;
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.15rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.15;
+}
+
+.stat-label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 7px;
+}
+
+/* =============================================================== tab bar */
+
+/* Sticky so the section switcher stays reachable when a panel is taller than
+   the frame. `top: -1px` lets the shadow-casting state be detected by the JS
+   without a scroll listener, and hides the 1px gap some zoom levels produce. */
+.tabbar {
+  position: sticky;
+  top: -1px;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 0;
+  margin: 4px 0 0;
+  background: linear-gradient(to bottom,
+              var(--bg) 0%, var(--bg) 62%, rgba(6, 7, 12, 0.86) 100%);
+  border-bottom: 1px solid var(--hairline);
+  /* The blur is what keeps card content from reading through the bar while it
+     is pinned. Falls back to the solid gradient above where unsupported. */
+  backdrop-filter: blur(14px);
+}
+
+.tab {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-2);
+  padding: 10px 17px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease),
+              background 0.3s var(--ease), transform 0.3s var(--ease),
+              box-shadow 0.3s var(--ease);
+}
+
+.tab:hover {
+  color: #fff;
+  border-color: var(--hairline-lit);
+  background: var(--surface-hi);
+  transform: translateY(-2px);
+}
+
+.tab-num {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--ink-3);
+  transition: color 0.3s var(--ease);
+}
+
+.tab:hover .tab-num {
+  color: var(--cyan);
+}
+
+.tab.is-active {
+  color: #04121b;
+  background: var(--grad);
+  border-color: transparent;
+  box-shadow: 0 8px 26px -10px rgba(79, 209, 255, 0.6);
+  transform: none;
+}
+
+.tab.is-active .tab-num,
+.tab.is-active:hover .tab-num {
+  color: rgba(4, 18, 27, 0.62);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* ================================================================ panels */
+
+.panels {
+  display: block;
+}
+
+/* `hidden` is applied by script, not authored, so a JS failure leaves every
+   panel visible rather than the whole page blank. !important because .panel
+   also sets a display value. */
+.panel[hidden] {
+  display: none !important;
+}
+
+.panel {
+  display: block;
+  padding: 40px 0 0;
+}
+
+.panel:focus {
+  outline: none;
+}
+
+/* Whole-panel entrance on tab switch, layered under the per-item reveal
+   stagger so the swap reads as one motion rather than a hard cut. */
+.panel.is-entering {
+  animation: panelIn 0.5s var(--ease) both;
+}
+
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.panel-cta {
+  margin: 34px 0 0;
+}
+
+/* Text-weight tertiary action. A button, not a link, because it changes app
+   state rather than navigating. */
+.ghost-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cyan);
+  padding: 11px 20px;
+  border: 1px solid rgba(79, 209, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(79, 209, 255, 0.06);
+  cursor: pointer;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease),
+              transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.ghost-cta:hover {
+  background: rgba(79, 209, 255, 0.12);
+  border-color: rgba(79, 209, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -12px rgba(79, 209, 255, 0.55);
+}
+
+.ghost-cta span {
+  transition: transform 0.3s var(--ease);
+}
+
+.ghost-cta:hover span {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------------- solo embed */
+/* ?solo=1 renders a single panel with no chrome, for embedding sections
+   individually. Set by the JS on <body>. */
+body.is-solo .masthead,
+body.is-solo .tabbar,
+body.is-solo .fine-print {
+  display: none;
+}
+
+body.is-solo .panel {
+  padding-top: 30px;
+}
+
+/* ======================================================== panel typography */
+
+.band-head {
+  margin-bottom: 32px;
+}
+
+.band-title {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0;
+  line-height: 1.18;
+}
+
+.band-sub {
+  color: var(--ink-2);
+  margin: 10px 0 0;
+  max-width: 680px;
+}
+
+.lede {
+  font-size: clamp(1.02rem, 2.1vw, 1.16rem);
+  line-height: 1.78;
+  color: var(--ink-2);
+  max-width: 900px;
+  margin: 0;
+}
+
+/* The tagline, set one step down from the summary so the two read as
+   statement then aside rather than two competing paragraphs. */
+.lede.is-quiet {
+  font-size: clamp(0.95rem, 1.9vw, 1.04rem);
+  color: var(--ink-3);
+  margin-top: 18px;
+}
+
+.lede strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ======================================================= card chassis */
+
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Cursor-following specular highlight. --mx/--my are written by the JS. */
+.tilt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(340px circle at var(--mx, 50%) var(--my, 0%),
+              rgba(79, 209, 255, 0.13), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.tilt:hover::before {
+  opacity: 1;
+}
+
+/* Orbiting hairline. A 1px conic ring, masked so only the border shows. */
+.tilt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--shine-angle),
+              transparent 0%, var(--cyan) 9%, var(--violet) 19%,
+              transparent 30%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+  pointer-events: none;
+}
+
+.tilt:hover::after {
+  opacity: 1;
+  animation: orbit 3.4s linear infinite;
+}
+
+@keyframes orbit {
+  to {
+    --shine-angle: 360deg;
+  }
+}
+
+/* 3D rotation is applied to a wrapper so text stays crisp during transform. */
+.tilt {
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+  transform-style: preserve-3d;
+  transition: transform 0.45s var(--ease), border-color 0.45s var(--ease),
+              background 0.45s var(--ease), box-shadow 0.45s var(--ease);
+  will-change: transform;
+}
+
+.tilt:hover {
+  border-color: var(--hairline-lit);
+  background: var(--surface-hi);
+  box-shadow: 0 26px 60px -26px rgba(0, 0, 0, 0.85),
+              0 0 40px -18px rgba(79, 209, 255, 0.28);
+}
+
+/* ============================================================== skills */
+
+.skill-grid {
+  display: grid;
+  /* min(...,100%) is load-bearing: a bare px minimum in auto-fit cannot shrink
+     below itself, so any narrower viewport overflows horizontally. */
+  grid-template-columns: repeat(auto-fit, minmax(min(290px, 100%), 1fr));
+  gap: 18px;
+}
+
+/* Exactly five categories in a 3-up grid leaves a hole in row two. Lay it out
+   on a 6-track grid instead: three cards spanning 2, then two spanning 3. */
+@media (min-width: 1000px) {
+  .skill-grid.is-five {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .skill-grid.is-five > .skill-card {
+    grid-column: span 2;
+  }
+  .skill-grid.is-five > .skill-card:nth-child(4),
+  .skill-grid.is-five > .skill-card:nth-child(5) {
+    grid-column: span 3;
+  }
+}
+
+.skill-card h3 {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-card h3::before {
+  content: '';
+  width: 3px;
+  height: 15px;
+  border-radius: 2px;
+  background: var(--grad);
+  flex: none;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.chip {
+  font-size: 12.2px;
+  font-weight: 500;
+  color: var(--ink-2);
+  padding: 5px 11px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.022);
+  transition: color 0.25s var(--ease), border-color 0.25s var(--ease),
+              background 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.chip:hover {
+  color: #fff;
+  border-color: rgba(79, 209, 255, 0.45);
+  background: rgba(79, 209, 255, 0.10);
+  transform: translateY(-2px);
+}
+
+/* ========================================================== experience */
+
+/* Two columns from ~1000px up. Full-width job cards put ~115 characters on a
+   line, which is well past a comfortable measure; side by side lands near 65. */
+.exp-stack {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(440px, 100%), 1fr));
+  align-items: start;
+}
+
+.job-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding-bottom: 15px;
+  margin-bottom: 17px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.job-company {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.24rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.job-title {
+  color: var(--cyan);
+  font-weight: 600;
+  font-size: 0.94rem;
+  margin: 4px 0 0;
+}
+
+.job-meta {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.bullet-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 13px;
+}
+
+.bullet-list li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--ink-2);
+  font-size: 14.4px;
+}
+
+.bullet-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--grad);
+}
+
+.bullet-lead {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* ============================================================ projects */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 34px;
+}
+
+.filter {
+  font-family: inherit;
+  font-size: 12.8px;
+  font-weight: 600;
+  color: var(--ink-2);
+  cursor: pointer;
+  padding: 9px 17px;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: var(--surface);
+  transition: color 0.28s var(--ease), border-color 0.28s var(--ease),
+              background 0.28s var(--ease), transform 0.28s var(--ease);
+}
+
+.filter:hover {
+  color: #fff;
+  border-color: var(--hairline-lit);
+  transform: translateY(-2px);
+}
+
+.filter.is-active {
+  color: #04121b;
+  background: var(--grad);
+  border-color: transparent;
+}
+
+.filter:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.pillar {
+  margin-bottom: 52px;
+  transition: opacity 0.4s var(--ease);
+}
+
+.pillar.is-hidden {
+  display: none;
+}
+
+.pillar-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.pillar-title {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.42rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pillar-desc {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(400px, 100%), 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 30px;
+}
+
+.project-card.is-flagship {
+  border-color: rgba(251, 191, 36, 0.26);
+  background: linear-gradient(180deg, rgba(251, 191, 36, 0.045), var(--surface) 42%);
+}
+
+.card-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.domain-tag,
+.flag-tag {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+
+.domain-tag {
+  color: var(--cyan);
+  background: rgba(79, 209, 255, 0.09);
+  border: 1px solid rgba(79, 209, 255, 0.22);
+}
+
+.flag-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold);
+  background: rgba(251, 191, 36, 0.10);
+  border: 1px solid rgba(251, 191, 36, 0.30);
+}
+
+.project-name {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.34;
+  margin: 0;
+}
+
+.project-tagline {
+  font-size: 13.6px;
+  color: var(--ink-3);
+  margin: 6px 0 0;
+  line-height: 1.55;
+}
+
+/* ------------------------------------------------------ metric chips */
+
+.metric-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.metric {
+  flex: 1 1 132px;
+  padding: 13px 15px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.022);
+}
+
+.metric-value {
+  display: block;
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.24rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--mint);
+  line-height: 1.2;
+}
+
+.metric-label {
+  display: block;
+  font-size: 10.8px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+/* -------------------------------------------------------- card blocks */
+
+.project-overview {
+  font-size: 14.3px;
+  color: var(--ink-2);
+  margin: 0;
+  line-height: 1.72;
+}
+
+.block-label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+
+.feature-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 15px;
+  display: grid;
+  gap: 10px;
+  border-left: 2px solid rgba(79, 209, 255, 0.28);
+}
+
+.feature-list li {
+  font-size: 13.6px;
+  color: var(--ink-2);
+  line-height: 1.62;
+}
+
+.feature-list strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.tech-row .chip {
+  font-size: 11.8px;
+  padding: 4px 10px;
+}
+
+.impact {
+  margin-top: auto;
+  padding: 16px 18px;
+  border: 1px solid rgba(94, 234, 212, 0.22);
+  border-radius: var(--r-md);
+  background: linear-gradient(135deg, rgba(94, 234, 212, 0.075), rgba(79, 209, 255, 0.035));
+}
+
+.impact .block-label {
+  color: var(--mint);
+  margin-bottom: 6px;
+}
+
+.impact p {
+  margin: 0;
+  font-size: 13.7px;
+  color: #cdefe6;
+  line-height: 1.62;
+}
+
+/* ========================================================= credentials */
+
+.cred-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 18px;
+}
+
+/* Card heading for the credential cards. Was an inline font-size override on
+   .job-company; given its own class so the markup carries no styling. */
+.cred-heading {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: 1.06rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 15px;
+}
+
+.cred-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 11px;
+}
+
+.cred-list li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 13.8px;
+  color: var(--ink-2);
+  line-height: 1.58;
+}
+
+.cred-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--grad);
+  transform: rotate(45deg);
+}
+
+.cred-list strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* ============================================================== contact */
+
+.closer {
+  padding: 54px 34px;
+  text-align: center;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(70% 130% at 50% 0%, rgba(79, 209, 255, 0.10), transparent 68%),
+    var(--surface);
+}
+
+.closer h2 {
+  font-family: 'Sora', 'Inter', sans-serif;
+  font-size: clamp(1.5rem, 3.6vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0 0 12px;
+}
+
+.closer p {
+  color: var(--ink-2);
+  max-width: 540px;
+  margin: 0 auto 28px;
+}
+
+.fine-print {
+  margin-top: 42px;
+  font-size: 12px;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+/* ============================================================== reveal */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px) scale(0.988);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* A revealed tilt card must not have `transform: none` fight the tilt vars. */
+.reveal.is-in.tilt {
+  transform: perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--lift, 0px));
+}
+
+/* ========================================================= responsive */
+
+@media (max-width: 900px) {
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+  /* The CTA drops below the identity block and spans it, so it stays the
+     most prominent thing in the masthead instead of a stranded pill. */
+  .mast-cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 620px) {
+  body {
+    font-size: 14.4px;
+  }
+  .shell {
+    padding: 0 17px 64px;
+  }
+  .masthead {
+    padding: 30px 0 20px;
+  }
+  .card,
+  .project-card {
+    padding: 22px;
+  }
+  .job-meta {
+    text-align: left;
+  }
+  .closer {
+    padding: 40px 22px;
+  }
+  /* Six labelled tabs cannot fit two rows at this width without the numbers
+     going. The label alone still identifies the section. */
+  .tab-num {
+    display: none;
+  }
+  .tab {
+    font-size: 12.8px;
+    padding: 9px 14px;
+  }
+  .tabbar {
+    gap: 7px;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================================== reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .tilt,
+  .reveal.is-in.tilt {
+    transform: none;
+  }
+  .aurora,
+  .starfield {
+    animation: none;
+  }
+  .hero-name {
+    animation: none;
+    background-position: 50% 0;
+  }
+  .panel.is-entering {
+    animation: none;
+  }
+}
