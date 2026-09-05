@@ -144,3 +144,20 @@ no horizontal overflow at 390 / 640 / 768 / 1030 / 1440px
 reduced-motion     all content visible, no tilt transform, no panel animation
 live Pages URL     fonts load, PDF link resolves under /portfolio/, 0 errors
 ```
+
+---
+
+## 🛠️ Tech Stack & Open Source Credits
+
+- **[Jinja2](https://palletsprojects.com/p/jinja/)** — High-performance Python templating engine.
+- **[Playwright](https://playwright.dev/)** — Headless browser execution for deterministic PDF generation.
+- **[PyYAML](https://pyyaml.org/)** — Strict YAML parsing for single-source-of-truth configuration.
+- **[Google Fonts (Inter & Space Grotesk)](https://fonts.google.com/)** — Typography design.
+
+---
+
+## 👥 Authors & Contributors
+
+- **Author:** [Abhishek Mishra](https://github.com/abhishm23) — *Senior Analytics & GenAI Engineer*
+- **Co-Developer / AI Pair Programmer:** [Google Antigravity](https://antigravity.google/)
+
