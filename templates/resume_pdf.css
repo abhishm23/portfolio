@@ -15,19 +15,19 @@
 
 @page {
   size: A4 portrait;
-  margin: 9mm 13mm;
+  margin: 8.5mm 12mm;
 }
 
 :root {
   /* --- density knobs ---------------------------------------------------- */
-  --fs-body: 8.9pt;
-  --fs-h2: 9.6pt;
+  --fs-body: 8.8pt;
+  --fs-h2: 9.5pt;
   --fs-name: 20pt;
   --fs-headline: 9pt;
   --fs-contact: 8.1pt;
-  --lh: 1.31;
-  --gap-section: 7.5px;
-  --gap-bullet: 2.6px;
+  --lh: 1.28;
+  --gap-section: 6.0px;
+  --gap-bullet: 2.2px;
 
   /* --- palette ---------------------------------------------------------- */
   --ink: #16181d;
@@ -59,7 +59,7 @@ body {
 /* ---------------------------------------------------------------- masthead */
 
 .masthead {
-  margin-bottom: 9px;
+  margin-bottom: 7px;
 }
 
 h1 {
@@ -153,7 +153,7 @@ h2 {
 /* -------------------------------------------------------------- experience */
 
 .job {
-  margin-bottom: 6px;
+  margin-bottom: 4.5px;
 }
 
 .job:last-child {

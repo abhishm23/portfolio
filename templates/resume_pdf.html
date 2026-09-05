@@ -12,6 +12,7 @@
 #}
 {% set all_projects = portfolio | map(attribute='projects') | sum(start=[]) %}
 {% set flagships = all_projects | selectattr('flagship') | list %}
+{% set display_projects = featured_projects if featured_projects is defined else flagships %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,8 +75,15 @@
     <a class="h2-link" href="{{ profile.contact.portfolio_url }}">full catalog: {{ profile.contact.portfolio_label }}</a>
   </h2>
   <ul>
-    {% for project in flagships %}
-    <li><strong>{{ project.short_name }}:</strong> {{ project.one_liner }}</li>
+    {% for project in display_projects %}
+    <li>
+      {% if project.repo_url is defined and project.repo_url %}
+      <strong><a href="{{ project.repo_url }}" style="color: inherit; text-decoration: none;">{{ project.short_name }}</a>:</strong>
+      {% else %}
+      <strong>{{ project.short_name }}:</strong>
+      {% endif %}
+      {{ project.one_liner }}
+    </li>
     {% endfor %}
   </ul>
 </section>

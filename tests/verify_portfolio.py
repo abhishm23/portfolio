@@ -10,6 +10,7 @@ first failing assertion so it can gate a commit.
 """
 import asyncio
 import os
+import re
 import sys
 
 from playwright.async_api import async_playwright
@@ -24,7 +25,7 @@ TABS = ["profile", "capabilities", "experience", "work", "credentials", "contact
 EXPECT = {
     "profile": (".lede", 2),
     "capabilities": (".skill-card", 5),
-    "experience": (".card .bullet-list li", 9),
+    "experience": (".card .bullet-list li", 7),
     "work": (".pillar:not(.is-hidden) .project-card", 3),
     "credentials": (".cred-list", 3),
     "contact": (".closer .link-pill", 5),
@@ -155,7 +156,7 @@ async def main():
             flags:   document.querySelectorAll('.flag-tag').length
         })""")
         check("full YAML coverage retained",
-              coverage == {"cards": 9, "skills": 5, "bullets": 9, "metrics": 18, "flags": 3},
+              coverage == {"cards": 9, "skills": 5, "bullets": 7, "metrics": 18, "flags": 3},
               str(coverage))
 
         # --- data-goto cross-panel jump --------------------------------------
@@ -209,7 +210,7 @@ async def main():
         vis = await visible_panels(page)
         check("?solo=1 shows only the requested panel", vis == ["experience"], str(vis))
         bullets = await page.evaluate("document.querySelectorAll('.bullet-list li').length")
-        check("solo panel still renders content", bullets == 9, f"{bullets} bullets")
+        check("solo panel still renders content", bullets == 7, f"{bullets} bullets")
 
         # --- panel heights ----------------------------------------------------
         await page.goto(BASE, wait_until="load")
@@ -220,6 +221,32 @@ async def main():
             await page.wait_for_timeout(450)
             heights[key] = await page.evaluate("document.documentElement.scrollHeight")
         check("no uncaught page or console errors", not errors, str(errors[:4]))
+
+        # --- deliverable & GitHub repo URLs verification ---------------------
+        top5_repos = [
+            "https://github.com/abhishm23/LLM-Forge",
+            "https://github.com/abhishm23/Research-Arena",
+            "https://github.com/abhishm23/BHOLA-Coding-Agent",
+            "https://github.com/abhishm23/AutonomousJobApplicant",
+            "https://github.com/abhishm23/AetherHarvest",
+        ]
+        profile_path = os.path.join(ROOT, "dist", "portfolio_profile.html")
+        check("dist/portfolio_profile.html exists", os.path.exists(profile_path))
+        if os.path.exists(profile_path):
+            with open(profile_path, "r", encoding="utf-8") as pf:
+                profile_html = pf.read()
+            for repo_url in top5_repos:
+                check(f"portfolio_profile.html contains {repo_url.split('/')[-1]} repo link",
+                      repo_url in profile_html, repo_url)
+
+        pdf_path = os.path.join(ROOT, "dist", "Abhishek_Mishra_Resume.pdf")
+        check("dist/Abhishek_Mishra_Resume.pdf exists", os.path.exists(pdf_path))
+        if os.path.exists(pdf_path):
+            with open(pdf_path, "rb") as fh:
+                raw_pdf = fh.read()
+            counts = [int(n) for n in re.findall(rb"/Count\s+(\d+)", raw_pdf)]
+            pdf_pages = max(counts) if counts else 0
+            check("Abhishek_Mishra_Resume.pdf has exactly 1 page", pdf_pages == 1, f"{pdf_pages} pages")
 
         await browser.close()
 

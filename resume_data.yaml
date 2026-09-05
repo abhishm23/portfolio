@@ -134,20 +134,17 @@ experience:
     title: "Data & Finance Analytics Specialist"
     dates: "Jan 2024 - Present"
     bullets:
-      - lead: "Global Discount Intelligence"
-        text: "Drove a 1-2% discount-rate reduction in 3 months by architecting a 20M+ row, 4-source Power BI model with multi-level RLS across APJC, EMEA, and Americas."
-
-      - lead: "Executive KPI Automation"
-        text: "Replaced 16 analyst hours per week with a single-trigger pipeline pulling SAP HANA via SQL, computing 12+ executive KPIs, and generating a branded PowerPoint deck."
+      - lead: "Global Discount & Margin Dashboard"
+        text: "20M+ row, 4-source Power BI model with multi-level RLS across three theaters drove a 12% discount reduction in 3 months."
 
       - lead: "Embedded Local Analytics"
         text: "Reclaimed 16 hours per week by shipping two zero-dependency Windows executables with embedded DuckDB and Parquet, adopted independently by non-technical finance analysts."
 
+      - lead: "Financial Forecasting Automation"
+        text: "Engineered automated Python forecasting model applying complex business allocation factors, eliminating manual Excel workflows and saving 90+ hours per quarter."
+
       - lead: "GenAI & Hybrid Automation"
         text: "Cut month-end reporting time ~70% with autonomous LLM agents, a team-wide analytics prompt library, and hybrid Python, UiPath, and SQL automation frameworks."
-
-      - lead: "Large-Model Performance"
-        text: "Tuned DAX and Power Query across 12M+ row, 10GB+ datasets and built zero-touch refresh pipelines, eliminating 100+ hours of quarterly manual reporting."
 
   - company: "Accenture"
     location: "Bengaluru, India"
@@ -162,9 +159,6 @@ experience:
 
       - lead: "Delta Lake Modeling"
         text: "Modeled multi-source enterprise data into Databricks Delta Lake tables with partitioning strategies that kept downstream BI refreshes zero-touch and daily."
-
-      - lead: "Refresh Orchestration"
-        text: "Eliminated manual intervention for business operations teams by building end-to-end automated ETL and refresh orchestration across Power Query and Databricks."
 
 # ------------------------------------------------------------------------------
 # AWARDS — promoted out of the experience bullets. High human signal; it was
@@ -189,24 +183,126 @@ education:
     dates: "2014 - 2018"
 
 # ==============================================================================
+# FEATURED PROJECTS (Printable 1-Page Resume)
+# Top 3 flagship projects designated for the printable 1-page resume.
+# ==============================================================================
+featured_projects:
+  - name: "Autonomous VC Fund Reconciliation Agent"
+    short_name: "Autonomous VC Fund Reconciliation Agent"
+    flagship: true
+    repo_url: ""
+    repo_label: ""
+    tech: ["LLM Agents", "Python", "Pandas", "PyMuPDF"]
+    one_liner: "LLM agent ingesting unstructured VC capital-call notices and reconciling multi-quarter fund positions - days to minutes, zero variance."
+    highlight: "LLM agent ingesting unstructured VC capital-call notices and reconciling multi-quarter fund positions - days to minutes, zero variance."
+
+  - name: "CTO Business Review KPI Pipeline"
+    short_name: "CTO Business Review KPI Pipeline"
+    flagship: true
+    repo_url: ""
+    repo_label: ""
+    tech: ["SAP HANA", "SQL", "Python", "python-pptx"]
+    one_liner: "SAP HANA to a branded executive deck in one trigger, computing 12 KPIs - replaced 16 analyst hours per week."
+    highlight: "SAP HANA to a branded executive deck in one trigger, computing 12 KPIs - replaced 16 analyst hours per week."
+
+  - name: "BHOLA: Autonomous Coding Agent Framework"
+    short_name: "BHOLA Autonomous Coding Agent"
+    flagship: true
+    repo_url: "https://github.com/abhishm23/BHOLA-Coding-Agent"
+    repo_label: "github.com/abhishm23/BHOLA-Coding-Agent"
+    tech: ["LangGraph", "ChromaDB", "FastAPI", "MCP Tools", "React 19 Monaco"]
+    one_liner: "Cyclic LangGraph multi-agent system with AST self-healing loops and ChromaDB RAG - 84% benchmark code generation pass rate."
+    highlight: "Cyclic LangGraph multi-agent system with AST self-healing loops and ChromaDB RAG; 84% benchmark pass rate."
+
+  - name: "LLM-Forge: Full-Stack Fine-Tuning & Telemetry Studio"
+    short_name: "LLM-Forge Fine-Tuning Studio"
+    flagship: true
+    repo_url: "https://github.com/abhishm23/LLM-Forge"
+    repo_label: "github.com/abhishm23/LLM-Forge"
+    tech: ["PyTorch", "PEFT/LoRA", "FastAPI", "WebSockets", "React 18"]
+    one_liner: "Full-stack LLM fine-tuning studio with LoRA/QLoRA, real-time WebSocket loss telemetry, and side-by-side inference playground."
+    highlight: "Full-stack fine-tuning studio with LoRA/QLoRA adapters, real-time WebSocket loss telemetry, and side-by-side inference."
+
+  - name: "Research-Arena: Autonomous R&D Meta-Platform"
+    short_name: "Research-Arena Evaluation Platform"
+    flagship: true
+    repo_url: "https://github.com/abhishm23/Research-Arena"
+    repo_label: "github.com/abhishm23/Research-Arena"
+    tech: ["FastAPI", "Stanford STORM", "GPT-Researcher", "Next.js 15", "SSE"]
+    one_liner: "Cascading 4-stage autonomous research-to-code pipeline with Stanford STORM consensus debates and typed ledger architecture."
+    highlight: "Cascading 4-stage research-to-code pipeline with Stanford STORM consensus debates and immutable typed ledger."
+
+# ==============================================================================
 # PORTFOLIO CATALOG
 #
-# Full depth renders on the web page only. The PDF pulls just the 3 projects
-# marked `flagship: true`, using short_name + one_liner.
+# Full depth renders on the web page. The PDF pulls the 3 projects
+# marked `flagship: true` (or the `featured_projects` block).
 #
 # Per project:
 #   short_name  - <=45 chars, PDF display
 #   flagship    - true for exactly 3 projects total
+#   repo_url    - live GitHub repo URL (or null for enterprise internal tools)
 #   one_liner   - <=140 chars, carries a number, reads standalone (PDF)
-#   metrics     - 1-2 stat chips for the web card (animated counters)
+#   metrics     - 2 stat chips for the web card (animated counters)
 # ==============================================================================
 portfolio:
   - category: "Autonomous Automation"
     description: "AI Agents & AI-Augmented Engineering"
     projects:
+      - name: "BHOLA: Autonomous Coding Agent Framework"
+        short_name: "BHOLA Autonomous Coding Agent"
+        flagship: true
+        repo_url: "https://github.com/abhishm23/BHOLA-Coding-Agent"
+        one_liner: "Cyclic LangGraph multi-agent system with AST self-healing loops and ChromaDB RAG - 84% benchmark code generation pass rate."
+        tagline: "Cyclic LangGraph State Machine with Semantic Code RAG & MCP Tool Harness"
+        domain: "Autonomous Agentic Software Engineering"
+        skill_focus:
+          - "AI-Augmented Engineering (LangGraph, Cyclic State Graphs, Multi-Agent Feedback)"
+          - "Data Engineering (ChromaDB Vector Code Indexing & AST Semantic Parsing)"
+          - "Full-Stack Development (React 19 Monaco IDE & Streamlit DuckDB Telemetry)"
+        tech: ["LangGraph", "ChromaDB", "DuckDB", "FastAPI", "Model Context Protocol (MCP)", "React 19", "Monaco Editor", "Streamlit", "Plotly"]
+        overview: "An enterprise-grade autonomous software engineering framework built on LangGraph. Features a cyclic state machine orchestrating Planner, Coder, and Reviewer nodes with AST-guided self-healing feedback loops and safe tool execution via Model Context Protocol (MCP)."
+        features:
+          - "Cyclic State Machine: Implements closed-loop Planner -> Coder -> Reviewer graph with automatic error recovery and AST linting."
+          - "Semantic Codebase RAG: Parses and chunks AST syntax trees into ChromaDB vector collections for context-aware code generation."
+          - "MCP Sandboxed Tool Harness: Secure tool layer enabling sandboxed shell execution, file diff patching, and automated pytest runs."
+          - "Dual Telemetry Interface: React 19 web IDE with Monaco diff viewer paired with a Streamlit analytics dashboard querying DuckDB."
+        impact: "Achieved an 84% pass rate on complex code generation benchmarks while reducing debugging cycles by 65% through autonomous AST revision loops."
+        metrics:
+          - value: "84%"
+            label: "benchmark pass rate"
+          - value: "65%"
+            label: "faster debug cycles"
+
+      - name: "Autonomous Job Applicant & Career Intelligence Engine"
+        short_name: "Autonomous Job Applicant Engine"
+        flagship: false
+        repo_url: "https://github.com/abhishm23/AutonomousJobApplicant"
+        one_liner: "Multi-portal scraper with DuckDB storage, Google GenAI JD scoring, and persistent Playwright automation - 10x application velocity."
+        tagline: "Concurrent Multi-Portal Harvester with DuckDB Storage & LLM Application Automation"
+        domain: "Data Ingestion & Autonomous Web Automation"
+        skill_focus:
+          - "Data Engineering (Concurrent Web Scraping & DuckDB Storage/Deduplication)"
+          - "AI-Augmented Automation (Google GenAI Job Match Evaluation & Resume Tailoring)"
+          - "Full-Stack Tooling (Streamlit 6-Stage Kanban & Playwright Headless Sessions)"
+        tech: ["Python", "DuckDB", "Playwright", "Google GenAI", "BeautifulSoup4", "LXML", "pdfplumber", "Streamlit"]
+        overview: "An autonomous career intelligence platform that concurrently scrapes job boards, eliminates duplicate postings in DuckDB, evaluates alignment using Google GenAI, and automates submissions via persistent Playwright browser sessions."
+        features:
+          - "Concurrent Multi-Portal Scrapers: Parallel extraction across 6 portals using ThreadPoolExecutor with strict 25s per-portal timeouts."
+          - "DuckDB Ingestion & Deduplication: High-throughput ingestion using composite platform-key hashes to prevent duplicate job records."
+          - "Dual-Agent Intelligence: Evaluator Agent scores job description alignment (0-100%); Tailor Agent re-targets resume bullet points."
+          - "Persistent Session Automation: Playwright browser profiles maintaining authenticated state for single-click job applications."
+        impact: "Increased application throughput 10x while ensuring 100% deduplication across 6 major job boards and providing real-time pipeline analytics."
+        metrics:
+          - value: "10x"
+            label: "application throughput"
+          - value: "6"
+            label: "portals scraped in parallel"
+
       - name: "Autonomous VC Capital Call & Multi-Quarter Fund Reconciliation Agent"
         short_name: "Autonomous VC Fund Reconciliation Agent"
-        flagship: true
+        flagship: false
+        repo_url: null
         one_liner: "LLM agent ingesting unstructured VC capital-call notices and reconciling multi-quarter fund positions - days to minutes, zero variance."
         tagline: "Autonomous Agent for Statement Ingestion, Metric Computation & Financial Audit Reconciliation"
         domain: "Venture Capital & Private Equity / Fund Accounting"
@@ -228,80 +324,38 @@ portfolio:
           - value: "Days to Minutes"
             label: "audit turnaround"
 
-      - name: "Dual-Agent Engineering Lifecycle Suite: Multimodal KT Analyzer & Automation Architect"
-        short_name: "Dual-Agent KT & Automation Architect"
-        flagship: false
-        one_liner: "Paired multimodal agents converting KT recordings and codebases into executable automation specs - ~80% less discovery time."
-        tagline: "Autonomous Pipeline Transforming Raw Knowledge Transfer Assets into Executable Automation Specs"
-        domain: "AI-Augmented Software Engineering & Workflow Automation"
-        skill_focus:
-          - "AI-Augmented Development (Multimodal Prompt Pipelines & Interactive Agents)"
-          - "Data Science (Speech-to-Text NLP & Context Graph Synthesis)"
-          - "Data Engineering (Multimodal Asset Ingestion & Markdown Spec Generation)"
-        tech: ["Python", "Multimodal LLMs (GPT-4V / Gemini 1.5 Pro)", "Whisper API", "LangChain / LangGraph", "Markdown Engine", "CLI / Web Console"]
-        overview: "A paired dual-agent system that bridges the gap between unstructured knowledge transfers and engineering execution by automating the entire analysis, discovery, and technical planning lifecycle."
-        features:
-          - "Agent 1 (Multimodal KT Analyzer): Ingests meeting video recordings, audio transcripts, codebase folders, and analyst guidelines to synthesize a structured, exhaustive Standard Operating Procedure and technical architecture document."
-          - "Agent 2 (Automation Interview Architect): Ingests the synthesized SOP and conducts an interactive, context-aware architectural interview asking targeted feasibility and edge-case questions from an automation perspective."
-          - "Automated Implementation Plan Synthesis: Drafts production-ready technical architecture specs, task breakdowns, and execution roadmaps once context is fully resolved."
-        impact: "Reduces developer onboarding, KT analysis, and automation discovery time by ~80%, turning hours of unstructured video calls and code dumps into structured implementation plans."
-        metrics:
-          - value: "80%"
-            label: "faster KT & discovery"
-          - value: "2 Agents"
-            label: "analyze then architect"
-
-      - name: "Omnichannel Stakeholder Operations Console with Semantic LLM Reply Parser"
-        short_name: "Omnichannel Stakeholder Ops Console"
-        flagship: false
-        one_liner: "Desktop ops console with Webex and Outlook dispatch plus zero-shot LLM reply parsing, syncing Excel and web portal automatically."
-        tagline: "Centralized Operations Hub with Targeted Notification Dispatch and AI-Powered Unstructured Response Extraction"
-        domain: "Enterprise Operations & Workflow Automation"
-        skill_focus:
-          - "AI-Augmented Engineering (Zero-Shot NLP Entity Extraction)"
-          - "Data Engineering (Dual-Target Data Synchronization: Excel and Web Portal)"
-          - "Automation & Tooling (Webex Bot API & Outlook Automation)"
-        tech: ["Python (Tkinter / CustomTkinter GUI)", "Webex REST API", "pywin32 / Outlook COM", "OpenAI / Local LLM", "Selenium / Playwright", "Pandas"]
-        overview: "A centralized operations console that replaces fragmented manual stakeholder tracking across multiple tools with targeted omnichannel dispatch, AI reply parsing, and automated dual-target data synchronization."
-        features:
-          - "Centralized Operations Console: Single-pane-of-glass desktop interface orchestrating the entire stakeholder follow-up and data collection lifecycle."
-          - "Omnichannel Targeted Dispatch: Generates and sends personalized email alerts and one-to-one Webex messages containing recipient-specific metrics, avoiding bulk spam."
-          - "Semantic LLM Reply Parsing: Uses zero-shot entity extraction to parse unstructured email and chat replies into structured status flags, metrics, and commentary."
-          - "Automated Dual-Sync: Deterministically writes validated updates into the master Excel ledger and automates web portal submission without human intervention."
-        impact: "Replaced hours of repetitive manual copy-pasting and follow-up tracking with a unified automated workflow, improving stakeholder response rates and ensuring 100% data consistency across both targets."
-        metrics:
-          - value: "100%"
-            label: "data consistency"
-          - value: "2 Channels"
-            label: "email + Webex dispatch"
-
   - category: "Enterprise Optimization"
     description: "Data Engineering & High-Throughput Pipelines"
     projects:
-      - name: "Embedded Local Analytics Engines & Standalone Tooling"
-        short_name: "Embedded DuckDB Analytics EXE Tools"
+      - name: "AetherHarvest // Autonomous Web Harvester & Heuristic Cleanser"
+        short_name: "AetherHarvest Web Harvester"
         flagship: false
-        one_liner: "Zero-dependency Windows executables with embedded DuckDB and Parquet for finance analysts - 16 hours per week reclaimed."
-        tagline: "Zero-Dependency Standalone Windows Executables with Embedded DuckDB & Parquet"
-        domain: "Financial Data Engineering & Local Analytics"
+        repo_url: "https://github.com/abhishm23/AetherHarvest"
+        one_liner: "Non-AI async crawler with Trafilatura heuristic cleansing, binary PDF spidering, and 3D WebGL cyber globe - 50K+ pages/hr."
+        tagline: "High-Throughput Async Ingestion Engine with Heuristic DOM Extraction & 3D WebGL Telemetry"
+        domain: "High-Throughput Data Ingestion & Web Scraping"
         skill_focus:
-          - "Data Engineering (DuckDB SQL, Parquet Storage, Fast Analytical Queries)"
-          - "Software Packaging (PyInstaller Standalone Deployment without Python Dependencies)"
-        tech: ["Python", "DuckDB", "PyArrow", "Parquet", "PyInstaller", "CustomTkinter"]
-        overview: "Self-contained, high-performance Windows executable tools built for non-technical finance analysts, replacing fragile Excel macros with local columnar OLAP querying."
+          - "Data Engineering (Async HTTPX Crawler, Trafilatura Cleanser & Binary Spiders)"
+          - "Full-Stack Development (FastAPI, WebSockets & Three.js 3D WebGL Mission Control)"
+          - "Systems Engineering (Self-Healing Backoff & SHA-256 Content Fingerprinting)"
+        tech: ["Python", "FastAPI", "HTTPX (Async)", "Trafilatura", "BeautifulSoup4", "Three.js (WebGL)", "React 19", "WebSockets"]
+        overview: "A 100% non-AI algorithmic web harvester that discovers, crawls, and cleans arbitrary web articles and PDFs at scale. Strips boilerplates, ads, and trackers using heuristic density algorithms and streams live telemetry to a cyberpunk 3D WebGL console."
         features:
-          - "Zero-Installation Runtime: Packages complete data extraction, cleansing, mapping, and calculation logic into standalone executables requiring no Python or driver setup."
-          - "Embedded OLAP Power: Integrates DuckDB and Parquet to process millions of financial records locally in milliseconds."
-        impact: "Adopted directly across multiple finance teams, saving 16 hours of manual spreadsheet processing per week (8 hours per tool per week)."
+          - "Multi-Engine Search Spider: Autonomous discovery across DuckDuckGo, Bing, and arXiv OpenAccess with domain politeness jitter."
+          - "Heuristic DOM Cleanser: Employs Mozilla Readability and Trafilatura density scoring to convert messy web pages into clean offline HTML."
+          - "Binary PDF Harvester: Autonomous PDF spider validating magic bytes, enforcing size quotas, and computing SHA-256 deduplication hashes."
+          - "3D WebGL Mission Control: Three.js interactive cyber globe with live particle constellations, card tilt physics, and WebSocket streaming."
+        impact: "Delivers 50K+ pages/hr clean ingestion throughput with 99.8% boilerplate removal, operating fully autonomously with zero LLM API token costs."
         metrics:
-          - value: "16 hrs"
-            label: "saved per week"
-          - value: "0 Installs"
-            label: "no Python required"
+          - value: "50K+"
+            label: "pages ingested / hr"
+          - value: "99.8%"
+            label: "boilerplate removal"
 
       - name: "End-to-End CTO Business Review & KPI Automation Pipeline"
         short_name: "CTO Business Review KPI Pipeline"
-        flagship: true
+        flagship: false
+        repo_url: null
         one_liner: "SAP HANA to a branded executive deck in one trigger, computing 12+ KPIs - replaced 16 analyst hours per week."
         tagline: "Automated Enterprise Ingestion, KPI Computation & Executive Presentation Generation"
         domain: "Executive Analytics & Financial KPI Architecture"
@@ -323,6 +377,7 @@ portfolio:
       - name: "Enterprise PySpark & Databricks Ingestion Infrastructure"
         short_name: "PySpark & Databricks Infrastructure"
         flagship: false
+        repo_url: null
         one_liner: "PySpark and Delta Lake ingestion plus Power BI re-architecture for 100+ users - 40-50% faster refreshes."
         tagline: "Large-Scale Cloud Data Pipelines & BI Semantic Optimization"
         domain: "Cloud Data Engineering & Enterprise BI"
@@ -344,9 +399,60 @@ portfolio:
   - category: "Decision Intelligence"
     description: "BI Architecture & Data Storytelling"
     projects:
+      - name: "LLM-Forge: Full-Stack Fine-Tuning & Telemetry Studio"
+        short_name: "LLM-Forge Fine-Tuning Studio"
+        flagship: true
+        repo_url: "https://github.com/abhishm23/LLM-Forge"
+        one_liner: "Full-stack LLM fine-tuning studio with LoRA/QLoRA, real-time WebSocket loss telemetry, and side-by-side inference playground."
+        tagline: "Production Fine-Tuning Engine with PyTorch, PEFT/LoRA & Real-Time Telemetry"
+        domain: "Applied Machine Learning & Model Telemetry"
+        skill_focus:
+          - "AI-Augmented Engineering (PyTorch, PEFT LoRA/QLoRA, Quantization)"
+          - "Data Science & Telemetry (Real-Time Loss Curves, Perplexity, VRAM Profiling)"
+          - "Full-Stack Development (FastAPI, WebSockets, React 18, Vite, Recharts)"
+        tech: ["Python", "PyTorch", "Hugging Face", "PEFT (LoRA/QLoRA)", "FastAPI", "WebSockets", "React 18", "Recharts"]
+        overview: "A full-stack studio for fine-tuning open-source LLMs on domain datasets. Features a resilient FastAPI training engine, dataset curation pipeline, real-time WebSocket loss and VRAM streaming, and a side-by-side inference playground."
+        features:
+          - "LoRA & QLoRA Fine-Tuning Engine: Configures rank, alpha, dropout, and 4-bit/8-bit quantization with checkpoint auto-recovery."
+          - "Dataset Curation Pipeline: Ingests CSV, JSONL, and Parquet, validates token length distributions, and formats instruction pairs."
+          - "WebSocket Telemetry Stream: Broadcasts step-by-step training loss, validation loss, and GPU VRAM consumption to interactive charts."
+          - "Side-by-Side Model Comparison: Dual-pane inference playground comparing base foundation models against fine-tuned adapters."
+        impact: "Cut model fine-tuning turnaround from days to hours with zero manual scripting, enabling automated evaluation and instant adapter deployment."
+        metrics:
+          - value: "4-bit / 8-bit"
+            label: "QLoRA quantization"
+          - value: "<15ms"
+            label: "telemetry broadcast latency"
+
+      - name: "Research-Arena: Autonomous R&D Meta-Platform"
+        short_name: "Research-Arena Evaluation Platform"
+        flagship: true
+        repo_url: "https://github.com/abhishm23/Research-Arena"
+        one_liner: "Cascading 4-stage autonomous research-to-code pipeline with Stanford STORM consensus debates and typed ledger architecture."
+        tagline: "Cascading Multi-Agent Research, Consensus Debate & Automated Code Synthesis"
+        domain: "Autonomous Multi-Agent R&D Platforms"
+        skill_focus:
+          - "AI-Augmented Engineering (Multi-Agent Orchestration, Stanford STORM, PRAXIST)"
+          - "Data Engineering (Typed Pydantic Ledgers, SHA-256 Verification & SSE Streaming)"
+          - "Full-Stack Development (Next.js 15 App Router, React 19, Tailwind CSS v4, DAG View)"
+        tech: ["Python 3.11", "FastAPI", "Next.js 15", "React 19", "Tailwind CSS v4", "GPT-Researcher", "Stanford STORM", "Pydantic 2.0"]
+        overview: "An autonomous meta-platform executing end-to-end software R&D: from developer interviews, breadth-first documentation crawling, and Stanford STORM multi-expert debates to verified, test-backed code repository synthesis."
+        features:
+          - "Cascading 4-Stage Architecture: Chains Developer Interview -> GPT-Researcher Dossier -> STORM Debate -> PRAXIST Code Synthesis."
+          - "Immutable Research Ledger: Enforces Pydantic schemas and SHA-256 state transitions to eliminate context drift across pipeline stages."
+          - "Multi-Persona Expert Debate: Simulates conflicting engineering viewpoints to discover architectural trade-offs prior to coding."
+          - "Next.js 15 Mission Control: Real-time Server-Sent Events (SSE) streaming, interactive evidence DAG graph, and artifact downloads."
+        impact: "Automates up to 40 hours of initial engineering discovery and research synthesis into a 15-minute verifiable autonomous workflow."
+        metrics:
+          - value: "4 Stages"
+            label: "interview to verified code"
+          - value: "15 mins"
+            label: "40 hrs research automated"
+
       - name: "Global Discount & Margin Intelligence Dashboard"
         short_name: "Global Discount & Margin Dashboard"
-        flagship: true
+        flagship: false
+        repo_url: null
         one_liner: "20M+ row, 4-source Power BI model with multi-level RLS across three theaters - drove a 1-2% discount reduction in 3 months."
         tagline: "Enterprise Power BI Architecture with Granular Multi-Level Row-Level Security"
         domain: "Commercial Finance & Margin Analytics"
@@ -364,45 +470,3 @@ portfolio:
             label: "discount reduction"
           - value: "20M+"
             label: "rows modeled"
-
-      - name: "AI-Powered Web Analytics & Interactive Storytelling Platform"
-        short_name: "D3.js Interactive Storytelling Platform"
-        flagship: false
-        one_liner: "Full-stack D3.js storytelling platform with a no-code builder, letting finance teams compose executive visuals unaided."
-        tagline: "Full-Stack Data Visualization Platform Democratizing D3.js Storytelling"
-        domain: "Data Storytelling & Full-Stack Visualization"
-        skill_focus:
-          - "Data Science & Visualization (Custom D3.js Visualizations & Animated Transitions)"
-          - "AI-Augmented Development (AI Code Generation & Web Architecture)"
-        tech: ["JavaScript (ES6+)", "D3.js", "Python (Flask / FastAPI)", "HTML5 / CSS3", "WebSockets"]
-        overview: "A web-based analytics platform built to deliver cinematic, interactive visual storytelling for executive decision-makers."
-        features:
-          - "Dual-Mode Interface: A Consumer View for interactive insight exploration and a No-Code Builder View allowing non-technical users to compose dynamic D3 visualizations."
-          - "Cinematic Chart Transitions: Fluid animated chart transitions backed by real-time backend calculations over WebSockets."
-        impact: "Democratized advanced data storytelling by allowing finance teams to craft custom visual presentations without engineering dependencies."
-        metrics:
-          - value: "No-Code"
-            label: "builder for finance"
-          - value: "2 Modes"
-            label: "consume + author"
-
-      - name: "Enterprise Financial Forecasting & Dynamic Cost Allocation Engine"
-        short_name: "Dynamic Cost Allocation Engine"
-        flagship: false
-        one_liner: "Vectorized Pandas and NumPy allocation engine replacing multi-tab Excel models - 90+ hours saved per financial close."
-        tagline: "Automated Statistical Allocation Modeling on Enterprise Datasets"
-        domain: "Corporate FP&A & Cost Accounting"
-        skill_focus:
-          - "Data Science & Financial Modeling (Statistical Allocation Factors & Predictive Projections)"
-          - "Python Engineering (Vectorized Pandas / NumPy Transformations)"
-        tech: ["Python", "Pandas", "NumPy", "OpenPyXL", "SQL"]
-        overview: "An automated Python calculation engine applying complex multi-tier business allocation factors and predictive drivers to raw enterprise financial datasets."
-        features:
-          - "Vectorized Cost Modeling: Replaces cumbersome multi-tab Excel workbooks with fast, deterministic Python transformations."
-          - "Dynamic Business Rules: Lets finance teams adjust allocation weights, inflation drivers, and expense splits without touching code."
-        impact: "Eliminated quarterly manual spreadsheet reconciliation, saving 90+ hours per financial close cycle."
-        metrics:
-          - value: "90+ hrs"
-            label: "saved per close"
-          - value: "0"
-            label: "manual reconciliation"

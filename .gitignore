@@ -11,6 +11,8 @@ _*.png
 
 # Machine-local tool permissions, not project configuration.
 .claude/settings.local.json
+.agents/
+ORIGINAL_REQUEST.md
 
 # Python
 __pycache__/

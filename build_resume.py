@@ -133,6 +133,11 @@ def build_portfolio(env, data):
     size_kb = os.path.getsize(path) / 1024
     print(f"  -> {path}  (self-contained, {size_kb:.0f} KB)")
 
+    # Render portfolio_profile.html alongside index.html
+    profile_path = render_html(env, context, "portfolio_page.html", "portfolio_profile.html")
+    profile_size_kb = os.path.getsize(profile_path) / 1024
+    print(f"  -> {profile_path}  (self-contained, {profile_size_kb:.0f} KB)")
+
     # GitHub Pages otherwise runs the output through Jekyll.
     nojekyll = os.path.join(DIST_DIR, ".nojekyll")
     if not os.path.exists(nojekyll):
