@@ -13,6 +13,7 @@ _*.png
 .claude/settings.local.json
 .agents/
 ORIGINAL_REQUEST.md
+graphify-out/
 
 # Python
 __pycache__/

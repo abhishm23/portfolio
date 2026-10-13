@@ -158,6 +158,8 @@ async def main():
         check("full YAML coverage retained",
               coverage == {"cards": 9, "skills": 5, "bullets": 7, "metrics": 18, "flags": 3},
               str(coverage))
+        ecosystem_count = await page.evaluate("document.querySelectorAll('.ecosystem-card').length")
+        check("github_ecosystem renders 6 cards", ecosystem_count == 6, f"{ecosystem_count} cards")
 
         # --- data-goto cross-panel jump --------------------------------------
         await page.click(".tab[data-tab='profile']")
@@ -230,14 +232,37 @@ async def main():
             "https://github.com/abhishm23/AutonomousJobApplicant",
             "https://github.com/abhishm23/AetherHarvest",
         ]
-        profile_path = os.path.join(ROOT, "dist", "portfolio_profile.html")
-        check("dist/portfolio_profile.html exists", os.path.exists(profile_path))
-        if os.path.exists(profile_path):
-            with open(profile_path, "r", encoding="utf-8") as pf:
-                profile_html = pf.read()
-            for repo_url in top5_repos:
-                check(f"portfolio_profile.html contains {repo_url.split('/')[-1]} repo link",
-                      repo_url in profile_html, repo_url)
+        newly_added_repos = [
+            "https://github.com/abhishm23/Shift",
+            "https://github.com/abhishm23/ML-Arena",
+            "https://github.com/abhishm23/Simulation-Arena",
+            "https://github.com/abhishm23/Indian-Grand-Strategy-Engine",
+            "https://github.com/abhishm23/ArbForge",
+            "https://github.com/abhishm23/AeroPulse",
+            "https://github.com/abhishm23/Chess",
+        ]
+
+        for filename in ["index.html", "portfolio_profile.html"]:
+            filepath = os.path.join(ROOT, "dist", filename)
+            check(f"dist/{filename} exists", os.path.exists(filepath))
+            if os.path.exists(filepath):
+                with open(filepath, "r", encoding="utf-8") as f:
+                    content = f.read()
+                for repo_url in top5_repos:
+                    check(f"{filename} contains {repo_url.split('/')[-1]} repo link",
+                          repo_url in content, repo_url)
+                for repo_url in newly_added_repos:
+                    check(f"{filename} contains newly added {repo_url.split('/')[-1]} repo link",
+                          repo_url in content, repo_url)
+
+        resume_html_path = os.path.join(ROOT, "dist", "resume.html")
+        check("dist/resume.html exists", os.path.exists(resume_html_path))
+        if os.path.exists(resume_html_path):
+            with open(resume_html_path, "r", encoding="utf-8") as rh:
+                rhtml = rh.read()
+            check("resume.html contains Shift Financial Audit & Reconciliation",
+                  ("Shift Financial Audit &amp; Reconciliation" in rhtml or "Shift Financial Audit & Reconciliation" in rhtml))
+            check("resume.html contains DuckDB", "DuckDB" in rhtml)
 
         pdf_path = os.path.join(ROOT, "dist", "Abhishek_Mishra_Resume.pdf")
         check("dist/Abhishek_Mishra_Resume.pdf exists", os.path.exists(pdf_path))

@@ -184,17 +184,18 @@ education:
 
 # ==============================================================================
 # FEATURED PROJECTS (Printable 1-Page Resume)
-# Top 3 flagship projects designated for the printable 1-page resume.
+# Top 5 flagship projects designated for the printable 1-page resume.
 # ==============================================================================
 featured_projects:
-  - name: "Autonomous VC Fund Reconciliation Agent"
-    short_name: "Autonomous VC Fund Reconciliation Agent"
+  - name: "Shift: Commercial Financial Audit & Reconciliation Engine"
+    short_name: "Shift Financial Audit & Reconciliation"
     flagship: true
-    repo_url: ""
-    repo_label: ""
-    tech: ["LLM Agents", "Python", "Pandas", "PyMuPDF"]
-    one_liner: "LLM agent ingesting unstructured VC capital-call notices and reconciling multi-quarter fund positions - days to minutes, zero variance."
-    highlight: "LLM agent ingesting unstructured VC capital-call notices and reconciling multi-quarter fund positions - days to minutes, zero variance."
+    repo_url: "https://github.com/abhishm23/Shift"
+    repo_label: "github.com/abhishm23/Shift"
+    tech: ["Tauri v2", "Rust", "Python 3.11", "DuckDB", "Polars", "OpenCV"]
+    one_liner: "Desktop commercial audit engine reconciling multi-million row ledgers with PVMC variance bridges and DuckDB - 15M rows, zero variance."
+    highlight: "Desktop commercial audit engine reconciling multi-million row ledgers with PVMC variance bridges and DuckDB - 15M rows, zero variance."
+
 
   - name: "CTO Business Review KPI Pipeline"
     short_name: "CTO Business Review KPI Pipeline"
@@ -299,30 +300,30 @@ portfolio:
           - value: "6"
             label: "portals scraped in parallel"
 
-      - name: "Autonomous VC Capital Call & Multi-Quarter Fund Reconciliation Agent"
-        short_name: "Autonomous VC Fund Reconciliation Agent"
+      - name: "Shift // Commercial Financial Audit & Reconciliation Engine"
+        short_name: "Shift Financial Audit & Reconciliation"
         flagship: false
-        repo_url: null
-        one_liner: "LLM agent ingesting unstructured VC capital-call notices and reconciling multi-quarter fund positions - days to minutes, zero variance."
-        tagline: "Autonomous Agent for Statement Ingestion, Metric Computation & Financial Audit Reconciliation"
-        domain: "Venture Capital & Private Equity / Fund Accounting"
+        repo_url: "https://github.com/abhishm23/Shift"
+        one_liner: "Desktop commercial audit engine reconciling multi-million row ledgers with PVMC variance bridges and DuckDB - 15M rows, zero variance."
+        tagline: "High-Throughput Enterprise Financial Audit Engine with DuckDB & Rust/Tauri"
+        domain: "Commercial Finance & Enterprise Audit Intelligence"
         skill_focus:
-          - "AI-Augmented Engineering (LLM Extraction & Reasoning)"
-          - "Data Engineering (Document Ingestion & Financial Data Pipelines)"
-          - "Data Science (Reconciliation Math & Anomaly Validation)"
-        tech: ["Python", "LLM APIs (OpenAI / Claude)", "Pandas", "OpenPyXL / XlsxWriter", "PyMuPDF", "Pydantic", "Document Parsing Engine"]
-        overview: "An end-to-end autonomous agent that traverses repository directories, discovers unstructured VC capital call statements and notices (PDFs and spreadsheets), and accumulates structured multi-fund financial datasets with full multi-quarter reconciliation."
+          - "Financial Analytics & Anomaly Audit (PVMC Variance Bridges, LOAO & Pocket Margin Gates)"
+          - "High-Throughput Data Engineering (DuckDB Vectorized Engine, Polars, 15M Parquet)"
+          - "Autonomous QA & Desktop Systems (Tauri v2, Rust Native FFI, Challenger Test Harness)"
+        tech: ["Tauri v2", "Rust", "Python 3.11", "DuckDB", "Polars", "OpenCV", "React", "Tailwind CSS"]
+        overview: "A high-throughput desktop application engineered for enterprise financial controllers and deal desk auditors. Reconciles multi-million row commercial transaction ledgers, computes Price-Volume-Mix-Cost (PVMC) variance bridges, and isolates margin leakage across 62+ dimensions using beam search."
         features:
-          - "Automated Statement Discovery & Ingestion: Scans file trees to identify, parse, and extract tabular and unstructured financial metrics from quarterly capital call notices."
-          - "Comprehensive Fund Metric Engine: Calculates Initial Commitments, Cumulative Called and Processed Capital, Uncalled Balance Commitments, Current Period Call Amounts, Ownership Share, and Cumulative Profit and Distributions for each fund."
-          - "Multi-Quarter Reconciliation Pipeline: Reconciles historical fund states across every quarter from inception, verifying cash flows, capital balances, and ownership percentages."
-          - "Auditing & Mathematical Validation: Applies automated validation rules with dynamic contextual reasoning notes explaining variances, fee adjustments, and calculations."
-        impact: "Eliminates 100% of manual fund statement collation and spreadsheet entry, reducing multi-quarter audit and reconciliation turnaround from days to minutes while ensuring zero mathematical discrepancies."
+          - "Vectorized Ingestion & Audit Gate: Ingests 15M+ row Parquet and 1M+ row CSV datasets via DuckDB and Polars; enforces strict Gross-to-Net and Pocket Margin readiness gates."
+          - "PVMC Margin Variance Bridge: Mathematically decomposes margin movement into Price, Volume, Mix, and Cost drivers with Leave-One-Attribute-Out (LOAO) formulations."
+          - "Beam Search Culprit Discovery: Recursively scans high-dimensional transaction slices to isolate compound pricing leaks across sales, channel, and contract dimensions."
+          - "Native Desktop Shell & Visual Audit: Built on Tauri v2 with Rust native bindings, persistent quarantine watermarks, and interactive column remapping."
+        impact: "Automates end-to-end commercial margin audit across 16M transactions, stress-tested on 4GB in-memory datasets with 100% reconciliation invariant preservation."
         metrics:
+          - value: "15M+"
+            label: "transactions reconciled"
           - value: "100%"
-            label: "manual collation removed"
-          - value: "Days to Minutes"
-            label: "audit turnaround"
+            label: "audit invariant verified"
 
   - category: "Enterprise Optimization"
     description: "Data Engineering & High-Throughput Pipelines"
@@ -470,3 +471,51 @@ portfolio:
             label: "discount reduction"
           - value: "20M+"
             label: "rows modeled"
+
+# ==============================================================================
+# GITHUB ECOSYSTEM & EXTENDED REPOSITORIES
+# Additional active R&D systems, auto-ML tools, and simulation engines on GitHub.
+# ==============================================================================
+github_ecosystem:
+  - name: "ML-Arena"
+    headline: "End-to-End Machine Learning Workbench & Evaluation Studio"
+    repo_url: "https://github.com/abhishm23/ML-Arena"
+    tech: ["Python", "scikit-learn", "Deterministic Rules", "Executive Reporting"]
+    badge: "Auto-ML Workbench"
+    description: "Zero-cloud local machine learning workbench executing model tournaments on enterprise spreadsheets with deterministic natural-language reasoning and board-ready reporting."
+
+  - name: "Simulation-Arena"
+    headline: "Deterministic Business & Agent Simulation Studio"
+    repo_url: "https://github.com/abhishm23/Simulation-Arena"
+    tech: ["Python 3.11", "FastAPI", "DuckDB", "Node.js"]
+    badge: "Simulation Studio"
+    description: "Full-stack multi-agent simulation testbed orchestrating synthetic market scenarios, behavioral simulations, and stress workloads backed by DuckDB analytical storage."
+
+  - name: "Indian-Grand-Strategy-Engine"
+    headline: "14th-Century Subcontinent Grand Strategy Engine"
+    repo_url: "https://github.com/abhishm23/Indian-Grand-Strategy-Engine"
+    tech: ["JavaScript", "HTML5 Canvas", "Node.js", "Tactical AI"]
+    badge: "Game AI & Simulation"
+    description: "Dual-layer procedural grand strategy engine modeling 14th-century geopolitics, dynamic bilateral diplomacy matrices, and 2D tactical battlefield shock/morale combat simulations."
+
+  - name: "ArbForge"
+    headline: "Real-Time Cryptocurrency Triangular Arbitrage Engine"
+    repo_url: "https://github.com/abhishm23/ArbForge"
+    tech: ["Python", "FastAPI", "asyncio", "WebSockets", "Bellman-Ford"]
+    badge: "Quantitative Trading"
+    description: "High-performance arbitrage engine detecting negative-cycle price discrepancies across live order books with fee and slippage modeling."
+
+  - name: "AeroPulse"
+    headline: "Real-Time Flight Telemetry Anomaly Detection HUD"
+    repo_url: "https://github.com/abhishm23/AeroPulse"
+    tech: ["Python", "FastAPI", "WebSockets", "Leaflet.js", "Python Math Kernels"]
+    badge: "Real-Time Telemetry"
+    description: "High-frequency streaming platform ingesting aircraft state vectors and rendering flight envelope anomaly alerts on a tactical radar HUD."
+
+  - name: "Chess"
+    headline: "Interactive Tactics Trainer & Puzzle Engine"
+    repo_url: "https://github.com/abhishm23/Chess"
+    tech: ["React 18", "TypeScript", "Tailwind CSS", "Vitest"]
+    badge: "Tactics Engine"
+    description: "Interactive chess trainer with legal move validation, branching analysis trees, FEN/PGN import, and automated testing."
+

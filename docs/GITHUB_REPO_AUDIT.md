@@ -1,22 +1,29 @@
 # GitHub Repository Audit & Strategic Relevance Ranking Matrix
 
 **Target Account:** `abhishm23`  
-**Audit Date:** 2026-09-05  
-**Auditor:** Teamwork Preview Worker (Worker 1)  
-**Credential Protocol:** Loaded `GIT_TOKEN` via `C:\Cred\.env.git` strictly into volatile process memory; zero credentials written, logged, or serialized.  
-**Total Repositories Audited:** 9 (8 Public, 1 Private)
+**Audit Date:** 2026-10-13  
+**Auditor:** Senior Analytics & GenAI Engineering Agent  
+**Credential Protocol:** Loaded credentials via environment memory; zero secrets written, logged, or serialized.  
+**Total Repositories Audited:** 15 (8 Public, 7 Private)
 
 ---
 
 ## 1. Executive Summary
 
-This audit evaluates all 9 GitHub repositories associated with the user profile `abhishm23`. The strategic objective is to identify, rank, and catalog the **Top 5 projects** that best demonstrate the competencies of a **Senior Analytics Engineer & AI-Augmented Developer**.
+This comprehensive audit evaluates all 15 GitHub repositories associated with user profile `abhishm23`, incorporating 7 newly created repositories (`Shift`, `ML-Arena`, `Simulation-Arena`, `ArbForge`, `AeroPulse`, `CrisisGrid`, `Chess`) and significant updates to existing repositories (notably `Indian-Grand-Strategy-Engine` on October 13, 2026).
 
-The audited codebase exhibits a strong technical profile spanning:
-1. **Autonomous multi-agent architectures** (cyclic graphs, state machines, tool harnesses via Model Context Protocol).
-2. **High-throughput data ingestion and ETL** (concurrent spiders, heuristic DOM extraction, DuckDB analytics storage).
-3. **Machine learning telemetry and fine-tuning** (PyTorch, PEFT/LoRA/QLoRA, real-time WebSocket loss streaming).
-4. **Mission-control frontend engineering** (React 18/19, Next.js 15 App Router, Monaco Editor, Three.js WebGL visualization).
+The strategic objective is to evaluate and rank all repositories against Abhishek Mishra's target profile:  
+**Senior Analytics Engineer | AI-Augmented Development | Financial Analytics & BI Architecture**
+
+### Key Findings
+1. **Commercial Financial Analytics Milestone (`Shift`):**  
+   The addition of `Shift` (Project Sift) provides immediate, top-tier proof of commercial financial reconciliation, Price-Volume-Mix-Cost (PVMC) variance decomposition, and DuckDB/Polars high-throughput ledger auditing across 16M+ transactions. This directly maps to Abhishek's core financial analytics and enterprise BI competencies.
+2. **Local Machine Learning Workbench (`ML-Arena`):**  
+   The addition of `ML-Arena` provides a pure local, zero-cloud machine learning workbench where models compete on tabular business datasets with deterministic natural-language reasoning and executive-ready reporting.
+3. **Multi-Agent Simulation & Algorithmic Engines (`Simulation-Arena` & `ArbForge`):**  
+   New simulation engines showcase deterministic agent behaviors, DuckDB event telemetry, and graph-based Bellman-Ford negative-cycle triangular arbitrage detection.
+4. **Dual-Layer Strategy & Procedural Simulation (`Indian-Grand-Strategy-Engine`):**  
+   Substantially updated on October 13, 2026 (`feat(map): integrate geography, province polygons, and canvas HUD enhancements`), demonstrating advanced 2D procedural canvas rendering, state machine serialization, and tactical AI combat mechanics.
 
 ---
 
@@ -25,29 +32,29 @@ The audited codebase exhibits a strong technical profile spanning:
 Each repository was quantitatively evaluated on a scale of **0 to 10** across four foundational technical pillars:
 
 ### Pillar 1: AI-Augmented Engineering (P1)
-- **Focus:** Autonomous agent orchestration, cyclic graphs, multi-agent debates, tool calling, Model Context Protocol (MCP), vector retrieval-augmented generation (RAG), parameter-efficient fine-tuning (PEFT/LoRA).
+- **Focus:** Autonomous agent orchestration, cyclic graphs, multi-agent debates, tool calling, Model Context Protocol (MCP), vector retrieval-augmented generation (RAG), parameter-efficient fine-tuning (PEFT/LoRA), and local auto-ML reasoning.
 - **10:** Production-grade multi-agent frameworks, cyclic graphs with self-healing feedback, or custom LLM fine-tuning pipelines.
-- **7-9:** Solid LLM API integration with structured schemas, multi-agent roles, or embeddings-based search.
+- **7-9:** Solid LLM API integration with structured schemas, multi-agent roles, or auto-ML tournament loops.
 - **4-6:** Basic prompt engineering or single-turn API wrappers.
 - **0-3:** No LLM or generative AI capabilities.
 
 ### Pillar 2: Data Engineering & Ingestion (P2)
-- **Focus:** High-throughput crawlers, distributed or concurrent ingestion, structured storage (DuckDB, Parquet, Delta Lake, SQLite), data validation, deduplication algorithms, and heuristic content extraction.
-- **10:** Concurrent multi-portal scrapers with deduplication hashes, DuckDB analytical engines, and automated ETL pipelines.
+- **Focus:** High-throughput crawlers, distributed or concurrent ingestion, structured storage (DuckDB, Parquet, Delta Lake, SQLite, Polars), data validation, deduplication algorithms, and heuristic content extraction.
+- **10:** Concurrent multi-portal scrapers, vectorized DuckDB/Polars engines (15M+ rows / 4GB in-memory), and automated ETL pipelines.
 - **7-9:** Robust data extraction, schema normalization, and database storage.
 - **4-6:** Standard file I/O (CSV/JSON) or basic sequential scraping.
 - **0-3:** Minimal or static data handling.
 
-### Pillar 3: Data Science & Predictive Analytics (P3)
-- **Focus:** Loss curves, perplexity calculations, token distribution modeling, algorithmic heuristic scoring, statistical telemetry, automated benchmark evaluation, and regression tracking.
-- **10:** Real-time ML training telemetry, AST lint metrics, automated benchmark scoring, or statistical ranking engines.
+### Pillar 3: Data Science & Predictive Analytics / Financial Analytics (P3)
+- **Focus:** Financial variance analysis (PVMC bridges, LOAO formulations), loss curves, perplexity calculations, algorithmic heuristic scoring, statistical telemetry, automated benchmark evaluation, and regression tracking.
+- **10:** Real-time ML training telemetry, PVMC margin bridges, beam search multi-dimensional culprit isolation, or automated model tournaments.
 - **7-9:** Heuristic scoring algorithms, fit scoring models, or automated analytical KPIs.
 - **4-6:** Descriptive statistics or basic aggregations.
 - **0-3:** No quantitative analysis or modeling.
 
-### Pillar 4: Full-Stack / Developer Experience (P4)
-- **Focus:** Modern frontend frameworks (React 18/19, Next.js 15/16, Vite, Tailwind CSS), interactive WebGL/Three.js visualizations, embedded Monaco code editors, real-time WebSockets/SSE, CLI developer tools, and clean developer workflows.
-- **10:** Real-time bidirectional WebSocket/SSE mission control, interactive WebGL canvases, or embedded code IDEs.
+### Pillar 4: Full-Stack / Developer Experience & Systems (P4)
+- **Focus:** Modern desktop & web frameworks (Tauri v2, Rust FFI, React 18/19, Next.js 15, Vite, Tailwind CSS), interactive WebGL/Three.js visualizations, embedded Monaco code editors, real-time WebSockets/SSE, CLI developer tools, and clean developer workflows.
+- **10:** Real-time bidirectional WebSocket/SSE mission control, native Tauri v2 desktop shells, interactive WebGL canvases, or embedded code IDEs.
 - **7-9:** Modern responsive web applications or full-featured Streamlit dashboards.
 - **4-6:** Functional UI or basic web templates.
 - **0-3:** Headless scripts without user interfaces.
@@ -56,151 +63,111 @@ Each repository was quantitatively evaluated on a scale of **0 to 10** across fo
 
 ## 3. Comprehensive Repository Audit & Ranking Matrix
 
-| Rank | Repository Name | Visibility | Primary Languages | P1 (AI Eng) | P2 (Data Eng) | P3 (Analytics) | P4 (Full-Stack) | Total Score | Strategic Verdict |
+| Rank | Repository Name | Visibility | Primary Languages | P1 (AI Eng) | P2 (Data Eng) | P3 (Analytics) | P4 (Full-Stack) | Total Score | Strategic Role |
 | :---: | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :--- |
-| **1** | **LLM-Forge** | Public | Python, TypeScript | 10 | 9 | 10 | 10 | **39 / 40** | **Top 5 Flagship #1** |
-| **2** | **Research-Arena** | Public | Python, TypeScript | 10 | 10 | 9 | 9 | **38 / 40** | **Top 5 Flagship #2** |
-| **3** | **BHOLA-Coding-Agent** | Public | TypeScript, Python | 10 | 8 | 8 | 10 | **36 / 40** | **Top 5 Flagship #3** |
-| **4** | **AutonomousJobApplicant** | Public | Python | 9 | 10 | 8 | 8 | **35 / 40** | **Top 5 Flagship #4** |
-| **5** | **AetherHarvest** | Public | Python, JavaScript | 5 | 10 | 8 | 10 | **33 / 40** | **Top 5 Flagship #5** |
-| 6 | **Excel_agent** | Private | Python | 8 | 7 | 7 | 7 | 29 / 40 | High relevance; Private repo |
-| 7 | **portfolio** | Public | HTML, CSS, Python | 4 | 6 | 5 | 9 | 24 / 40 | Operational meta-repository |
-| 8 | **Indian-Grand-Strategy-Engine** | Public | JavaScript | 5 | 5 | 6 | 8 | 24 / 40 | Domain diversion (Game engine) |
-| 9 | **AstroAgent** | Public | TypeScript | 4 | 5 | 6 | 8 | 23 / 40 | Personal niche (Astrology) |
+| **1** | **LLM-Forge** | Public | Python, TypeScript | 10 | 9 | 10 | 10 | **39 / 40** | **Flagship Project #1 (AI & Telemetry)** |
+| **2** | **Research-Arena** | Public | Python, TypeScript | 10 | 10 | 9 | 9 | **38 / 40** | **Flagship Project #2 (Multi-Agent R&D)** |
+| **3** | **Shift** | Private | Rust, Python, React | 8 | 10 | 10 | 9 | **37 / 40** | **Top Flagship (Financial Audit & Reconciliation)** |
+| **4** | **BHOLA-Coding-Agent** | Public | TypeScript, Python | 10 | 8 | 8 | 10 | **36 / 40** | **Flagship Project #3 (Autonomous Coding)** |
+| **5** | **ML-Arena** | Private | Python, JavaScript | 8 | 9 | 10 | 9 | **36 / 40** | **High-Impact (Auto-ML & Executive Reporting)** |
+| **6** | **AutonomousJobApplicant** | Public | Python | 9 | 10 | 8 | 8 | **35 / 40** | **Flagship Project #4 (Concurrent ETL & Agent)** |
+| **7** | **Simulation-Arena** | Private | Python, Node.js | 9 | 9 | 8 | 8 | **34 / 40** | **High-Impact (Agent Market Simulation)** |
+| **8** | **AetherHarvest** | Public | Python, JavaScript | 5 | 10 | 8 | 10 | **33 / 40** | **Flagship Project #5 (Async Harvester & 3D WebGL)** |
+| **9** | **ArbForge** | Private | Python, Jinja2 | 5 | 9 | 9 | 8 | **31 / 40** | **High-Impact (Triangular Arbitrage Engine)** |
+| **10** | **AeroPulse** | Private | Python, Leaflet.js | 6 | 8 | 8 | 9 | **31 / 40** | **High-Impact (Flight Telemetry Anomaly HUD)** |
+| **11** | **Indian-Grand-Strategy-Engine** | Public | JavaScript, Canvas | 6 | 6 | 7 | 9 | **28 / 40** | **Domain Showcase (Tactical AI & Canvas Engine)** |
+| **12** | **CrisisGrid** | Private | Python, NetworkX | 4 | 7 | 8 | 7 | **26 / 40** | **Secondary (Graph Transit Evacuation)** |
+| **13** | **Chess** | Private | TypeScript, React 18 | 3 | 5 | 7 | 9 | **24 / 40** | **Secondary (Interactive Tactics & Vitest)** |
+| **14** | **portfolio** | Public | HTML, CSS, Python | 4 | 6 | 5 | 9 | **24 / 40** | **Operational Meta-Repository** |
+| **15** | **AstroAgent** | Public | TypeScript, Next.js | 4 | 5 | 6 | 8 | **23 / 40** | **Personal Research (Vedic Ephemeris)** |
 
 ---
 
-## 4. Deep-Dive Audit of the Top 5 Selected Repositories
+## 4. Deep-Dive Audit of Top Projects & Newly Added Systems
 
-### 1. LLM-Forge ⚒️🧠
-- **Repository URL:** `https://github.com/abhishm23/LLM-Forge`
-- **Visibility:** Public (HTTP 200 Verified)
-- **Primary Stack:** PyTorch, Hugging Face Transformers, PEFT (LoRA/QLoRA), FastAPI, WebSockets, React 18, Vite 5, Tailwind CSS, Recharts.
-- **Pillar Scores:** P1: 10/10 | P2: 9/10 | P3: 10/10 | P4: 10/10 | **Total: 39/40**
+### 1. Shift: Commercial Financial Audit & Reconciliation Engine 💼⚖️
+- **Repository URL:** `https://github.com/abhishm23/Shift`
+- **Visibility:** Private (Source verified in local workspace and GitHub API)
+- **Primary Stack:** Tauri v2, Rust native bindings, Python 3.11, DuckDB, Polars, OpenCV, React, Tailwind CSS, Playwright E2E.
+- **Pillar Scores:** P1: 8/10 | P2: 10/10 | P3: 10/10 | P4: 9/10 | **Total: 37/40**
 - **Scoring Rationale:**
-  - *P1 (AI Eng):* Complete local fine-tuning studio wrapping Hugging Face and PEFT. Supports LoRA adapters, rank/alpha hyperparameters, and quantization (4-bit/8-bit QLoRA).
-  - *P2 (Data Eng):* Dataset curation engine handles multi-format ingestion (CSV, JSONL, Parquet, raw text), token distribution validation, and prompt formatting (ChatML, Alpaca, ShareGPT).
-  - *P3 (Analytics):* Real-time loss tracking, perplexity computation, validation evaluation steps, and GPU VRAM memory profiling.
-  - *P4 (Full-Stack):* Bi-directional WebSocket telemetry streaming loss curves to interactive Recharts visualizers; dual-pane inference playground comparing base vs. adapter models side-by-side.
-- **Architecture Highlights:**
-  - `RunManager` hub managing model weight lifecycles, CUDA memory boundaries, checkpoints, and graceful recovery.
-  - Streaming token generator with dynamic temperature, top_p, and stop tokens.
-- **Strategic Resume Role:** Flagship project demonstrating production LLM engineering, real-time systems, and full-stack telemetry.
+  - *P1 (AI / Autonomous QA):* Autonomous QA-Developer challenger test harness simulating user and edge cases; automated anomaly triage.
+  - *P2 (Data Eng):* Vectorized ingestion across 15M+ row Parquet and 1M+ row wide CSV datasets; DuckDB and Polars in-memory analytics; stress-tested on 4GB datasets with zero memory leaks.
+  - *P3 (Financial Analytics):* Price-Volume-Mix-Cost (PVMC) mathematical variance decomposition, Leave-One-Attribute-Out (LOAO) formulations, and beam search multi-dimensional culprit isolation across 62+ dimensions.
+  - *P4 (Systems & Desktop):* Tauri v2 native desktop application with Rust bindings, persistent quarantine watermarks, interactive column mapping dropdowns, and visual ledger diffing.
+- **Strategic Impact:** Directly substantiates Abhishek's core positioning in Financial Analytics, BI Architecture, and High-Throughput Ledger Reconciliation.
 
 ---
 
-### 2. Research-Arena: Autonomous R&D Meta-Platform 🔬⚡
-- **Repository URL:** `https://github.com/abhishm23/Research-Arena`
-- **Visibility:** Public (HTTP 200 Verified)
-- **Primary Stack:** Python 3.11, FastAPI, Next.js 15 (App Router), React 19, Tailwind CSS v4, GPT-Researcher, Stanford STORM, Pydantic 2.0, Server-Sent Events (SSE).
-- **Pillar Scores:** P1: 10/10 | P2: 10/10 | P3: 9/10 | P4: 9/10 | **Total: 38/40**
+### 2. ML-Arena: End-to-End Machine Learning Workbench 🏆📊
+- **Repository URL:** `https://github.com/abhishm23/ML-Arena`
+- **Visibility:** Private (Source verified in local workspace and GitHub API)
+- **Primary Stack:** Python 3.11, scikit-learn, FastAPI, vanilla JS web interface, deterministic rules engine, executive reporting.
+- **Pillar Scores:** P1: 8/10 | P2: 9/10 | P3: 10/10 | P4: 9/10 | **Total: 36/40**
 - **Scoring Rationale:**
-  - *P1 (AI Eng):* Multi-agent autonomous research pipeline integrating adaptive interview agents, GPT-Researcher breadth-first search, Stanford STORM multi-persona debates, and PRAXIST code synthesis.
-  - *P2 (Data Eng):* Immutable research ledger enforced with Pydantic schemas and SHA-256 state transitions. Caches dossiers, interview contracts, and architectural blueprints without context drift.
-  - *P3 (Analytics):* Quantitative persona perspective scoring, consensus evaluation metrics, and automated unit test execution telemetry for synthesized code.
-  - *P4 (Full-Stack):* Next.js 15 multi-pane mission control with interactive DAG visualization of research steps, real-time SSE streaming logs, and downloadable project artifacts.
-- **Architecture Highlights:**
-  - Cascading 4-stage pipeline: Stage 0 (Interview Studio) -> Stage 1 (Ecosystem Crawler) -> Stage 2 (STORM Consensus Debate) -> Stage 3 (PRAXIST Test-First Code Generation).
-  - Strict typed contract between stages eliminating hallucinations.
-- **Strategic Resume Role:** Flagship project highlighting autonomous multi-agent orchestration, consensus generation, and system design.
+  - *P1 (AI Eng):* Local auto-ML competition engine running competitive model tournaments without external cloud dependencies or API costs.
+  - *P2 (Data Eng):* Automated CSV/Excel schema profiling, type inference, dynamic column derivation, and missing-value imputation.
+  - *P3 (Predictive Analytics):* Cross-validated model evaluation (classification/regression), ROC-AUC/F1 scoring, feature importance rankings, and deterministic natural-language executive report generation.
+  - *P4 (Full-Stack):* Local zero-dependency web dashboard, real-time plain-language execution narration, and standalone HTML report exports.
+- **Strategic Impact:** Demonstrates transparent, explainable machine learning and business-to-metric translation for non-technical stakeholders.
 
 ---
 
-### 3. BHOLA: Autonomous Coding Agent Framework 🤖💻
-- **Repository URL:** `https://github.com/abhishm23/BHOLA-Coding-Agent`
-- **Visibility:** Public (HTTP 200 Verified)
-- **Primary Stack:** LangGraph, LangChain, Google GenAI, ChromaDB, DuckDB, FastAPI, Model Context Protocol (MCP), React 19, Vite 8, Tailwind CSS v4, Monaco Editor, Streamlit.
-- **Pillar Scores:** P1: 10/10 | P2: 8/10 | P3: 8/10 | P4: 10/10 | **Total: 36/40**
+### 3. Simulation-Arena: Autonomous Market & Agent Testbed 🌐📈
+- **Repository URL:** `https://github.com/abhishm23/Simulation-Arena`
+- **Visibility:** Private (Source verified in local workspace and GitHub API)
+- **Primary Stack:** Python 3.11, FastAPI, DuckDB analytical data store, Node.js frontend, stress-testing harnesses.
+- **Pillar Scores:** P1: 9/10 | P2: 9/10 | P3: 8/10 | P4: 8/10 | **Total: 34/40**
 - **Scoring Rationale:**
-  - *P1 (AI Eng):* Cyclic LangGraph state machine with `Planner -> Coder -> Reviewer` graph topology, automatic feedback loops, and AST-guided lint self-healing.
-  - *P2 (Data Eng):* Vector RAG indexing AST syntax trees into ChromaDB for contextual code retrieval; DuckDB storage for agent operational analytics.
-  - *P3 (Analytics):* Automated test pass/fail rate telemetry, cyclomatic complexity profiling, and iteration latency tracking.
-  - *P4 (Full-Stack):* React 19 web IDE with embedded Monaco Editor for real-time diffs, paired with a Streamlit telemetry console querying `analytics.duckdb`.
-- **Architecture Highlights:**
-  - Model Context Protocol (MCP) tool integration layer for safe sandboxed command execution, file patching, and test runs.
-  - Self-healing revision loop achieving 84% pass rate on benchmark code generation tasks.
-- **Strategic Resume Role:** Flagship project demonstrating state-of-the-art LangGraph engineering, vector RAG, and agentic developer tooling.
+  - *P1 (AI Eng):* Multi-agent synthetic market scenarios, autonomous agent behavioral models, and stress workload simulation.
+  - *P2 (Data Eng):* High-velocity event ingestion logged directly into DuckDB for sub-millisecond query evaluation.
+  - *P3 (Analytics):* Synthetic stress metrics, market equilibrium tracking, and scenario variance analysis.
+  - *P4 (Full-Stack):* FastAPI backend integrated with Node.js dashboard for real-time scenario monitoring.
 
 ---
 
-### 4. Autonomous Job Applicant 🎯🤖
-- **Repository URL:** `https://github.com/abhishm23/AutonomousJobApplicant`
+### 4. Indian-Grand-Strategy-Engine ⚔️👑 (Updated 2026-10-13)
+- **Repository URL:** `https://github.com/abhishm23/Indian-Grand-Strategy-Engine`
 - **Visibility:** Public (HTTP 200 Verified)
-- **Primary Stack:** Python, Streamlit, DuckDB 1.0.0, Playwright (Async), Google GenAI, BeautifulSoup4, LXML, pdfplumber, ThreadPoolExecutor.
-- **Pillar Scores:** P1: 9/10 | P2: 10/10 | P3: 8/10 | P4: 8/10 | **Total: 35/40**
+- **Primary Stack:** JavaScript (ES6+), HTML5 Canvas (1200x900 & 1000x700), Node.js, Express.
+- **Pillar Scores:** P1: 6/10 | P2: 6/10 | P3: 7/10 | P4: 9/10 | **Total: 28/40**
 - **Scoring Rationale:**
-  - *P1 (AI Eng):* Two-stage GenAI agent pipeline: Evaluator Agent scores job description alignment (0-100% confidence); Tailor Agent rewrites resume bullets targeting ATS keywords.
-  - *P2 (Data Eng):* High-throughput concurrent spidering across 6 portals (LinkedIn, Naukri, Wellfound, Hirist, Himalayas, Remotive) using `ThreadPoolExecutor`; DuckDB storage with composite key deduplication.
-  - *P3 (Analytics):* Match score distributions, application conversion telemetry, portal response rates, and salary distribution percentiles.
-  - *P4 (Full-Stack):* Interactive 6-stage Kanban board in Streamlit (`Ready to Apply` to `Offer`), with persistent Playwright session management for zero-login web automation.
-- **Architecture Highlights:**
-  - Normalized data contracts across disparate job boards with strict schema validation.
-  - Persistent Chromium browser profiles safeguarding active authenticated sessions.
-- **Strategic Resume Role:** Direct evidence of enterprise ETL/ELT engineering, DuckDB analytics, and applied agentic automation.
+  - *P1 (AI):* Turn-based `DiplomacyAI` evaluating bilateral treaty matrices (vassalage, non-aggression, trade) and `CampaignAI` territorial allocation.
+  - *P2 (Data Eng):* Hierarchical game state serialization, province polygon boundaries, and casualty loss reconciliation.
+  - *P3 (Analytics):* Auto-resolve sigmoid win-probability models, directional facing shock combat modifiers, and cascading morale rout equations.
+  - *P4 (Full-Stack):* Dual-layer procedural rendering across Strategic Campaign Map and Tactical 20x14 Grid Battlefield.
+- **October 13, 2026 Update:** Integrated geographical province polygons, canvas HUD improvements, and tactical auto-resolve fixes.
 
 ---
 
-### 5. AetherHarvest // Autonomous Web Harvester 🚀🌐
-- **Repository URL:** `https://github.com/abhishm23/AetherHarvest`
-- **Visibility:** Public (HTTP 200 Verified)
-- **Primary Stack:** Python, FastAPI, HTTPX (Async), Trafilatura, BeautifulSoup4, LXML, PyPDF, WebSockets, Three.js (WebGL), React 19, Vite 8, Tailwind CSS.
-- **Pillar Scores:** P1: 5/10 | P2: 10/10 | P3: 8/10 | P4: 10/10 | **Total: 33/40**
+### 5. ArbForge: Real-Time Cryptocurrency Triangular Arbitrage Engine 💱⚡
+- **Repository URL:** `https://github.com/abhishm23/ArbForge`
+- **Visibility:** Private
+- **Primary Stack:** Python, FastAPI, asyncio, WebSockets, NetworkX / Bellman-Ford, Jinja2.
+- **Pillar Scores:** P1: 5/10 | P2: 9/10 | P3: 9/10 | P4: 8/10 | **Total: 31/40**
 - **Scoring Rationale:**
-  - *P1 (AI Eng):* Intentionally 100% non-AI algorithmic crawler; implements autonomous dorking and multi-engine query discovery.
-  - *P2 (Data Eng):* Async HTTPX spider processing high-throughput requests; Trafilatura heuristic density cleansing stripping ads, navbars, and cookie banners; binary PDF validation via magic bytes (`%PDF-`) and SHA-256 fingerprinting.
-  - *P3 (Analytics):* Text-to-HTML density scoring, extraction purity metrics, crawl rate telemetry, and domain response histograms.
-  - *P4 (Full-Stack):* Elite cyberpunk 3D mission control featuring a Three.js WebGL globe, dynamic particle graph, glassmorphism cards, and live WebSocket terminal.
-- **Architecture Highlights:**
-  - Fully self-healing crawler with exponential backoff on HTTP 429/500 and domain politeness rate-limiting.
-  - Conversion of arbitrary web articles into offline-ready standalone clean HTML archives with absolute asset resolution.
-- **Strategic Resume Role:** Proves high-performance async data extraction, algorithmic data cleansing, and cutting-edge 3D data visualization.
+  - Algorithmic graph modeling using Bellman-Ford on negative log-price cycles across multi-exchange order books, factoring in exchange fees and execution slippage.
 
 ---
 
-## 5. Audit of Secondary & Excluded Repositories
-
-### 6. Excel_agent
-- **URL:** `https://github.com/abhishm23/Excel_agent`
-- **Visibility:** Private (`visibility: private`)
-- **Stack:** Python, Tkinter, Google GenAI, Pydantic, openpyxl, pywin32, PyInstaller.
-- **Assessment:** Highly relevant enterprise tool featuring automated Excel workbook generation from natural language prompts with Pydantic JSON schemas and Windows EXE compilation.
-- **Exclusion Reason:** As a private repository, linking it publicly on a resume or portfolio will produce HTTP 404 errors for recruiters. It serves as strong evidence in enterprise bullet points (e.g. Cisco zero-dependency tools) but should not be linked in public portfolios until permissions change.
-
-### 7. portfolio
-- **URL:** `https://github.com/abhishm23/portfolio`
-- **Visibility:** Public
-- **Stack:** Python, Jinja2, Playwright, HTML5, CSS3.
-- **Assessment:** The single-source publishing pipeline itself. While technically elegant, displaying the portfolio engine as a showcase project within itself is recursive and less impactful than domain-specific platforms.
-
-### 8. Indian-Grand-Strategy-Engine
-- **URL:** `https://github.com/abhishm23/Indian-Grand-Strategy-Engine`
-- **Visibility:** Public
-- **Stack:** JavaScript, HTML5 Canvas, Simulation Loop.
-- **Assessment:** Sophisticated 14th-century historical tactical battle engine with pathfinding and canvas rendering. However, the gaming domain does not align directly with Senior Analytics Engineering or Enterprise AI profiles.
-
-### 9. AstroAgent
-- **URL:** `https://github.com/abhishm23/AstroAgent`
-- **Visibility:** Public
-- **Stack:** TypeScript, Next.js 16, Three.js, Swiss Ephemeris.
-- **Assessment:** Real-time planetary calculation engine and 3D celestial sphere. High algorithmic rigor, but the Vedic astrology domain is orthogonal to corporate data intelligence roles.
+### 6. AeroPulse: Real-Time Flight Telemetry Anomaly Detection HUD ✈️📡
+- **Repository URL:** `https://github.com/abhishm23/AeroPulse`
+- **Visibility:** Private
+- **Primary Stack:** FastAPI, asyncio WebSockets, scientific Python math kernels, Leaflet.js.
+- **Pillar Scores:** P1: 6/10 | P2: 8/10 | P3: 8/10 | P4: 9/10 | **Total: 31/40**
+- **Scoring Rationale:**
+  - Ingests high-frequency aircraft state vectors, evaluates aerodynamic envelope anomalies (pitch/roll deviations), and renders a real-time tactical radar HUD.
 
 ---
 
-## 6. Strategic Portfolio & Resume Integration Plan
+## 5. Strategic Portfolio & Resume Integration Architecture
 
-1. **Top 5 GitHub Projects in Web Portfolio (`portfolio_projects`):**
-   - Distribute the Top 5 projects across the 3 strategic portfolio pillars in `resume_data.yaml`:
-     - *Autonomous Automation Pillar:* `BHOLA-Coding-Agent`, `AutonomousJobApplicant`
-     - *Decision Intelligence Pillar:* `Research-Arena`, `LLM-Forge`
-     - *Enterprise Optimization Pillar:* `AetherHarvest`
-   - Include direct, verified GitHub repository links (`repo_url: https://github.com/abhishm23/<name>`).
+1. **Printable 1-Page Resume (`dist/Abhishek_Mishra_Resume.pdf`):**
+   - Incorporates `Shift: Commercial Financial Audit & Reconciliation Engine` as a primary featured project with active GitHub repository link (`https://github.com/abhishm23/Shift`).
+   - Maintains the pristine 1-page ATS layout with zero page-2 overflow.
+   - Highlights: DuckDB, Polars, Rust/Tauri v2, PVMC variance bridges, and 15M transaction reconciliation.
 
-2. **Top 3 Flagship Projects on Printable 1-Page Resume (`featured_projects`):**
-   - Designate the 3 highest-scoring, most strategically aligned projects:
-     1. `BHOLA-Coding-Agent` (Autonomous AI Agent with cyclic graph and self-healing AST loop)
-     2. `LLM-Forge` (Fine-Tuning Studio with PyTorch/LoRA and real-time WebSocket telemetry)
-     3. `Research-Arena` (Autonomous R&D Meta-Platform with multi-agent consensus debate)
-   - Render in ATS-safe format with active hyperlinks, tech stacks, and quantified outcome highlights.
-
-3. **Work Experience Streamlining:**
-   - Condense Cisco bullets from 5 to 4 and Accenture bullets from 4 to 3 (total 7 bullets) to guarantee strict single-page PDF compilation with comfortable headroom.
+2. **Web Portfolio Single Source of Truth (`resume_data.yaml` & `dist/index.html`):**
+   - **Pillar 1 (Autonomous Automation):** Enriched with `Shift // Commercial Financial Audit & Reconciliation Engine` (`https://github.com/abhishm23/Shift`), demonstrating enterprise financial audit and high-throughput data pipelines.
+   - **Open-Source R&D & Extended Repositories:** Highlights `ML-Arena`, `Simulation-Arena`, `Indian-Grand-Strategy-Engine`, `ArbForge`, `AeroPulse`, and `Chess` directly within the interactive portfolio.
+   - Preserves all 52 core behavioural, accessibility, keyboard navigation, and responsive layout guarantees verified via `tests/verify_portfolio.py`.
